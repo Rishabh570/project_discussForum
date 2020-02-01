@@ -1,6 +1,9 @@
+* {
+  font-family: 'Lato', sans-serif;
+}
+
 body {
     margin: 0;
-    font-family: 'Lucida Grande', tahoma,verdana,arial,sans-serif;
     line-height: 1.28;
   }
   
@@ -11,9 +14,8 @@ body {
   }
   
   #navbar {
-    margin: 0 auto;
-    width:980px;
-    height:59px;
+    display: flex;
+    justify-content: space-around;
   }
   
   #contentwrapper {
@@ -28,38 +30,15 @@ body {
     padding-top:20px;
   }
   
-  h1 {
-    font-family: tahoma,verdana,arial,sans-serif;
-    font-size: 38px;
-    letter-spacing:0.05px;
-    margin: 0;
-    color:#fff;
-    -webkit-font-smoothing: antialiased;
-  }
-  
   .logowrapper {
     display: block;
-    padding: 30px 0;
-  }
-  
-  #button {
-    position:relative;
-    width:45px;
-    height:18px;
-    background-color: #5b72a9;
-    border: 1px solid #999;
-    border-color:#8b9dc3 #2f477a #29447e #1a356e;
-    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .1);
-    cursor:pointer;
-    font-size:11px;
-    font-weight:bold;
-    text-align:center;
-    color:#fff;
+    padding: 10px;
+    color: rgb(95, 3, 3);
   }
   
   .tablewrapper {
-    float:right;
-    margin-top:15px;
+    padding: 5px;
+    margin-top: 5px;
   }
   
   .row1 {
@@ -151,7 +130,6 @@ body {
   }
   
   .bolder {
-    font-family: 'Open Sans',sans-serif;
     text-rendering:optimizelegibility;
     color:#333;
   }
