@@ -28,7 +28,7 @@ body {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-start;
-	margin:10vh;
+	margin:20px;
 }
 #trencards
 {
@@ -37,8 +37,7 @@ body {
 .item
 {
 	height: 20vh;
-	margin:10px;
-	width:10vw;
+	margin:20px;
 	padding:25px;
 	background-color: wheat;
 	
