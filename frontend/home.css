@@ -5,11 +5,12 @@
 }
 
 body {
-	background-color: #e3e3e3;
+	background-color:whitesmoke;  
+	
+	/* #e3e3e3;*/
 }
 
 /* SEARCHBAR */
-
 .headings {
 	color: white;
 }
@@ -19,7 +20,28 @@ body {
 	height: 2.5em;
 }
 .navbar {
+	
 	background-color: black;
+}
+.cards
+{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	margin:10vh;
+}
+#trencards
+{
+	display:none;
+}
+.item
+{
+	height: 20vh;
+	margin:10px;
+	width:10vw;
+	padding:25px;
+	background-color: wheat;
+	
 }
 .form-inline {
 	display: flex;
