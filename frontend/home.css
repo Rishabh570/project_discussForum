@@ -32,11 +32,12 @@ body {
 }
 #trencards
 {
-	display:none;
+	
 }
 .item
 {
-	height: 20vh;
+	height: 16em;
+	width:12em;
 	margin:20px;
 	padding:25px;
 	background-color: wheat;

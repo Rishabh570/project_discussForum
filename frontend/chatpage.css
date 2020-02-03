@@ -1,0 +1,42 @@
+* {
+  font-family: 'Lato', sans-serif;
+}
+
+body {
+    margin: 0; 
+    line-height: 1.28;
+    background-color: #e6ecff;
+  }
+
+.logowrapper {
+    display: block;
+    padding: 10px;
+    color:whitesmoke;
+  }
+.ele
+{
+  padding: 10px;
+  margin: 10px;
+}
+.mybar{
+  margin:5px ;
+}
+.desc
+{ background-color: white;
+  width:100vw;
+}
+#navwrapper {
+    width: 100%; 
+    background-color: black;
+  }
+  
+#navbar {
+  display: flex;
+  flex-wrap: wrap;
+   	justify-content: space-around;
+  }
+
+.card {
+	background-color: lightgrey;
+}
+
