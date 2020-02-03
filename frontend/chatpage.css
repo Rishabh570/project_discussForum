@@ -33,16 +33,15 @@ body {
 .message-box {
   position: absolute;
   bottom: 10px;
-  left: 10px;
+  left: 1.5em;
   width: 65%;
 }
 
 .messages-window {
   display: flex;
   flex-direction: column;
-  height: 20em;
+  height: 27em;
   padding: 0.5em;
-  border: 5px solid brown;
   border-radius: 0.4em;
 }
 
