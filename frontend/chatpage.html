@@ -5,35 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ChatPage</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="ChatPage.css">
-  	<link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="chatpage.css">
 
 </head>
 <body>
-	<div class="container-fluid text-breaks" id="navwrapper">
-        <div id="navbar"> 
+	<!-- NAVBAR -->
+	<div>
+        <nav class="navbar navbar-light">
             <div class="headings"><h1 class="logowrapper">Discussion Forum</h1></div>
-        </div>
-	</div>
-	
-    <div class="mybar">
-    <div class="row">
-  		<div id="activeU" class="col ele"> Active users:<br>155555550000000 	</div>
-			<div class="col ele">#keyword 1</div> 
-			<div class="col ele">#keyword 2</div> 
-			<div class="col ele">#keyword 3</div> 
-			<div class="col ele">#keyword 4</div> 
-			<div class="col ele">#keyword 5</div> 
-			<div class="col ele">		
-				<a href="#" class="btn btn-outline-primary">most liked <span class="glyphicon glyphicon-thumbs-up"></span></a>
-			</div>						
-  			<div class="col ele">Author:name of the author</div>
+        </nav>
     </div>
-  			<div class="row">
-			<div class="col ele desc"> Description:hubfjagfasd,bfgulsdafbjsakfgiusdkfb,shafgflsgfafsavfafgisdflgf,kflaisfgbsflasdgjkgjgkgkgbk,gk,gjklgkuvktiluiubilniuiib.</div></div>
-    		</div>
+
+	<!-- CONTAINER -->
+	<div class="container-fluid">
+		<!-- CHAT WINDOW -->
+		<div class="row content-box">
+			<div class="col-md-8 messages-window">
+				<div class="row keywords">
+  					<p class="mr-2"><strong>Keywords: </strong></p>
+					<p style="font-style: italic;">help-wanted, maths-assignment, permutation, complex, what-to-do</p>
+					<span id="keyword-info" class="mr-0 ml-auto"><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+				</div>
+				<div class="row chat-box">
+					<p style="text-align: center;" class="lead">This is a chat box!</p>
+				</div>
+			</div>
+
+			<!-- SIDE BAR -->
+			<div class="col-md-3 side-bar">
+				<div class="row author side-bar-rows">
+					<p><strong>Author: </strong></p>
+					<p> John Doe</p>
+				</div>
+				<div class="row side-bar-rows">
+					<p><strong>Currently active: 1</strong></p>
+				</div>
+				<div class="row related-posts side-bar-rows">
+					<h5><strong>See related posts</strong></h5>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- MESSAGE BOX -->
+	<div class="message-box">
+		<form>
+			<div class="form-group">
+				<textarea placeholder="Type something..." class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+			</div>
+			<button type="submit" class="btn btn-primary mt-1">
+				Send
+				<i class="fa fa-paper-plane" aria-hidden="true"></i>
+			</button>
+		</form>
+	</div>
 
     
 </body>

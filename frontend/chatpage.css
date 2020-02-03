@@ -1,42 +1,69 @@
 * {
   font-family: 'Lato', sans-serif;
+  margin: 0 !important;
 }
 
 body {
-    margin: 0; 
     line-height: 1.28;
     background-color: #e6ecff;
-  }
+}
 
-.logowrapper {
-    display: block;
-    padding: 10px;
-    color:whitesmoke;
-  }
-.ele
-{
-  padding: 10px;
-  margin: 10px;
+.container-fluid {
+  padding: 1em;
 }
-.mybar{
-  margin:5px ;
+
+.headings {
+	color: white;
 }
-.desc
-{ background-color: white;
-  width:100vw;
+.navbar {
+	background-color: black;
 }
-#navwrapper {
-    width: 100%; 
-    background-color: black;
-  }
-  
-#navbar {
+.content-box {
   display: flex;
-  flex-wrap: wrap;
-   	justify-content: space-around;
-  }
-
+  justify-content: space-between;
+}
 .card {
 	background-color: lightgrey;
 }
 
+#keyword-info:hover {
+  cursor: pointer;
+}
+
+.message-box {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 65%;
+}
+
+.messages-window {
+  display: flex;
+  flex-direction: column;
+  height: 20em;
+  padding: 0.5em;
+  border: 5px solid brown;
+  border-radius: 0.4em;
+}
+
+.keywords {
+  height: 2em;
+}
+
+.chat-box {
+  border: 2px double #503d3d;
+  border-radius: 2px;
+  height: inherit;
+}
+
+.side-bar {
+  padding: 1em;
+}
+.side-bar-rows {
+  height: 2em;
+  text-align: center;
+}
+
+.related-posts:hover {
+  cursor: pointer;
+}
