@@ -5,9 +5,7 @@
 }
 
 body {
-	background-color:whitesmoke;  
-	
-	/* #e3e3e3;*/
+	background-color:whitesmoke;
 }
 
 /* SEARCHBAR */
@@ -22,17 +20,6 @@ body {
 .navbar {
 	
 	background-color: black;
-}
-.cards
-{
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: flex-start;
-	margin:20px;
-}
-#trencards
-{
-	
 }
 .item
 {
