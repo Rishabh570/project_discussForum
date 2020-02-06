@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="profile.css">
@@ -17,30 +16,54 @@
             <div class="headings"><h1 class="logowrapper">Discussion Forum</h1></div>
         </nav>
     </div>
-<div class="register"> 
-    <form method="post" id="register" action="">
-<label>LOCATION :</label><br>
-<input type="alnum" name="inputbody col" id="loci"
-placeholder="Enter U R location"><br><br>
-<input type="submit" value="Add" id="Ad"><br><br>
-<label>EMPLOYMENT DETAILS :</label><br>
-<input type="text" name="inputbody col" id="loci"
-placeholder=" Enter U R Employment Details"><br><br>
-<input type="submit" value="Add" id="Ad"><br><br>
-<label>EDUCATIONAL DETAILS :</label><br>
-<input type="text" name="inputbody col" id="loci"
-placeholder=" Enter U R Educational Details"><br><br>
-<input type="submit" value="Add" id="Ad"><br><br>
-<label>EMAIL ID:</label><br>
-<input type="email" name="inputbody col" id="loci"
-placeholder="Enter U R EmailId"><br><br>
-<input type="submit" value="Add" id="Ad"><br><br>
-<label>Mobile Number :</label><br>
-<select id="ph">
-    <option>+91</option>
-</select>
-<input type="number" name="inputbody col" id="loci"
-placeholder="Enter U R Mobile No."><br><br>
-<input type="submit" value="Add" id="Ad"><br><br>
-</form>
-</div> 
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col" id="profile-section1">
+                <div id="profile-pic" class="my-2 mx-auto">
+                    <img src="./images/user.png" alt="User" width="100%" height="100%">
+                </div>
+                <div id="profile-section1-details">
+                    <p><strong>Education:</strong> Maharaja Surajmal Institute of Technology</p>
+                </div>
+            </div>
+            <div class="col-md-4 mt-2 px-auto" id="profile-section2">
+                <h1 class="heading4">Profile Information</h1>
+                <div class="details"><p><strong>Name:</strong> John Doe</p></div>
+                <div class="details"><p><strong>Email:</strong> John.doe@gmail.com</p></div>
+                <div class="details"><p><strong>Mobile No.:</strong> 1923320139</p></div>
+                <div class="details"><p><strong>Location:</strong> New Delhi</p></div>
+                <div class="details"><p><strong>Employment:</strong> Unemployed</p></div>
+            </div>
+            <div class="col-md-4 mt-2" id="profile-section3">
+                <h1 class="heading4">Edit Details</h1>
+                <div class="detail-inputs-box my-2">
+                    <input type="text" class="detail-inputs form-control" placeholder="Enter your name">
+                    <button class="btn btn-outline-secondary detail-buttons">Update</button>
+                </div>
+                <div class="detail-inputs-box my-2">
+                    <input type="text" class="detail-inputs form-control" placeholder="Enter your email">
+                    <button class="btn btn-outline-secondary detail-buttons">Update</button>
+                </div>
+                <div class="detail-inputs-box my-2">
+                    <input type="text" class="detail-inputs form-control" placeholder="Enter your mobile number">
+                    <button class="btn btn-outline-secondary detail-buttons">Update</button>
+                </div>
+                <div class="detail-inputs-box my-2">
+                    <input type="text" class="detail-inputs form-control" placeholder="Enter your location">
+                    <button class="btn btn-outline-secondary detail-buttons">Update</button>
+                </div>
+                <div class="detail-inputs-box my-2">
+                    <input type="text" class="detail-inputs form-control" placeholder="Enter your employement details">
+                    <button class="btn btn-outline-secondary detail-buttons">Update</button>
+                </div>
+                <div class="detail-inputs-box my-2">
+                    <input type="text" class="detail-inputs form-control" placeholder="Enter your Educational details">
+                    <button class="btn btn-outline-secondary detail-buttons">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

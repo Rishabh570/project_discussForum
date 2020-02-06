@@ -1,39 +1,48 @@
 * {
 	font-family: 'Lato', sans-serif;
-	margin: 0 !important;
-  }
-
-body {
-    margin: 0; 
-    background-color: #e3e3e3;
-    line-height: 1.28;
-  }
-
-.navbar {
-    background-color: black;
+	margin: 0;
 }
 
-  h1
-  {
-    text-align: left;
-  }
+body {
+  background-color: #e3e3e3;
+}
 
+.headings {
+  color: white;
+}
 
-  .register{
-    width: 500px;
-    margin: 30px 0px 0px 1050px;
-    font-size: 10;
-  }
-  #loci{
-    width: 240px;
-    border: none;
-    border-radius: 3px;
-    outline: 0;
-    padding: 7px;
-  }
-  #navbar {
-    width: 100%; 
-    background-color: black;
-    padding:15px  ;
-  color: whitesmoke;
-  } 
+.navbar {
+  background-color: black;
+}
+
+#profile-pic {
+  width: 12em;
+  height: 12em;
+  /* background-color: grey; */
+  border-radius: 5em;
+}
+
+.detail-inputs-box {
+  display: flex;
+  justify-content: space-around;
+}
+ 
+.detail-inputs {
+  flex-grow: 5;
+}
+.detail-buttons {
+  flex-grow: 1;
+}
+
+#profile-section2 {
+  padding: 2em;
+  background-color: bisque;
+  border-radius: 10px;
+}
+
+#profile-section3 {
+  padding: 2em;
+  background-color: lightblue;
+  border-radius: 10px;
+  box-shadow: 1px 2px 1px 1px #111111;
+}
