@@ -44,4 +44,5 @@ keywords: {type: sequelize.STRING, allowNull: false}, description: { type: seque
 msg: {type:sequelize.JSON}, likes:{type:sequelize.JSON} });
 
 db.sync().then(() => console.log("Database has been synced")).catch((err) => console.error("Error creating database"));
-module.exports={users,entry}
+
+module.exports={users,entry,cards,auth}
