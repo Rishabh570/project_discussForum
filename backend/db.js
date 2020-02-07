@@ -21,20 +21,27 @@ const db = new sequelize('db', 'founder', 'ksksrrpj01@', {
     }
 })
 
-
+const auth=db.define('authdets',{ 
+    eid: {type:sequelize.STRING,  primaryKey: true  },
+    uid: {type:sequelize.STRING,  allowNull:false},
+    pass:  {type:sequelize.STRING, allowNull:false}
+})
 const entry=db.define('counts',{ 
-    id: {type:sequelize.INTEGER,    autoIncrement: true,    primaryKey: true},
+    id: {type:sequelize.INTEGER,    autoIncrement: true,  primaryKey: true  },
     usercount:{type:sequelize.INTEGER, allowNull:false}, 
     cardcount:{type:sequelize.INTEGER, allowNull:false}
 })
 
-const users=db.define('userinfos',{ uid:{type:sequelize.STRING(6)}, 
+const users=db.define('userdets',{ uid:{type:sequelize.STRING(6), primaryKey: true}, 
 firstName: {type: sequelize.STRING, allowNull: false}, lastName: { type: sequelize.STRING },
 age:{ type:sequelize.INTEGER},  gender: {type:sequelize.STRING(1)}, location: { type:sequelize.STRING},
 mobileno:{type:sequelize.STRING(10)}, eduDet:{type:sequelize.STRING}, empDet:{type:sequelize.STRING},
 ilink:{type:sequelize.STRING},  cid:{type:sequelize.STRING(6)} });
 
-db.sync().then(() => console.log("Database has been synced")).catch((err) => console.error("Error creating database"))
+const cards=db.define('carddets',{ 
+cid:{type:sequelize.STRING(6), primaryKey: true}, uid:{type:sequelize.STRING(6)}, 
+keywords: {type: sequelize.STRING, allowNull: false}, description: { type: sequelize.STRING , allowNull:false },
+msg: {type:sequelize.JSON}, likes:{type:sequelize.JSON} });
 
-
+db.sync().then(() => console.log("Database has been synced")).catch((err) => console.error("Error creating database"));
 module.exports={users,entry}
