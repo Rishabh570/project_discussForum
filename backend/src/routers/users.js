@@ -7,6 +7,7 @@ router.get('/', (req, res) => {
 	db.users.findAll()
 	.then(users => {
 		console.log("users => ", users);
+		res.send(users);
 		res.sendStatus(200);
 	})
 	.catch(err => {
