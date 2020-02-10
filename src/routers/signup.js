@@ -4,10 +4,9 @@ const express = require('express')
 	, {pass2hash} = require('../utils/passwordUtils')
 	, passport = require('passport');
 
-router.get('/', (req, res) => {
-	res.render('home')
-	// res.send("SIGNUP page coming soon!!!")
-})
+	router.get('/', (req, res) => {
+		res.redirect('../public/login.html')
+	})
 
 router.post('/', async (req, res) => {
 	try {
