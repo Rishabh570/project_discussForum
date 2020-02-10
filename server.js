@@ -6,25 +6,22 @@ const express = require('express')
 	, path = require('path');
 
 const app = express()
-//app.set('views', path.join(__dirname, './src/views'))
-//app.set("view engine", "hbs")
 app.use(express.static(path.join(__dirname, './src/public')));
-
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(passport.initialize())
 app.use(passport.session())
+
+// Routes
+app.use('/signup', signupRoute);
+app.use('/',homeRoute);
+app.use('/users', userRoutes);
 
 // TEST DB
 const db = require('./src/db/database')
 db.authenticate()
 .then(() => {console.log("Database Connected.")})
 .catch(err => console.log("Error in DB connection: ", err));
-
-// Routes
-app.use('/signup', signupRoute);
-app.use('/',homeRoute);
-app.use('/users', userRoutes);
 
 //activation of port
 const PORT = process.env.PORT || 2121;

@@ -5,18 +5,19 @@ const express = require('express')
 	, passport = require('passport');
 
 	router.get('/', (req, res) => {
-		res.redirect('../public/login.html')
+		res.redirect('/login.html')
 	})
 
 router.post('/', async (req, res) => {
 	try {
-		const user = await findUserByParams({username: req.body.username});
+		const user = await findUserByParams({email: req.body.em});
 		if(user) {
-			console.log("User already exists!!!");
+			console.log("User with this e-mail already exists!!!");
 		}
 		else {
 			const passhash = await pass2hash(req.body.password);
-			const createdUser = await createUserLocal({username: req.body.username, password: passhash});
+			const createdUser = await createUserLocal({email: req.body.em, password: passhash,firstName: req.body.fn,
+														lastName: req.body.ln, dob: req.body.dob, gender: req.body.gen});
 			if(!createdUser) {
 				console.log("Could not create user. Please try again!!!");
 			}

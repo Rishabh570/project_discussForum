@@ -19,11 +19,7 @@ const users = db.define('User', {
 		primaryKey: true,
 		autoIncrement: true
 	},
-	username: {
-		type: sequelize.DataTypes.STRING,
-		unique: true,
-		allowNull: false
-	},
+	
 	password:  {
 		type: sequelize.DataTypes.STRING,
 		unique: true,
@@ -38,8 +34,8 @@ const users = db.define('User', {
 	email: {
 		type: sequelize.DataTypes.STRING
 	},
-	age: {
-		type: sequelize.DataTypes.INTEGER
+	dob: {
+		type: sequelize.DataTypes.STRING
 	},
 	gender: {
 		type: sequelize.DataTypes.STRING(1)

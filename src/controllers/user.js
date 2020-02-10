@@ -4,8 +4,11 @@ async function createUserLocal(query) {
     let userLocal;
     try {
         userLocal = await db.users.create({
-			username: query.username,
-			password: query.password
+			email: query.email,
+			password: query.password,
+			firstName:query.firstName,
+			lastName: query.lastName, dob: query.dob, 
+			gender: query.gender
 		})
     } catch (err) {
 		console.log("error while creating user");
@@ -23,8 +26,8 @@ async function findUserById(uid) {
 
 async function findUserByParams(params) {
 	try {
-		const resp = await db.users.findOne({
-			where:  {username: params.username}
+		const resp = await db.users.findAll({
+			where:  {email: params.email}
 		})
 	}
 	catch(err) {

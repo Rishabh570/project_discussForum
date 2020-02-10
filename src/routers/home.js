@@ -3,7 +3,7 @@ const router = express.Router()
 
 
 router.get('/', (req, res) => {
-    res.redirect('../public/home.html');
+    res.redirect('/home.html');
 })
 
 
