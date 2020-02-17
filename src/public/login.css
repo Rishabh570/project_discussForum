@@ -6,7 +6,7 @@ body {
     margin: 0; 
     background-color: #e3e3e3;
     line-height: 1.28;
-    background-color: #EEC7BF;
+    
   }
   /*
   #logbtn{
@@ -56,7 +56,7 @@ body {
   .middleP{
     width: 100%;
     height: 100vh;
-    background-color: #EEC7BF;
+    
     justify-content: space-around;
     display: flex;
     flex-wrap: wrap;
@@ -70,7 +70,7 @@ body {
   .item
   {
     margin:20px;
-    background-color: #EEC7BF;
+   
 
   }
 

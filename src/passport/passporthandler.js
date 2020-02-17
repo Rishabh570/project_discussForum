@@ -1,29 +1,48 @@
+/* PASSPORT LOCAL AUTHENTICATION */
+
 const passport = require('passport')
-	, UserStrategies = require('./strategies/user/index')
-	, {findUserById} = require('../controllers/user');
+const LocalStrategy = require('passport-local').Strategy
+const passUtils = require('../../../utils/passwordUtils')
+const {findUserByParams, createUserLocal} = require('../../../controllers/user')
 
+passport.serializeUser(function (user, done) {
+    done(null, user.username)
+})
 
-passport.use(UserStrategies.local)
-
-
-passport.serializeUser(function (user, cb) {
+passport.deserializeUser( function (username, done) {
 	try {
-		return cb(null, user.uid);
+		const user =findUserByParams({email:username});
+		if(!user) {
+			return done(new Error("No such user"))
+		}
+		return done(null, user);
 	}
-	catch (err) {
-		return cb(err, null);
-	}
+	catch (err){
+		done(err)
+	}	
 })
 
-passport.deserializeUser((id, cb) => {
-    try {
-        const user = findUserById(id);
-        return cb(null, user);
-    } catch (err) {
-        return cb(err, null);
+passport.use({
+		usernameField: 'email',
+		passwordField: 'password'
+	  },
+	new LocalStrategy(function (username, password, done) {
+	try {
+		const user =findUserByParams({email:username});
+        if (!user) {
+            return done(null, false, {message: "No such user"})
+		}
+		let passhash=await pass2hash(password);
+        if (user.password !== password) {
+            return done(null, false, {message: "Wrong password"})
+        }
+        return done(null, user)
+	}
+	catch(err){
+        return done(err)
     }
-})
+}))
 
-// passport.transformAuthInfo((info, done) => done(null, info))
+exports = module.exports = passport
 
-module.exports = passport
+

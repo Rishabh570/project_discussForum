@@ -3,7 +3,7 @@ db = require('../db/db');
 async function createUserLocal(query) {
     let userLocal;
     try {
-        userLocal = await db.users.create({
+        userLocal = await db.User.create({
 			email: query.email,
 			password: query.password,
 			firstName:query.firstName,
@@ -19,21 +19,24 @@ async function createUserLocal(query) {
 }
 
 async function findUserById(uid) {
-    return db.users.findOne({
+    return db.User.findOne({
 		where: { uid }
 	});
 }
 
 async function findUserByParams(params) {
 	try {
-		const resp = await db.users.findAll({
+		
+		const resp = await db.User.findOne({
 			where:  {email: params.email}
 		})
+		
+		return resp;
 	}
 	catch(err) {
 		console.log(err);
 	}
-	return resp;
+	
 }
 
 
