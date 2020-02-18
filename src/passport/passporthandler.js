@@ -2,7 +2,7 @@
 
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
-const passUtils = require('../utils/passwordUtils')
+const {pass2hash} = require('../utils/passwordUtils')
 const {findUserByParams, createUserLocal} = require('../controllers/user')
 
 passport.serializeUser(function (user, done) {
@@ -23,17 +23,20 @@ passport.deserializeUser( function (username, done) {
 })
 
 passport.use(new LocalStrategy(function (username, password, done) {
+	
 	try {
-		console.log("show is running");
-		console.log(username);
+	
 		const user =findUserByParams({email:username});
         if (!user) {
             return done(null, false, {message: "No such user"})
 		}
 		let passhash= pass2hash(password);
-        if (user.password !== password) {
+        if (user.password !== passhash) {
+			
+			console.log('trying for failue')
             return done(null, false, {message: "Wrong password"})
-        }
+		}
+		console.log('trying for sucess')
         return done(null, user)
 	}
 	catch(err){
