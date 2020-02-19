@@ -9,9 +9,9 @@ passport.serializeUser(function (user, done) {
     done(null, user.username)
 })
 
-passport.deserializeUser( function (username, done) {
+passport.deserializeUser(async function (username, done) {
 	try {
-		const user =findUserByParams({email:username});
+		const user =await findUserByParams({email:username});
 		if(!user) {
 			return done(new Error("No such user"))
 		}
