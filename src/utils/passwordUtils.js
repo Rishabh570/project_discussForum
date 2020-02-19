@@ -12,7 +12,6 @@ const bcrypt=require('bcrypt')
 const saltRounds = config.BCRYPT_SALT_ROUNDS;
 
 const pass2hash = function (pass) {
-    console.log(pass)
     return bcrypt.hash(pass, saltRounds)
 }
 
