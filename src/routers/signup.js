@@ -8,30 +8,31 @@ const express = require('express')
 		res.render('newlogin')
 	})
 
-router.post('/new', async (req, res,next) => {
+	router.post('/', async (req, res,next) => {
 	
-	try {
-		const user = await findUserByParams({email: req.body.username});
-		
-		if(user) {
-			console.log("User with this e-mail already exists!!!");
-		}
-		else {
-			const passhash = await pass2hash(req.body.password);
-			let dob= (req.body.db)+"/"+(req.body.mb)+"/"+(req.body.yb);
-			const createdUser = await createUserLocal({email: req.body.username, password: passhash,firstName: req.body.firstname,
-														lastName: req.body.lastname, dob:dob, gender: req.body.gen});
+		try {
+			const user = await findUserByParams({email: req.body.username});
 			
-			if(!createdUser) {
-				console.err("Could not create user. Please try again!!!");}
-			else{	next();	}}
-		}
-		catch (err) {
-		console.log("Error in signup.");}
-},
-passport.authenticate('local', {
-	failureRedirect: '/signup',
-	successReturnToOrRedirect: '/home'
-}))
-
-module.exports = router;
+			if(user) {
+				console.log("User with this e-mail already exists!!!");
+			}
+			else {
+				const passhash = await pass2hash(req.body.password);
+				console.log(req.body.password);
+				let dob= (req.body.db)+"/"+(req.body.mb)+"/"+(req.body.yb);
+				const createdUser = await createUserLocal({email: req.body.username, password: passhash,firstName: req.body.firstname,
+															lastName: req.body.lastname, dob:dob, gender: req.body.gen});
+				
+				if(!createdUser) {
+					console.err("Could not create user. Please try again!!!");}
+				else{	next();	}}
+			}
+			catch (err) {
+			console.log("Error in signup.");}
+	},
+	passport.authenticate('local', {
+		failureRedirect: '/signup',
+		successReturnToOrRedirect: '/'
+	}))
+	
+	module.exports = router;

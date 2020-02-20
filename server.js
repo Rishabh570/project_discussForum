@@ -1,5 +1,6 @@
 const express = require('express')
 	, signupRoute = require('./src/routers/signup')
+	,loginRoute=require('./src/routers/login')
 	, homeRoute = require('./src/routers/home')
 	, userRoutes = require('./src/routers/users')
 	, passport = require('./src/passport/passporthandler')
@@ -16,6 +17,7 @@ app.use(passport.session())
 
 // Routes
 app.use('/signup', signupRoute);
+app.use('/login',loginRoute);
 app.use('/',homeRoute);
 app.use('/users', userRoutes);
 

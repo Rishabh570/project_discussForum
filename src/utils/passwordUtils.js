@@ -1,7 +1,6 @@
 /**
  * Returns promise
  */
-
 // With “salt round” they actually mean the cost factor.
 // The cost factor controls how much time is needed to calculate a single BCrypt hash.
 // The higher the cost factor, the more hashing rounds are done.
