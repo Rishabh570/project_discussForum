@@ -9,6 +9,7 @@ passport.serializeUser(function (user, done) {
     done(null, user.email)
 })
 
+
 passport.deserializeUser(async function (username, done) {
 	try {
 		const user =await findUserByParams({email:username});
