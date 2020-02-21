@@ -1,8 +1,9 @@
 const express = require('express')
-const router = express.Router()
+	, router = express.Router()
+	, authMiddleware = require('../middlewares/isAuthenticated');
 
 
-router.get('/', (req, res) => {
+router.get('/', authMiddleware.verifyUser, (req, res) => {
     res.redirect('/home.html');
 })
 

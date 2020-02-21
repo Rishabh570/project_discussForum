@@ -4,13 +4,12 @@ const express = require('express')
 	, {pass2hash} = require('../utils/passwordUtils')
     , passport = require('../passport/passporthandler');
 
-router.get('/', (req, res) => {
-    res.render('newlogin')
-})
 
-router.post('/', passport.authenticate('local', {
-	failureRedirect: '/signup',
-	successReturnToOrRedirect: '/'
-}))
+router.get('/', function(req, res){
+	console.log("logging out...");
+	req.logout();
+	res.redirect('/');
+});
+
 
 module.exports = router;
