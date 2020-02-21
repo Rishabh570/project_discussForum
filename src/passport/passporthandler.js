@@ -2,8 +2,8 @@
 
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
-const passutil = require('../utils/passwordUtils')
 const {findUserByParams, createUserLocal} = require('../controllers/user')
+const bcrypt = require('bcrypt')
 
 passport.serializeUser(function (user, done) {
     done(null, user.email)
@@ -19,24 +19,25 @@ passport.deserializeUser(async function (username, done) {
 	}
 	catch (err){
 		done(err)
-	}	
+	}
 })
 
 passport.use(new LocalStrategy(async function (username, password, done) {
-	
+
 	try {
-	
-		const user =await findUserByParams({email:username});
+		const user = await findUserByParams({email:username});
         if (!user) {
             return done(null, false, {message: "No such user"})
 		}
-		let passhash = await passutil.pass2hash(password);
-		console.log(password);
-        if (passutil.compare2hash(password, user.password)) {
-			return done(null, user)
-		}
-            return done(null, false, {message: "Wrong password"})
-	
+
+		bcrypt.compare(password, user.password, (err, matches) => {
+			if(matches) {
+				console.log("finally user = ", user.password);
+				return done(null, user)
+			}
+			console.log("not machted");
+			return done(null, false, {message: "Wrong password"})
+		})
 	}
 	catch(err){
         return done(err)
