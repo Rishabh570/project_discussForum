@@ -1,0 +1,550 @@
+/* GLOBAL STYLES */
+* {
+	font-family: 'Lato', sans-serif;
+	margin: 0;
+	
+}
+
+body {
+	background-color:whitesmoke;
+}
+
+/* SEARCHBAR */
+
+.headings {
+	color: white;
+}
+#searchbar {
+	width: 50%;
+	border-radius: 0.5em;
+	height: 2.5em;
+}
+/*
+.navbar {
+	background-color: black;
+}
+*/
+.form-inline {
+	display: flex;
+	justify-content: center;
+}
+
+
+/* CARDS SECTION */
+
+.cards-section {
+	margin-top: 2em;
+}
+.list {
+	border-bottom: 1px solid lightgray;
+}
+.card {
+	width: 12em;
+	height: 16em;
+	margin: 5px 10px;
+	padding: 5px;
+	border: 1px solid #d3daac;
+	border-radius: 2px;
+	box-shadow: 0.5px 0.5px 3px 1px rgb(11, 56, 0);
+	transition: transform 0.1s ease-in;
+}
+.card:hover {
+	cursor: pointer;
+	transform: translate(3px,3px);
+}
+.card-title {
+	font-size: 1rem;
+}
+.card-body {
+	padding: 0px;
+}
+
+.createcard {
+	display: flex;
+	justify-content: center;
+	margin-top:2em;
+
+}
+.card-text {
+	margin: 0;
+}
+.hrline {
+	margin: 3px 0px;
+}
+/*
+
+#create {
+	border-radius: 50px ;
+  height: 100px ;
+  width: 100px ;
+}
+
+*/
+
+
+/* pop up for create new */
+
+   body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  /*
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+  */
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+
+/* navbar CSS */
+
+/*----------------------------------new one----------------------------------------------------*/
+
+.wrapper {
+  transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+}
+
+.navbar {
+  height: 75px;
+  transition: all .5s .1s;
+}
+
+.navbar-offcanvas {
+  z-index: 1030;
+}
+.navbar-offcanvas .container-fluid {
+  position: relative;
+  padding: 0;
+  transform: translate3d(0px, 0, 0);
+  transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+}
+.navbar-offcanvas .navbar-top {
+  display: none;
+}
+@media (min-width: 992px) {
+  .navbar-offcanvas .navbar-top {
+    display: flex;
+    margin-left: auto;
+  }
+}
+.navbar-offcanvas .navbar-top .nav-item {
+  margin-right: 22px;
+  text-align: center;
+}
+@media (max-width: 991px) {
+  .navbar-offcanvas .navbar-top .nav-item .nav-link {
+    color: #000;
+  }
+}
+.navbar-offcanvas .navbar-toggler {
+  padding: 0;
+  border: 0;
+  outline: none;
+}
+.navbar-offcanvas .navbar-toggler:hover, .navbar-offcanvas .navbar-toggler:focus {
+  cursor: pointer;
+}
+@media (min-width: 768px) {
+  .navbar-offcanvas .navbar-toggler {
+    display: block;
+  }
+}
+.navbar-offcanvas .navbar-toggler .icon-bar {
+  display: block;
+  position: relative;
+  width: 24px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: #fff;
+}
+.navbar-offcanvas .navbar-toggler .icon-bar + .icon-bar {
+  margin-top: 4px;
+}
+.navbar-offcanvas .navbar-toggler .icon-bar.bar1 {
+  top: 0;
+  outline: 1px solid transparent;
+  animation: topbar-back 500ms 0s;
+  animation-fill-mode: forwards;
+}
+.navbar-offcanvas .navbar-toggler .icon-bar.bar2 {
+  outline: 1px solid transparent;
+  opacity: 1;
+}
+.navbar-offcanvas .navbar-toggler .icon-bar.bar3 {
+  bottom: 0;
+  outline: 1px solid transparent;
+  animation: bottombar-back 500ms 0s;
+  animation-fill-mode: forwards;
+}
+.navbar-offcanvas .navbar-toggler.toggled .icon-bar.bar1 {
+  top: 6px;
+  animation: topbar-x 500ms 0s;
+  animation-fill-mode: forwards;
+}
+.navbar-offcanvas .navbar-toggler.toggled .icon-bar.bar2 {
+  opacity: 0;
+}
+.navbar-offcanvas .navbar-toggler.toggled .icon-bar.bar3 {
+  bottom: 6px;
+  animation: bottombar-x 500ms 0s;
+  animation-fill-mode: forwards;
+}
+.navbar-offcanvas .navbar-collapse.collapse,
+.navbar-offcanvas .navbar-collapse.collapse.in,
+.navbar-offcanvas .navbar-collapse.collapsing {
+  display: none !important;
+}
+
+.nav-open .navbar-collapse {
+  transform: translate3d(0px, 0, 0);
+}
+.nav-open .navbar > .container-fluid {
+  transform: translate3d(-424px, 0, 0);
+}
+@media (max-width: 991px) {
+  .nav-open .navbar > .container-fluid {
+    transform: translate3d(-282.6666666667px, 0, 0);
+  }
+}
+.nav-open .wrapper {
+  transform: translate3d(-150px, 0, 0);
+}
+
+body > .navbar-collapse {
+  display: block !important;
+  position: fixed;
+  top: 0;
+  right: -10px;
+  width: 424px;
+  height: 100%;
+  padding: 60px 1rem;
+  background-color: #fff;
+  border-left: 1px solid #e3e3e3;
+  text-align: center;
+  visibility: visible;
+  overflow-y: visible;
+  transform: translate3d(424px, 0, 0);
+  transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+  z-index: 1032;
+}
+body > .navbar-collapse:after {
+  content: "";
+  position: absolute;
+  top: 28px;
+  left: -20px;
+  border-left: 10px solid #fff;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid transparent;
+  transform: rotate(180deg);
+  transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+  z-index: 1032;
+}
+@media (max-width: 991px) {
+  body > .navbar-collapse {
+    width: 282.6666666667px;
+  }
+}
+body > .navbar-collapse .nav-image {
+  margin-bottom: 65px;
+}
+body > .navbar-collapse .nav-image img {
+  display: block;
+  margin: 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  width: 91px;
+  height: 69px;
+}
+body > .navbar-collapse .navbar-top {
+  margin: 0 !important;
+  flex-direction: column;
+}
+@media (min-width: 992px) {
+  body > .navbar-collapse .navbar-top {
+    display: none;
+  }
+}
+body > .navbar-collapse .navbar-top li {
+  text-align: center;
+}
+body > .navbar-collapse .navbar-top li a {
+  display: block;
+  padding: .5rem 1rem;
+  font-weight: 700;
+  color: #000;
+}
+body > .navbar-collapse .navbar-top li a:hover, body > .navbar-collapse .navbar-top li a:focus {
+  text-decoration: none;
+}
+body > .navbar-collapse .nav-link,
+body > .navbar-collapse .dropdown-toggle {
+  font-weight: 700;
+  color: #222;
+  transition: color .2s ease-out;
+}
+body > .navbar-collapse .nav-link:hover, body > .navbar-collapse .nav-link:focus,
+body > .navbar-collapse .dropdown-toggle:hover,
+body > .navbar-collapse .dropdown-toggle:focus {
+  text-decoration: none;
+}
+body > .navbar-collapse .nav-link.disabled,
+body > .navbar-collapse .dropdown-toggle.disabled {
+  color: rgba(0, 0, 0, 0.35);
+}
+body > .navbar-collapse .nav-link.disabled:hover, body > .navbar-collapse .nav-link.disabled:focus,
+body > .navbar-collapse .dropdown-toggle.disabled:hover,
+body > .navbar-collapse .dropdown-toggle.disabled:focus {
+  cursor: not-allowed;
+}
+
+@media (min-width: 992px) {
+  body > .navbar-top {
+    display: none;
+  }
+}
+
+body > #overlay {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: auto;
+  right: calc(282.6666666667px - 10px);
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  overflow-x: hidden;
+  z-index: 1029;
+}
+@media (min-width: 992px) {
+  body > #overlay {
+    right: calc(424px - 10px);
+  }
+}
+
+@keyframes topbar-x {
+  0% {
+    top: 0px;
+    transform: rotate(0deg);
+  }
+  45% {
+    top: 6px;
+    transform: rotate(145deg);
+  }
+  75% {
+    transform: rotate(130deg);
+  }
+  100% {
+    transform: rotate(135deg);
+  }
+}
+@keyframes topbar-back {
+  0% {
+    top: 6px;
+    transform: rotate(135deg);
+  }
+  45% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+  100% {
+    top: 0px;
+    transform: rotate(0);
+  }
+}
+@keyframes bottombar-x {
+  0% {
+    bottom: 0px;
+    transform: rotate(0deg);
+  }
+  45% {
+    bottom: 6px;
+    transform: rotate(-145deg);
+  }
+  75% {
+    transform: rotate(-130deg);
+  }
+  100% {
+    transform: rotate(-135deg);
+  }
+}
+@keyframes bottombar-back {
+  0% {
+    bottom: 6px;
+    transform: rotate(-135deg);
+  }
+  45% {
+    transform: rotate(10deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    bottom: 0px;
+    transform: rotate(0);
+  }
+}
+
+
+
+/*----------------------------------old one----------------------------------------------------*/
+
+/*
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  min-height: 100vh;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+
+h2,
+h3,
+a {
+  color: #34495e;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+
+.logo {
+  margin: 0;
+  font-size: 1.45em;
+}
+
+.main-nav {
+  margin-top: 5px;
+
+}
+.logo a,
+.main-nav a {
+  padding: 10px 15px;
+  text-transform: uppercase;
+  text-align: center;
+  display: block;
+}
+
+.main-nav a {
+  color: #34495e;
+  font-size: .99em;
+}
+
+.main-nav a:hover {
+  color: #718daa;
+}
+
+
+
+.header {
+  padding-top: .5em;
+  padding-bottom: .5em;
+  border: 1px solid #a2a2a2;
+  background-color: #f4f4f4;
+  -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+@media (min-width: 769px) {
+  .header,
+  .main-nav {
+    display: flex;
+  }
+  .header {
+    flex-direction: column;
+    align-items: center;
+      .header{
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1150px;
+  }
+  }
+
+}
+
+@media (min-width: 1025px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+}
+
+*/
