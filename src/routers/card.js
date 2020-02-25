@@ -1,12 +1,28 @@
 const route=require('express').Router()
     , {createUserLocal, findUserByParams} = require('../controllers/user')
-    ,{createCard, findCardByKeyWord} = require('../controllers/card')
+    ,{createCard, getAllCards, findCardByKeyWord} = require('../controllers/card')
+
+
+route.get('/',async(req,res)=>{
+
+    try{
+        const cards=await getAllCards();
+        if(cards)
+        {
+            res.send(cards)
+        }
+    }
+    catch(err)
+    {
+        console.log('unable to fetch')
+    }
+
+})
 
 route.post('/new',async (req, res) => {
 	
     try {
-        console.log(req.body.description);
-        const user = await findUserByParams({email: req.body.username});
+        
         const card= await findCardByKeyWord({keyvalues:req.body.keyvalues});
         if(card)
         {
@@ -14,6 +30,7 @@ route.post('/new',async (req, res) => {
         }
         else{
             const newcard=await createCard({
+                uid:req.user.dataValues.uid,
                 description:req.body.description, 
                 keyvalues:req.body.keyvalues
             })

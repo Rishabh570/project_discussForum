@@ -148,6 +148,32 @@ $(function()
     let createCard=$('#cardBtn')
     let desc=$('#desc')
     let keywords=$('#keywords')
+    let recentsection=$('#recentsec')
+    
+    $.get(
+        '/card',
+        function(data)
+        {
+            recentsection.empty();
+            for(let row of data)
+            {
+                recentsection.append(` <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <strong>Keywords:</strong>
+                        <hr class="hrline">
+                       ${row.keywords}
+                    </h5>
+                    <p class="card-text">
+                        <strong>Description:</strong>
+                        <hr class="hrline">
+                        ${row.description}
+                    </p>
+                </div>
+        </div>`)
+            }
+        }
+    )
     
     createCard.click(function(){
         let keyvalues=keywords.val()
@@ -157,7 +183,25 @@ $(function()
                 '/card/new',
                 {keyvalues:keyvalues, description:description},
                 function(data)
-                {   }
+                {  
+                    
+                    if(data.status=="sucess"){
+                    recentsection.append(` <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <strong>Keywords:</strong>
+                            <hr class="hrline">
+                           ${keyvalues}
+                        </h5>
+                        <p class="card-text">
+                            <strong>Description:</strong>
+                            <hr class="hrline">
+                            ${description}
+                        </p>
+                    </div>
+            </div>`)
+                    }
+                }
             )
         })
 })

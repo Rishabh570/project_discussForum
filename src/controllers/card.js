@@ -6,6 +6,7 @@ async function createCard(query) {
         mycard = await db.cards.create({
 			keywords: query.keyvalues,
 			description: query.description,	
+			uid:query.uid
 		})
     } catch (err) {
 		console.log("error while creating card");
@@ -28,9 +29,19 @@ async function findCardByKeyWord(params) {
 		console.log(err);
 	}
 }
+async function getAllCards() {
+	try {
+		const resp = await db.cards.findAll()
+		return resp;
+	}
+	catch(err) {
+		console.log(err);
+	}
+}
 
 
 module.exports = {
 	createCard,
+	getAllCards,
 	findCardByKeyWord
 }

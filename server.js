@@ -43,5 +43,5 @@ db.authenticate()
 .catch(err => console.log("Error in DB connection: ", err));
 
 //activation of port
-const PORT = process.env.PORT || 9088;
+const PORT = process.env.PORT || 2121;
 app.listen(PORT, console.log(`Server started on port ${PORT}`))
