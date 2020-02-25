@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+    <title>Discussion Form</title>
+    <script src='jquery.js'></script>
+   
+    <link rel="stylesheet" href="./newhome.css">
+</head>
+<body>
+    <!--
+    <div>
+        <nav class="navbar navbar-light">
+            <div class="headings"><h1 class="logowrapper">Discussion Forum</h1></div>
+            <button id="lgnBtn"  onclick="window.location.href='/signup'" class="btn btn-sm btn-outline-secondary">Log In</button>
+        </nav>
+    </div>
+-->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><strong>Create New Card</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/action_page.php" class="form-container">
+                        
+                        <label for="keywords"><b>Enter Keywords Here</b></label>
+                        <br>
+                        <input type="text" placeholder="Enter keywords" name="keywords" required>
+                        <br>
+                        <hr>
+                        
+                        <label for="description"><b>Description</b></label>
+                        <br>
+                        <input type="text" rows="10" cols="20" placeholder="Describe about your card" name="description" required>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-offcanvas">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><strong>Discussion Forum</strong></a>
+        <ul class="navbar-nav navbar-top">
+            <li class="nav-item active">
+                <a class="nav-link" href='/signup'><i class="fas fa-user-plus"></i>  SignIn / SignUp<span class="sr-only">(current)</span></a>
+            </li>
+        <!--
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><img src="..." alt="..." class="rounded-circle"> Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-bell"></i> Notifications</a>
+            </li>
+        -->
+        <!--
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+        
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" href="#!" id="dropdownExample" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownExample">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+        -->
+
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right navbar-icon" type="button" data-toggle="collapse" data-target="#navbar-mobile" aria-controls="navbar-mobile" aria-expanded="false" aria-label="Toggle navigation">
+        
+            <span class="icon-bar bar1"></span>
+            <span class="icon-bar bar2"></span>
+            <span class="icon-bar bar3"></span>
+
+        </button>
+        <div class="navbar-collapse collapse ml-auto" id="navbar-mobile">
+            <ul class="navbar-nav ml-auto">
+            <!--    
+                <li class="nav-image">
+                    <img src="" alt="">
+                </li>
+                <li class="nav-item">
+                    <a href="#!" class="nav-link"><i class="fas fa-sign-out-alt"></i> SIGN OUT</a>
+                </li>
+            -->
+                <li class="nav-item">
+                    <a href="#!" class="nav-link"><i class="fa fa-phone" aria-hidden="true"></i> CONTACT</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#!" class="nav-link"><i class="fa fa-info-circle" aria-hidden="true"></i> ABOUT</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+    <div class="container-fluid mt-5">
+        <!-- SEARCH BAR -->
+        <div class="row mx-auto">
+            <div class="col">
+                <form class="form-inline">
+                    <input id="searchbar" class="form-control mr-sm-2" type="search" placeholder="What are you thinking!? Go ahead write 5 related keywords and see what's hot going about it." aria-label="Search">
+                        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Go</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="createcard">
+    <!--
+            <button class="open-button" onclick="openCreate()">
+    -->
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalLong" action="/action_page.php">
+                <img src="https://img.icons8.com/officel/40/000000/plus.png" alt="CreateNew"><br>
+                <strong>
+                Create New Card
+                </strong>
+            </button>
+
+    <!--
+                <div class="form-popup" id="myForm">
+                    <form action="/action_page.php" class="form-container">
+                        <h1>Create</h1>
+                        <label for="keywords"><b>Enter Keywords Here</b></label>
+                        <input type="text" placeholder="Enter keywords" name="keywords" required>
+                        <label for="description"><b>Description</b></label>
+                        <input type="text" placeholder="Describe about your card" name="description" required>
+                        <button type="submit" class="btn">Create</button>
+                        <button type="button" class="btn cancel" onclick="closeCreate()">Close</button>
+                    </form>
+                </div>
+    -->
+                   
+        </div>
+
+    <!--    
+        <div class="createcard">
+            <button class="open-button" onclick="openCreate()">
+                <img src="https://img.icons8.com/officel/40/000000/plus.png" alt="CreateNew"><br>
+                <strong>
+                Create New Card
+                </strong>
+            </button>
+                <div class="form-popup" id="myForm">
+                    <form action="/action_page.php" class="form-container">
+                        <h1>Create</h1>
+                        <label for="keywords"><b>Enter Keywords Here</b></label>
+                        <input type="text" placeholder="Enter keywords" name="keywords" required>
+                        <label for="description"><b>Description</b></label>
+                        <input type="text" placeholder="Describe about your card" name="description" required>
+                        <button type="submit" class="btn">Create</button>
+                        <button type="button" class="btn cancel" onclick="closeCreate()">Close</button>
+                    </form>
+                </div>
+                   
+        </div>
+    -->
+
+        <div class="row cards-section">
+            <div class="col">
+                <ul class="nav nav-tabs list">
+                    <li class="nav-item"><a class="nav-link" href="#trending">Trending</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#recent">Recently Created</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#participated">Participated</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <strong>Keywords:</strong>
+                            <hr class="hrline">
+                            keyword1, keyword2, keyword3, keyword4, keyword5
+                        </h5>
+                        <p class="card-text">
+                            <strong>Description:</strong>
+                            <hr class="hrline">
+                            Lorem ipsum lorem ipsum...
+                        </p>
+                    </div>
+            </div>
+            <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <strong>Keywords:</strong>
+                            <hr class="hrline">
+                            keyword1, keyword2, keyword3, keyword4, keyword5
+                        </h5>
+                        <p class="card-text">
+                            <strong>Description:</strong>
+                            <hr class="hrline">
+                            Lorem ipsum lorem ipsum...
+                        </p>
+                    </div>
+            </div>
+            <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <strong>Keywords:</strong>
+                            <hr class="hrline">
+                            keyword1, keyword2, keyword3, keyword4, keyword5
+                        </h5>
+                        <p class="card-text">
+                            <strong>Description:</strong>
+                            <hr class="hrline">
+                            Lorem ipsum lorem ipsum...
+                        </p>
+                    </div>
+            </div>
+            <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <strong>Keywords:</strong>
+                            <hr class="hrline">
+                            keyword1, keyword2, keyword3, keyword4, keyword5
+                        </h5>
+                        <p class="card-text">
+                            <strong>Description:</strong>
+                            <hr class="hrline">
+                            Lorem ipsum lorem ipsum...
+                        </p>
+                    </div>
+            </div>
+            <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <strong>Keywords:</strong>
+                            <hr class="hrline">
+                            keyword1, keyword2, keyword3, keyword4, keyword5
+                        </h5>
+                        <p class="card-text">
+                            <strong>Description:</strong>
+                            <hr class="hrline">
+                            Lorem ipsum lorem ipsum...
+                        </p>
+                    </div>
+            </div>
+            <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <strong>Keywords:</strong>
+                            <hr class="hrline">
+                            keyword1, keyword2, keyword3, keyword4, keyword5
+                        </h5>
+                        <p class="card-text">
+                            <strong>Description:</strong>
+                            <hr class="hrline">
+                            Lorem ipsum lorem ipsum...
+                        </p>
+                    </div>
+            </div>
+            <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <strong>Keywords:</strong>
+                            <hr class="hrline">
+                            keyword1, keyword2, keyword3, keyword4, keyword5
+                        </h5>
+                        <p class="card-text">
+                            <strong>Description:</strong>
+                            <hr class="hrline">
+                            Lorem ipsum lorem ipsum...
+                        </p>
+                    </div>
+            </div>
+            <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <strong>Keywords:</strong>
+                            <hr class="hrline">
+                            keyword1, keyword2, keyword3, keyword4, keyword5
+                        </h5>
+                        <p class="card-text">
+                            <strong>Description:</strong>
+                            <hr class="hrline">
+                            Lorem ipsum lorem ipsum...
+                        </p>
+                    </div>
+            </div>
+        </div>
+    </div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js'></script>
+<script  src="./newhome.js"></script>
+
+<script>
+function openCreate() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeCreate() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+
+
+</body>
+</html>

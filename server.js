@@ -3,6 +3,7 @@ const express = require('express')
 	, loginRoute=require('./src/routers/login')
 	, logoutRoute = require('./src/routers/logout')
 	, homeRoute = require('./src/routers/home')
+	, cardRoute= require('./src/routers/card')
 	, userRoutes = require('./src/routers/users')
 	, passport = require('./src/passport/passporthandler')
 	, session = require('express-session')
@@ -34,7 +35,7 @@ app.use('/login',loginRoute);
 app.use('/logout', logoutRoute);
 app.use('/', homeRoute);
 app.use('/users', userRoutes);
-
+app.use('/card',cardRoute);
 // TEST DB
 const db = require('./src/db/database')
 db.authenticate()

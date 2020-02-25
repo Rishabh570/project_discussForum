@@ -60,6 +60,13 @@ const User = db.define('User', {
 	}
 });
 
+const cards=db.define('carddets',{
+	cid:{type:sequelize.STRING(6), primaryKey: true, autoIncrement:true}, uid:{type:sequelize.STRING(6)},
+	keywords: {type: sequelize.STRING, allowNull: false}, description: { type: sequelize.STRING , allowNull:false },
+	msg: {type:sequelize.JSON , allowNull:true}, likes:{type:sequelize.JSON, allowNull:true}
+ });
+   
+
 db.sync().then(() => console.log("Database has been synced")).catch((err) => console.error("Error creating database"));
 
 module.exports = {
@@ -98,9 +105,3 @@ module.exports = {
 //     usercount:{type:sequelize.INTEGER, allowNull:false},
 //     cardcount:{type:sequelize.INTEGER, allowNull:false}
 // })
-
-
-// const cards=db.define('carddets',{
-// cid:{type:sequelize.STRING(6), primaryKey: true}, uid:{type:sequelize.STRING(6)},
-// keywords: {type: sequelize.STRING, allowNull: false}, description: { type: sequelize.STRING , allowNull:false },
-// msg: {type:sequelize.JSON}, likes:{type:sequelize.JSON} });
