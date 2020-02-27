@@ -124,7 +124,7 @@ $(document).ready(function () {
 			}
 
 			const markup = data.map(item => `\
-				<div class="suggestion-cards" id="${item.cid}">\
+				<div onclick="window.location.href='/chatroom/card?id=${item.cid}'" class="suggestion-cards" id="${item.cid}">\
 					<h4>${item.keywords}</h4>\
 				</div>\
 			`)
@@ -138,29 +138,8 @@ $(document).ready(function () {
 	})
 	// search bar ends
 
-	// Click Listener for autocomplete suggestions starts
-	$('#suggestions').on("click", ".suggestion-cards", (e) => {
-		const cardId = e.currentTarget.id;
-		console.log("cardID = ", cardId);
-		$.ajax({
-			url: '/chatroom',
-			method: 'POST',
-			data: {ID: cardId},
-			dataType: 'json'
-		})
-		.done((data) => {
-			if(data.res == "done") {
-				$.get('/chatroom', (res) => {
-					console.log("res  = ", res);
-				})
-			}
-		})
-		.fail(err => {
-			console.log("error occured in newhome.js while clicking on suggestions");
-		})
-	})
 
-	// autocomplete suggestions listener ends
+	
 
     window_width = $(window).width();
 
