@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+  <title>Profile</title>
+
+  <link rel="stylesheet" type="text/css" href="newprofile.css">  
+
+  <script src='jquery.js'></script>
+
+</head>
+<body>
+
+<!------------------------ COLLECTION OF MODALS ----------------------------------------------------------------->
+
+<!-----modal for text below profile pic----------->
+
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><strong> Have something to change GO ON!!.</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-dark" id="closemodal">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!----------------------------- Modal for edit personal info ------------------------>
+
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><strong>Edit Personal Info.</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputName4">Name</label>
+              <input type="text" class="form-control" id="inputName4" placeholder="Name">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Email ID</label>
+              <input type="Email" class="form-control" id="inputEmail4" placeholder="Email">
+            </div>
+          </div>
+          <div class="form-group">
+              <label for="inputProfession">Profession</label>
+              <input type="text" class="form-control" id="inputProfession">
+          </div>
+          <div class="form-group">
+              <label for="inputMobile">Mobile Number</label>
+              <input type="tel" class="form-control" id="inputMobile" placeholder="+91-XXXXXXXXXX">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCity">City</label>
+              <input type="text" class="form-control" id="inputCity">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputState">State</label>
+              <select id="inputState" class="form-control">
+                <option selected>Choose...</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputZip">Zip</label>
+              <input type="text" class="form-control" id="inputZip">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-dark">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal for edit college name -->
+
+<div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><strong>Edit College / University</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1"><strong>College / University Name</strong></label>
+            <hr>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+        </form>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-dark">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal to edit Secondary school name-->
+
+<div class="modal fade" id="exampleModalCenter4" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><strong>Edit Secondary School</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1"><strong>Secondary School Name</strong></label>
+            <hr>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+        </form>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-dark">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal for edit high school name -->
+
+<div class="modal fade" id="exampleModalCenter5" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><strong>Edit High School</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1"><strong>High School Name</strong></label>
+            <hr>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+        </form>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-dark">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--- Modal for hobbies me ----------->
+
+<div class="modal fade" id="exampleModalCenter6" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><strong>Write about the fun stuff you do.</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-dark" id="closemodal">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--- Modal for social ----------->
+
+<div class="modal fade" id="exampleModalCenter7" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><strong> Edit </strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-dark">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!------------------------- COLLECTION ENDS HERE ---------------------------------------------------------------->
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-offcanvas">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><strong>Discussion Forum</strong></a>
+        <ul class="navbar-nav navbar-top">
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-home"></i> Home<!--<span class="sr-only">(current)</span>--></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#"><img src="..." alt="..." class="rounded-circle"> Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-bell"></i> Notifications</a>
+            </li>
+
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right navbar-icon" type="button" data-toggle="collapse" data-target="#navbar-mobile" aria-controls="navbar-mobile" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar bar1"></span>
+            <span class="icon-bar bar2"></span>
+            <span class="icon-bar bar3"></span>
+        </button>
+        <div class="navbar-collapse collapse ml-auto" id="navbar-mobile">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-image">
+                    <img src="" alt="">
+                </li>
+                <li class="nav-item">
+                    <a href="#!" class="nav-link"><i class="fas fa-sign-out-alt"></i> SIGN OUT</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#!" class="nav-link"><i class="fa fa-phone" aria-hidden="true"></i> CONTACT</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#!" class="nav-link"><i class="fa fa-info-circle" aria-hidden="true"></i> ABOUT</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="jumbotron">
+  <div class="wrapper mt-4">
+
+    <div class="container-fluid">
+  
+      <div class="user-profile">
+        <div class="profile-header-background">
+          <img src="http://demo.thedevelovers.com/dashboard/queenadmin-1.2/assets/img/city.jpg" alt="Profile Header Background">
+        </div>
+        <!--
+        <div class="row">
+        -->
+        <div class="container">
+          <div class="col-xs-2">
+            <div class="profile-info-left">
+              <div class="text-center">
+                <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Avatar" class="avatar img-circle">
+                  <hr>
+                  <h2><strong>KUNAL SHARMA</strong></h2>
+                  <hr>
+                  <div>
+                    <div class="tabs">
+                      <div class="tab">
+                        <input type="checkbox"  checked id="chck1" class="edu">
+                        <label class="tab-label" for="chck1"> 
+                        
+                          A few words About Me. 
+                        
+                        </label>
+                        <div class="tab-content">
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                          </p>
+                          <div>
+                            <p>
+                              <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter1">
+                                <i class="fas fa-pen"></i>
+                              </button>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--
+        </div>
+        -->
+      </div>
+    </div>
+  </div>
+
+
+
+
+<!------------------------------------------------- grid of profile details ------------------------------------------>
+  <div class="naccs">
+    <div class="grid">
+      <div class="gc gc--1-of-3">
+        <div class="menu">
+          <div class="active"><span class="light"></span><span> DETAILS </span></div>
+          <div><span class="light"></span><span> EDUCATION </span></div>
+          <div><span class="light"></span><span> HOBBIES </span></div>
+          <div><span class="light"></span><span> SOCIAL </span></div>
+        </div>
+      </div>
+      <div class="gc gc--2-of-3">
+        <ul class="nacc">
+
+
+          <li class="active">
+            <div>
+              <div class="tabs">
+                <div class="tab">
+                  <input type="checkbox"  checked id="chck1" class="edu">
+                  <label class="tab-label" for="chck1"> 
+                    <p> Personal Information </p>    
+                  </label>
+                  <div class="tab-content">
+                    <div class="details"><p><strong> Name: </strong> John Doe </p></div>
+                    <div class="details"><p><strong> Email: </strong> John.doe@gmail.com </p></div>
+                    <div class="details"><p><strong> Profession: </strong> Student </p></div>
+                    <div class="details"><p><strong> Mobile No.: </strong> 1923320139 </p></div>
+                    <div class="details"><p><strong> City: </strong> New Delhi </p></div>
+                    <div class="details"><p><strong> State: </strong> Delhi </p></div>
+                    <div class="details"><p><strong> ZIP: </strong> 110002 </p></div>
+                    <div>
+                      <p>
+                        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter2">
+                        <i class="fas fa-pen"></i>
+                        </button>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+
+<!----------------------------new accordion for personal info ----------------------------------->
+
+          <li>
+            <div>
+
+              <div class="tabs">
+                <div class="tab">
+                  <input type="radio" id="rd1" checked name="rd" class="edu">
+                  <label class="tab-label" for="rd1"><i class="fas fa-graduation-cap"></i> College / University </label>
+                  <div class="tab-content">
+                    <p>Maharaja Surajmal Instiute of Technology 
+                      <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter3">
+                        <i class="fas fa-pen"></i>
+                      </button>
+                    </p>
+                  </div>
+                </div>
+                <div class="tab">
+                  <input type="radio" id="rd2" name="rd" class="edu">
+                  <label class="tab-label" for="rd2"><i class="fas fa-school"></i>Secondary School </label>
+                  <div class="tab-content">
+                    <p>Maharaja Surajmal Instiute of Technology 
+                      <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter5">
+                        <i class="fas fa-pen"></i>
+                      </button>
+                    </p>
+                  </div>
+                </div>
+                <div class="tab">
+                  <input type="radio" id="rd3" name="rd" class="edu">
+                  <label class="tab-label" for="rd3"><i class="fas fa-school"></i>High School </label>
+                  <div class="tab-content">
+                    <p>Maharaja Surajmal Instiute of Technology 
+                      <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter6">
+                        <i class="fas fa-pen"></i>
+                      </button>
+                    </p>
+                  </div>
+                </div>
+                <div class="tab">
+                  <input type="radio" id="rd4" name="rd" class="edu">
+                  <label for="rd4" class="tab-close">Close others &times;</label>
+                </div>
+              </div>
+
+            </div>
+          </li>
+     
+<!----------------------------new accordian for personal info ends here ---------------------------->
+
+<!----------------------------new accordian for education details----------------------------------->            
+          <li>
+            <div>
+
+              <div class="tabs">
+                <div class="tab">
+                  <input type="checkbox"  checked id="chck2" class="edu">
+                  <label class="tab-label" for="chck2"> 
+                    The fun side of me ;)
+                  </label>
+                  <div class="tab-content">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <div>
+                      <p>
+                        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter7">
+                          <i class="fas fa-pen"></i>
+                        </button>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </li>
+     
+
+<!---------------------------------------- new accordian ends here ------------------------------------------->
+
+
+     <li>
+      <div>
+        <div class="tabs">
+          <div class="tab">
+            <input type="checkbox"  checked id="chck3" class="edu">
+            <label class="tab-label" for="chck3"> 
+              Connect with me on !!!
+            </label>
+            <div class="tab-content">
+              <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            <div>
+                <p>
+                  <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter7">
+                    <i class="fas fa-pen"></i>
+                  </button>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </div>
+ </div>
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js'></script>
+
+<script  src="./newprofile.js"></script>
+
+<!--s
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+-->
+
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+
+
+</body>
+</html>
+
+
