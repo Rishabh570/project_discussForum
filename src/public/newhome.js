@@ -105,6 +105,63 @@ var offCanvas = {
 };
 
 $(document).ready(function () {
+
+	// search bar starts
+	const suggestions = document.getElementById('suggestions');
+ 	$('#searchbar').keydown(async (e) => {
+		let value = e.target.value;
+		$.ajax({
+			url: '/search',
+			method: 'POST',
+			data: {query: value},
+			dataType: 'json'
+		})
+		.done((data) => {
+			if(data == undefined) return;
+			if(value.length == 0) {
+				suggestions.innerHTML = "";
+				return;
+			}
+
+			const markup = data.map(item => `\
+				<div class="suggestion-cards" id="${item.cid}">\
+					<h4>${item.keywords}</h4>\
+				</div>\
+			`)
+			.join('');
+
+			suggestions.innerHTML = markup;
+		})
+		.fail((err) => {
+			console.log("failed err = ", err);
+		})
+	})
+	// search bar ends
+
+	// Click Listener for autocomplete suggestions starts
+	$('#suggestions').on("click", ".suggestion-cards", (e) => {
+		const cardId = e.currentTarget.id;
+		console.log("cardID = ", cardId);
+		$.ajax({
+			url: '/chatroom',
+			method: 'POST',
+			data: {ID: cardId},
+			dataType: 'json'
+		})
+		.done((data) => {
+			if(data.res == "done") {
+				$.get('/chatroom', (res) => {
+					console.log("res  = ", res);
+				})
+			}
+		})
+		.fail(err => {
+			console.log("error occured in newhome.js while clicking on suggestions");
+		})
+	})
+
+	// autocomplete suggestions listener ends
+
     window_width = $(window).width();
 
     nav_toggle = $('nav').hasClass('navbar-offcanvas') ? true : false;
@@ -124,12 +181,12 @@ $(document).ready(function () {
         setTimeout(function () {
             $toggle.removeClass('toggled');
         }, 300);
-    });
+	});
 });
 
 $(window).resize(function () {
     window_width = $(window).width();
-    
+
     // More responsive checks if the user resize the browser
     if (window_width < 992) {
         offCanvas.initSideNav();
@@ -149,7 +206,7 @@ $(function()
     let desc=$('#desc')
     let keywords=$('#keywords')
     let recentsection=$('#recentsec')
-    
+
     $.get(
         '/card',
         function(data)
@@ -174,17 +231,17 @@ $(function()
             }
         }
     )
-    
+
     createCard.click(function(){
         let keyvalues=keywords.val()
         let description=desc.val()
-      
+
             $.post(
                 '/card/new',
                 {keyvalues:keyvalues, description:description},
                 function(data)
-                {  
-                    
+                {
+
                     if(data.status=="sucess"){
                     recentsection.append(` <div class="card">
                     <div class="card-body">
@@ -203,5 +260,6 @@ $(function()
                     }
                 }
             )
-        })
+		})
+
 })
