@@ -3,11 +3,13 @@ const express = require('express')
 	, authMiddleware = require('../middlewares/isAuthenticated');
 
 
+router.get('/', (req, res) => {
+	res.redirect('/chatpage.html')
+})
 
-
-	router.get('/', authMiddleware.verifyUser, (req, res) => {
-		res.redirect('/homeafterlogin.html');
-	})
+router.post('/', (req, res) => {
+	res.send({res: "done"})
+})
 
 
 module.exports=router

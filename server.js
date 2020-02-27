@@ -5,6 +5,8 @@ const express = require('express')
 	, homeRoute = require('./src/routers/home')
 	, cardRoute= require('./src/routers/card')
 	, userRoutes = require('./src/routers/users')
+	, searchRoute = require('./src/routers/search')
+	, chatroomRoute = require('./src/routers/chatroom')
 	, passport = require('./src/passport/passporthandler')
 	, session = require('express-session')
 	, path = require('path');
@@ -36,6 +38,8 @@ app.use('/logout', logoutRoute);
 app.use('/', homeRoute);
 app.use('/users', userRoutes);
 app.use('/card',cardRoute);
+app.use('/search', searchRoute);
+app.use('/chatroom', chatroomRoute);
 // TEST DB
 const db = require('./src/db/database')
 db.authenticate()
