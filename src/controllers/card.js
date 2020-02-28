@@ -5,7 +5,7 @@ async function createCard(query) {
     try {
         mycard = await db.cards.create({
 			keywords: query.keyvalues,
-			description: query.description,	
+			description: query.description,
 			uid:query.uid
 		})
     } catch (err) {
@@ -39,9 +39,23 @@ async function getAllCards() {
 	}
 }
 
+async function findCardByID(ID) {
+	try {
+		const resp = await db.cards.findOne({
+			where: {cid: ID}
+		})
+		return resp;
+	}
+	catch(err) {
+		console.log("error in controller for getting card by ID");
+		throw err;
+	}
+}
+
 
 module.exports = {
 	createCard,
 	getAllCards,
-	findCardByKeyWord
+	findCardByKeyWord,
+	findCardByID
 }

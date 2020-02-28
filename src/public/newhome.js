@@ -139,7 +139,7 @@ $(document).ready(function () {
 	// search bar ends
 
 
-	
+
 
     window_width = $(window).width();
 
@@ -194,7 +194,7 @@ $(function()
             for(let row of data)
             {
                 recentsection.append(` <div class="card">
-                <div onclick="window.location.href='/chatroom/card?id=${row.cid}'" class="card-body">
+                <div onclick="window.location.href='/chatroom/card/${row.cid}'" class="card-body">
                     <h5 class="card-title">
                         <strong>Keywords:</strong>
                         <hr class="hrline">
