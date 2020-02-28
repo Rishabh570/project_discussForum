@@ -19,7 +19,7 @@ const User = db.define('User', {
 		primaryKey: true,
 		autoIncrement: true
 	},
-	
+
 	password:  {
 		type: sequelize.DataTypes.STRING,
 		unique: true,
@@ -60,21 +60,58 @@ const User = db.define('User', {
 	}
 });
 
-const cards=db.define('carddets',{
-	cid:{type:sequelize.DataTypes.BIGINT, primaryKey: true, autoIncrement:true},
-	uid:{type:sequelize.DataTypes.STRING(6)	},
-	keywords: {type: sequelize.DataTypes.STRING, allowNull: false},
-	description: { type: sequelize.DataTypes.STRING , allowNull:false },
-	msg: {type:sequelize.DataTypes.JSON , allowNull:true}, 
-	likes:{type:sequelize.DataTypes.JSON, allowNull:true}
- });
-   
+const cards = db.define('carddets',
+{
+	cid:{
+		type:sequelize.DataTypes.BIGINT,
+		primaryKey: true,
+		autoIncrement:true
+	},
+	uid:{
+		type:sequelize.DataTypes.STRING(6)
+	},
+	keywords: {
+		type: sequelize.DataTypes.STRING,
+		allowNull: false
+	},
+	description: {
+		type: sequelize.DataTypes.STRING,
+		allowNull:false
+	},
+	likes:{
+		type:sequelize.DataTypes.JSON,
+		allowNull:true
+	}
+});
+
+
+const messages = db.define('messages', {
+	mid: {
+		type:sequelize.DataTypes.BIGINT,
+		primaryKey: true,
+		autoIncrement:true
+	},
+	cid:{
+		type:sequelize.DataTypes.BIGINT,
+	},
+	message: {
+		type: sequelize.DataTypes.STRING,
+ 		allowNull:true
+	},
+	author: {
+		type: sequelize.DataTypes.STRING,
+ 		allowNull:false
+	}
+})
+
+
 
 db.sync().then(() => console.log("Database has been synced")).catch((err) => console.error("Error creating database"));
 
 module.exports = {
 	User,
-	cards
+	cards,
+	messages
 }
 
 
