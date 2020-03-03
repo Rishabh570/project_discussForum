@@ -10,9 +10,9 @@ passport.serializeUser(function (user, done) {
 })
 
 
-passport.deserializeUser(async function (username, done) {
+passport.deserializeUser(async function (email, done) {
 	try {
-		const user =await findUserByParams({email:username});
+		const user = await findUserByParams({email:email});
 		if(!user) {
 			return done(new Error("No such user"))
 		}
@@ -33,7 +33,6 @@ passport.use(new LocalStrategy(async function (username, password, done) {
 
 		bcrypt.compare(password, user.password, (err, matches) => {
 			if(matches) {
-				console.log("finally user = ", user.password);
 				return done(null, user)
 			}
 			console.log("not machted");
