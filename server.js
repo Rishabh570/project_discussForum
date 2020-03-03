@@ -23,9 +23,9 @@ app.use(session({
 	resave: false,
 	saveUninitialized: true,
 	cookie: {
-		httpOnly: true,
-		maxAge: Date.now() + (30 * 86400 * 1000),
-		secure: 'auto'
+		httpOnly: false,
+		secure: false,
+		domain: 'localhost'
 	}
 }))
 app.use(passport.initialize());

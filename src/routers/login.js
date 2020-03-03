@@ -9,8 +9,11 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', passport.authenticate('local', {
-	failureRedirect: '/signup',
-	successReturnToOrRedirect: '/'
-}))
+	failureRedirect: '/signup'
+}), (req, res) => {
+	req.session.save(() => {
+		res.redirect('/');
+	})
+})
 
 module.exports = router;
