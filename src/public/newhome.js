@@ -223,7 +223,7 @@ $(function()
 
                     if(data.status=="sucess"){
                     recentsection.append(` <div class="card">
-                    <div class="card-body">
+                    <div onclick="window.location.href='/chatroom/card/${data.data.cid}'" class="card-body">
                         <h5 class="card-title">
                             <strong>Keywords:</strong>
                             <hr class="hrline">

@@ -26,6 +26,7 @@ router.get('/card/:cardId', async (req, res) => {
 })
 
 router.post('/card/:cardId', async (req, res) => {
+	console.log("yaha kuch hua?")
 	const currentUserName = req.user.firstName + " " + req.user.lastName;
 	const roomID = req.params.cardId;
 	const msg = req.body.message;
@@ -37,7 +38,7 @@ router.post('/card/:cardId', async (req, res) => {
 
 	try {
 		const resp = await createMessage(query);
-		res.redirect(`/card/${roomID}`);
+		res.redirect(`/card/${roomID}`)
 	}
 	catch(err) {
 		console.log("Error in POST to this room!");

@@ -34,7 +34,7 @@ route.post('/new',async (req, res) => {
                 description:req.body.description, 
                 keyvalues:req.body.keyvalues
             })
-            res.send({status:"sucess"})
+            res.send({status:"sucess", data:newcard})
         }
     }
     catch(err)

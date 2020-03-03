@@ -8,14 +8,15 @@
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/chatpage.css">
+	<link rel="stylesheet" type="text/css" href="/chatpage.css">
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 
 </head>
 <body>
 	<!-- NAVBAR -->
 	<div>
         <nav class="navbar navbar-light">
-            <div class="headings"><h1 class="logowrapper"> Discussion Forum </h1></div>
+            <div class="headings"><h1 class="logowrapper">Live Discussions</h1></div>
         </nav>
     </div>
 
@@ -24,7 +25,7 @@
 	<div class="mybar">
 		<div class="row">
 			<div class="col2 ele">Initiator: <%= authorName %></div>
-			<div class="col8  ele"> <%= room.keywords %> </div>
+			<div class="col8  ele">keywords: <%= room.keywords %> </div>
 			<div id="activeU" class="col1 ele"> Active users: 1	</div>
 			<div class="col1 ele">
 				<a href="#" id="likedbtn" class="btn btn-primary">most liked </a>
@@ -32,7 +33,9 @@
 		</div>
 
 		<div class="row">
-			<div class="col ele desc text-break"> Description: <%= room.description %> </div>
+			<div class="col10 ele desc text-break"> Description: <%= room.description %> </div>
+			<div id="cardDiv" class="col2  ele">Card ID: <%= room.cid %> </div>
+		
 		</div>
 
 		<div class="chat-box">
