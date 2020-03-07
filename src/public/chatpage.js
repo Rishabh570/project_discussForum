@@ -2,11 +2,10 @@ $(document).ready(() => {
 
 	$('#form-input-submit').click(e => {
 		e.preventDefault();
-		console.log("Chat Submit button clicked!")
 		const msg = $('#exampleFormControlTextarea1').val();
 		let cardId=document.getElementById("cardDiv").textContent;
 		$.ajax({
-			url: `chatroom/card/${cardId.substr(9)}`, 			// yaha "card/roomID" bhejni h kisi tarah
+			url: `http://localhost:2121/chatroom/card/${cardId.substr(9)}`,
 			method: 'POST',
 			data: {message: msg},
 			dataType: 'json'
