@@ -124,7 +124,7 @@ $(document).ready(function () {
 			}
 
 			const markup = data.map(item => `\
-				<div onclick="window.location.href='/chatroom/card?id=${item.cid}'" class="suggestion-cards" id="${item.cid}">\
+				<div onclick="window.location.href='/chatroom/card/${item.cid}'" class="suggestion-cards" id="${item.cid}">\
 					<h4>${item.keywords}</h4>\
 				</div>\
 			`)

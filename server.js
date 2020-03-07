@@ -11,16 +11,13 @@ const express = require('express')
 	, session = require('express-session')
 	, path = require('path');
 
-const app = express()
-app.set('view engine', 'ejs');
-app.set('views','./src/views');
-app.use(express.static(path.join(__dirname, './src/public')));
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+const app = express()  //creates server
+app.set('view engine', 'ejs');	app.set('views','./src/views'); //code to handle ejs files
+app.use(express.static(path.join(__dirname, './src/public')));  // to set src/public folder to lookup for static files
+app.use(express.json());	app.use(express.urlencoded({extended: true}))  // code to read post request
 
 app.use(session({
-	secret: 'keyboard cat',
-	resave: false,
+	secret: 'keyboard cat',		resave: false,
 	saveUninitialized: true,
 	cookie: {
 		httpOnly: true,
