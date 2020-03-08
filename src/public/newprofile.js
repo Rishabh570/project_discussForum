@@ -149,3 +149,29 @@ $(document).on("click", ".naccs .menu div", function() {
         $(".naccs ul").height(listItemHeight + "px");
     }
 });
+
+$(function(){
+   
+    $.get(  '/profile/data',
+        function(data)
+        {
+            let nameHead=document.getElementById("nameHeading");
+            let maildet=document.getElementById("maildet");
+            let mobdet=document.getElementById("mobdet");
+            let locdet=document.getElementById("locdet");
+            let profdet=document.getElementById("profdet");
+            let edudet=document.getElementById("edudet");
+            let socialdet=document.getElementById("socialdet");
+            let hobdet=document.getElementById("hobdet");
+            maildet.innerHTML=`<strong> Email: </strong> ${data.mail}` 
+            mobdet.innerHTML=`<strong> Mobile No.: </strong> ${data.mob}`
+            locdet.innerHTML=`<strong> Address: </strong> ${data.address}`
+            profdet.innerHTML=`<strong> Profession: </strong> ${data.prof}`
+            edudet.innerHTML=`${data.edu}`
+            socialdet.innerHTML=`${data.socialH}`
+            hobdet.innerHTML=`${data.hobbies}`
+            nameHead.innerText=data.name;
+           
+        }
+    )
+})

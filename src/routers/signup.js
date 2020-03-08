@@ -8,7 +8,7 @@ const express = require('express')
 		res.render('newlogin')
 	})
 
-	router.post('/', async (req, res,next) => {
+	router.post('/', async (req, res, next) => {
 	
 		try {
 			const user = await findUserByParams({email: req.body.username});
@@ -18,7 +18,7 @@ const express = require('express')
 			}
 			else {
 				const passhash = await pass2hash(req.body.password);
-				console.log(req.body.password);
+				
 				let dob= (req.body.db)+"/"+(req.body.mb)+"/"+(req.body.yb);
 				const createdUser = await createUserLocal({email: req.body.username, password: passhash,firstName: req.body.firstname,
 															lastName: req.body.lastname, dob:dob, gender: req.body.gen});

@@ -348,16 +348,14 @@
         <div class="profile-header-background">
           <img src="http://demo.thedevelovers.com/dashboard/queenadmin-1.2/assets/img/city.jpg" alt="Profile Header Background">
         </div>
-        <!--
-        <div class="row">
-        -->
+       
         <div class="container">
           <div class="col-xs-2">
             <div class="profile-info-left">
               <div class="text-center">
                 <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Avatar" class="avatar img-circle">
                   <hr>
-                  <h2><strong>KUNAL SHARMA</strong></h2>
+                  <h2 id='nameHeading'><strong></strong></h2>
                   <hr>
                   <div>
                     <div class="tabs">
@@ -426,13 +424,10 @@
                     <p> Personal Information </p>    
                   </label>
                   <div class="tab-content">
-                    <div class="details"><p><strong> Name: </strong> John Doe </p></div>
-                    <div class="details"><p><strong> Email: </strong> John.doe@gmail.com </p></div>
-                    <div class="details"><p><strong> Profession: </strong> Student </p></div>
-                    <div class="details"><p><strong> Mobile No.: </strong> 1923320139 </p></div>
-                    <div class="details"><p><strong> City: </strong> New Delhi </p></div>
-                    <div class="details"><p><strong> State: </strong> Delhi </p></div>
-                    <div class="details"><p><strong> ZIP: </strong> 110002 </p></div>
+                    <div class="details"><p id='maildet'><strong> Email: </strong> John.doe@gmail.com </p></div>
+                    <div class="details"><p id='profdet'><strong> Profession: </strong> Student </p></div>
+                    <div class="details"><p id='mobdet'><strong> Mobile No.: </strong> 1923320139 </p></div>
+                    <div class="details"><p id='locdet'><strong> address: </strong> New Delhi </p></div>
                     <div>
                       <p>
                         <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter2">
@@ -455,40 +450,14 @@
               <div class="tabs">
                 <div class="tab">
                   <input type="radio" id="rd1" checked name="rd" class="edu">
-                  <label class="tab-label" for="rd1"><i class="fas fa-graduation-cap"></i> College / University </label>
                   <div class="tab-content">
-                    <p>Maharaja Surajmal Instiute of Technology 
+                    <p id='edudet'>
+                    </p>
                       <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter3">
                         <i class="fas fa-pen"></i>
                       </button>
-                    </p>
+                    
                   </div>
-                </div>
-                <div class="tab">
-                  <input type="radio" id="rd2" name="rd" class="edu">
-                  <label class="tab-label" for="rd2"><i class="fas fa-school"></i>Secondary School </label>
-                  <div class="tab-content">
-                    <p>Maharaja Surajmal Instiute of Technology 
-                      <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter5">
-                        <i class="fas fa-pen"></i>
-                      </button>
-                    </p>
-                  </div>
-                </div>
-                <div class="tab">
-                  <input type="radio" id="rd3" name="rd" class="edu">
-                  <label class="tab-label" for="rd3"><i class="fas fa-school"></i>High School </label>
-                  <div class="tab-content">
-                    <p>Maharaja Surajmal Instiute of Technology 
-                      <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter6">
-                        <i class="fas fa-pen"></i>
-                      </button>
-                    </p>
-                  </div>
-                </div>
-                <div class="tab">
-                  <input type="radio" id="rd4" name="rd" class="edu">
-                  <label for="rd4" class="tab-close">Close others &times;</label>
                 </div>
               </div>
 
@@ -508,13 +477,8 @@
                     The fun side of me ;)
                   </label>
                   <div class="tab-content">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <p id='hobdet'>
+                     
                     </p>
                     <div>
                       <p>
@@ -543,13 +507,8 @@
               Connect with me on !!!
             </label>
             <div class="tab-content">
-              <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              <p id='socialdet'>
+              
               </p>
             <div>
                 <p>
@@ -572,18 +531,8 @@
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js'></script>
-
 <script  src="./newprofile.js"></script>
 
-<!--s
-
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-
--->
-
-
-
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 

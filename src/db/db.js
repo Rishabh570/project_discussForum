@@ -43,6 +43,12 @@ const User = db.define('User', {
 	location: {
 		type: sequelize.DataTypes.STRING
 	},
+	socialH: {
+		type: sequelize.DataTypes.STRING
+	},
+	hobbies: {
+		type: sequelize.DataTypes.STRING
+	},
 	mobile_number: {
 		type: sequelize.DataTypes.STRING
 	},
