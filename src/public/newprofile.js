@@ -150,8 +150,8 @@ $(document).on("click", ".naccs .menu div", function() {
     }
 });
 
-$(function(){
-   
+function fillData()
+{
     $.get(  '/profile/data',
         function(data)
         {
@@ -174,4 +174,34 @@ $(function(){
            
         }
     )
+}
+
+$(function(){
+   
+        fillData(); 
+        
+    let updatePersonalDet=document.getElementById("updatePersonalDet");
+    updatePersonalDet.innerText="hehehe";
+    updatePersonalDet.click(function(){
+        console.log("why post?");
+        updatePersonalDet.innerText="yayaya";
+        let inputMobNo=document.getElementById("inputMobNo");
+        let inputState=document.getElementById("inputState");
+        let inputCity=document.getElementById("inputCity");
+        let inputZip=document.getElementById("inputZip");
+        let inputProf=document.getElementById("inputProf");
+        let inputEmail=document.getElementById("inputEmail");
+        let inputName=document.getElementById("inputName");
+        console.log("why post?");
+        $.post(
+            '/profile/update',
+            {mobno:inputMobNo.val(),city:inputCity.val(),state:inputState.val(),zip:inputZip.val(),prof:inputProf.val(),
+            name:inputName.val(),email:inputEmail.val()},
+            function(data)
+            {
+                fillData();
+            }
+        )
+    });
+    
 })

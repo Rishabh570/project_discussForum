@@ -1,5 +1,5 @@
 const route=require('express').Router()
-, {createUserLocal, findUserByParams} = require('../controllers/user')
+, {createUserLocal,findUserById, findUserByParams} = require('../controllers/user')
 
 route.get('/',(req,res)=>{
     res.redirect('newprofile.html');
@@ -23,6 +23,16 @@ route.get('/data',async(req,res)=>{
     
 })
 
-
+route.post('/update',async(req,res)=>{
+    try{
+        console.log("here");
+        const user=await findUserByParams({email:req.user.email});
+        user.update({location:req.body.state},{fields:['location']}).then(()=>{});
+    }
+    catch(err)
+    {
+        console.log("updation failed");
+    }
+})
 
 module.exports=route
