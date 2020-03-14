@@ -118,7 +118,7 @@ $(document).ready(function () {
 
 $(window).resize(function () {
     window_width = $(window).width();
-    
+
     // More responsive checks if the user resize the browser
     if (window_width < 992) {
         offCanvas.initSideNav();
@@ -163,7 +163,7 @@ function fillData()
             let edudet=document.getElementById("edudet");
             let socialdet=document.getElementById("socialdet");
             let hobdet=document.getElementById("hobdet");
-            maildet.innerHTML=`<strong> Email: </strong> ${data.mail}` 
+            maildet.innerHTML=`<strong> Email: </strong> ${data.mail}`
             mobdet.innerHTML=`<strong> Mobile No.: </strong> ${data.mob}`
             locdet.innerHTML=`<strong> Address: </strong> ${data.address}`
             profdet.innerHTML=`<strong> Profession: </strong> ${data.prof}`
@@ -171,18 +171,18 @@ function fillData()
             socialdet.innerHTML=`${data.socialH}`
             hobdet.innerHTML=`${data.hobbies}`
             nameHead.innerText=data.name;
-           
+
         }
     )
 }
 
 $(function(){
-   
-        fillData(); 
-        
+
+        fillData();
+
     let updatePersonalDet=document.getElementById("updatePersonalDet");
     updatePersonalDet.innerText="hehehe";
-    updatePersonalDet.click(function(){
+    $("#updatePersonalDet").click(function(){
         console.log("why post?");
         updatePersonalDet.innerText="yayaya";
         let inputMobNo=document.getElementById("inputMobNo");
@@ -203,5 +203,5 @@ $(function(){
             }
         )
     });
-    
+
 })
