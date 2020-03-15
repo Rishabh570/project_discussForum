@@ -40,7 +40,16 @@ const User = db.define('User', {
 	gender: {
 		type: sequelize.DataTypes.STRING(1)
 	},
-	location: {
+	state: {
+		type: sequelize.DataTypes.STRING
+	},
+	city: {
+		type: sequelize.DataTypes.STRING
+	},
+	bio: {
+		type: sequelize.DataTypes.STRING
+	},
+	zip: {
 		type: sequelize.DataTypes.STRING
 	},
 	socialH: {

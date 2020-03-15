@@ -7,15 +7,14 @@ route.get('/',(req,res)=>{
 
 route.get('/data',async(req,res)=>{
     try {
-        let name=req.user.firstName+" "+req.user.lastName;
-        let mob=req.user.mobile_number;
-        let prof=req.user.empDet;
+        let fname=req.user.firstName;                       let lname=req.user.lastName;
+        let mob=req.user.mobile_number;                     let prof=req.user.empDet;                           
+        let state=req.user.state;                           let city=req.user.city;
+        let hobbies=req.user.hobbies;                       let zip=req.user.zip;
+        let socialH=req.user.socialH;                       let edu=req.user.eduDet;
         let mail=req.user.email;
-        let address=req.user.location;
-        let hobbies=req.user.hobbies;
-        let socialH=req.user.socialH;
-        let edu=req.user.eduDet;
-        res.send({name:name,mob:mob,prof:prof,mail:mail,address:address,hobbies:hobbies,socialH:socialH,edu:edu});
+        let obj={lname:lname,fname:fname,mob:mob,prof:prof,mail:mail,state:state,zip:zip,city:city,hobbies:hobbies,socialH:socialH,edu:edu};
+        res.send(obj);
     }
     catch (err) {
         console.log("not able to fetch data");
@@ -23,11 +22,52 @@ route.get('/data',async(req,res)=>{
     
 })
 
-route.post('/update',async(req,res)=>{
+route.post('/updatePersonalDet',async(req,res)=>{
     try{
-        console.log("here");
+      
         const user=await findUserByParams({email:req.user.email});
-        user.update({location:req.body.state},{fields:['location']}).then(()=>{});
+        user.update({   state:req.body.state, city:req.body.city, zip:req.body.zip, email:req.body.email,mobile_number:req.body.mobno,
+                        firstName:req.body.firstName,lastName:req.body.lastName ,empDet:req.body.prof},
+                        {fields:['state','city','zip','email','mobile_number','firstName','lastName','empDet']}).then(
+                    ()=>{});
+
+        res.send({done:"sucess"});
+    }
+    catch(err)
+    {
+        console.log("updation failed");
+    }
+})
+route.post('/updatehobbies',async(req,res)=>{
+    try{
+      
+        const user=await findUserByParams({email:req.user.email});
+        user.update({   hobbies:req.body.hobbies},{fields:['hobbies']}).then(()=>{});
+        res.send({done:"sucess"});
+    }
+    catch(err)
+    {
+        console.log("updation failed");
+    }
+})
+route.post('/updateeducationDet',async(req,res)=>{
+    try{
+      
+        const user=await findUserByParams({email:req.user.email});
+        user.update({   eduDet:req.body.eduDet},{fields:['eduDet']}).then(()=>{});
+        res.send({done:"sucess"});
+    }
+    catch(err)
+    {
+        console.log("updation failed");
+    }
+})
+route.post('/updatesocialHandles',async(req,res)=>{
+    try{
+      
+        const user=await findUserByParams({email:req.user.email});
+        user.update({   socialH:req.body.socialH},{fields:['socialH']}).then(()=>{});
+        res.send({done:"sucess"});
     }
     catch(err)
     {

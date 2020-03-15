@@ -58,8 +58,12 @@
         <form>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="inputName4">Name</label>
-              <input type="text"  class="form-control" id="inputName" placeholder="Name">
+              <label for="inputName4">First Name</label>
+              <input type="text"  class="form-control" id="inputFName" >
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputName4">Last Name</label>
+              <input type="text"  class="form-control" id="inputLName" >
             </div>
             <div class="form-group col-md-6">
               <label for="inputEmail4">Email ID</label>
@@ -72,7 +76,7 @@
           </div>
           <div class="form-group">
               <label for="inputMobile">Mobile Number</label>
-              <input type="tel"  class="form-control" id="inputMobNo" placeholder="+91-XXXXXXXXXX">
+              <input type="text"  class="form-control" id="inputMobNo" placeholder="+91-XXXXXXXXXX">
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
@@ -99,80 +103,18 @@
 </div>
 
 
-<!-- Modal for edit college name -->
+<!-- Modal for edit educational details -->
 
 <div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle"><strong>Edit College / University</strong></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle"><strong>Edit Education Details</strong></h5>
       </div>
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="exampleFormControlTextarea1"><strong>College / University Name</strong></label>
-            <hr>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-          </div>
-        </form>  
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-dark">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal to edit Secondary school name-->
-
-<div class="modal fade" id="exampleModalCenter4" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle"><strong>Edit Secondary School</strong></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="exampleFormControlTextarea1"><strong>Secondary School Name</strong></label>
-            <hr>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-          </div>
-        </form>  
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-dark">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Modal for edit high school name -->
-
-<div class="modal fade" id="exampleModalCenter5" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle"><strong>Edit High School</strong></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="exampleFormControlTextarea1"><strong>High School Name</strong></label>
-            <hr>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" id="inputEduDet" rows="3"></textarea>
           </div>
         </form>  
       </div>
@@ -198,7 +140,7 @@
       </div>
       <div class="modal-body">
           <div>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" id="inputHobDet" rows="3"></textarea>
           </div>
       </div>
       <div class="modal-footer">
@@ -222,7 +164,7 @@
       </div>
       <div class="modal-body">
           <div>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" id="inputSocialH" rows="3"></textarea>
           </div>
       </div>
       <div class="modal-footer">
@@ -364,13 +306,8 @@
                         
                         </label>
                         <div class="tab-content">
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                          <p  id='bio'>
+                            
                           </p>
                           <div>
                             <p>

@@ -155,48 +155,52 @@ function fillData()
     $.get(  '/profile/data',
         function(data)
         {
-            let nameHead=document.getElementById("nameHeading");
-            let maildet=document.getElementById("maildet");
-            let mobdet=document.getElementById("mobdet");
-            let locdet=document.getElementById("locdet");
-            let profdet=document.getElementById("profdet");
-            let edudet=document.getElementById("edudet");
-            let socialdet=document.getElementById("socialdet");
-            let hobdet=document.getElementById("hobdet");
+            let nameHead=document.getElementById("nameHeading");    let maildet=document.getElementById("maildet");
+            let mobdet=document.getElementById("mobdet");           let locdet=document.getElementById("locdet");
+            let profdet=document.getElementById("profdet");         let edudet=document.getElementById("edudet");
+            let socialdet=document.getElementById("socialdet");     let hobdet=document.getElementById("hobdet");
+            let inputMobNo=document.getElementById("inputMobNo");   let inputState=document.getElementById("inputState");
+            let inputCity=document.getElementById("inputCity");     let inputZip=document.getElementById("inputZip");
+            let inputProf=document.getElementById("inputProf");     let inputEmail=document.getElementById("inputEmail");
+            let inputFName=document.getElementById("inputFName");     let inputEduDet=document.getElementById("inputEduDet");
+            let inputHobDet=document.getElementById("inputHobDet"); let inputSocialH=document.getElementById("inputSocialH");
+            let inputLName=document.getElementById("inputLName");
             maildet.innerHTML=`<strong> Email: </strong> ${data.mail}`
             mobdet.innerHTML=`<strong> Mobile No.: </strong> ${data.mob}`
-            locdet.innerHTML=`<strong> Address: </strong> ${data.address}`
+            locdet.innerHTML=`<strong> Address: </strong> ${data.city} , ${data.state}`
             profdet.innerHTML=`<strong> Profession: </strong> ${data.prof}`
-            edudet.innerHTML=`${data.edu}`
-            socialdet.innerHTML=`${data.socialH}`
-            hobdet.innerHTML=`${data.hobbies}`
-            nameHead.innerText=data.name;
-
+            edudet.innerHTML=`${data.edu}`;         socialdet.innerHTML=`${data.socialH}`;
+            hobdet.innerHTML=`${data.hobbies}`;
+            nameHead.innerText=data.fname+" "+data.lname;   inputMobNo.value=data.mob;
+            inputFName.value=data.fname;                          inputLName.value=data.lname;
+            inputCity.value=data.city;                      inputState.value=data.state;
+            inputZip.value=data.zip;                        inputProf.value=data.prof;
+            inputEmail.value=data.mail;                     inputHobDet.value=data.hobbies;
+            inputEduDet.value=data.edu;                     inputSocialH.value=data.socialH;  
         }
     )
 }
 
 $(function(){
 
-        fillData();
-
+    fillData();
     let updatePersonalDet=document.getElementById("updatePersonalDet");
-    updatePersonalDet.innerText="hehehe";
     $("#updatePersonalDet").click(function(){
-        console.log("why post?");
-        updatePersonalDet.innerText="yayaya";
+        
+       
         let inputMobNo=document.getElementById("inputMobNo");
         let inputState=document.getElementById("inputState");
         let inputCity=document.getElementById("inputCity");
         let inputZip=document.getElementById("inputZip");
         let inputProf=document.getElementById("inputProf");
         let inputEmail=document.getElementById("inputEmail");
-        let inputName=document.getElementById("inputName");
-        console.log("why post?");
+        let inputFName=document.getElementById("inputFName");
+        let inputLName=document.getElementById("inputLName");
+        console.log(inputMobNo.value);
         $.post(
-            '/profile/update',
-            {mobno:inputMobNo.val(),city:inputCity.val(),state:inputState.val(),zip:inputZip.val(),prof:inputProf.val(),
-            name:inputName.val(),email:inputEmail.val()},
+            '/profile/updatePersonalDet',
+            {   mobno:inputMobNo.value,    city:inputCity.value,   state:inputState.value, zip:inputZip.value,prof:inputProf.value,
+                firstName:inputFName.value, lastName:inputLName.value ,  email:inputEmail.value},
             function(data)
             {
                 fillData();

@@ -50,3 +50,4 @@ db.authenticate()
 //activation of port
 const PORT = process.env.PORT || 2121;
 app.listen(PORT, console.log(`Server started on port ${PORT}`))
+	
