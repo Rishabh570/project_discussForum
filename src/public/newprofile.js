@@ -184,19 +184,13 @@ function fillData()
 $(function(){
 
     fillData();
-    let updatePersonalDet=document.getElementById("updatePersonalDet");
     $("#updatePersonalDet").click(function(){
-        
-       
-        let inputMobNo=document.getElementById("inputMobNo");
-        let inputState=document.getElementById("inputState");
-        let inputCity=document.getElementById("inputCity");
-        let inputZip=document.getElementById("inputZip");
-        let inputProf=document.getElementById("inputProf");
-        let inputEmail=document.getElementById("inputEmail");
-        let inputFName=document.getElementById("inputFName");
-        let inputLName=document.getElementById("inputLName");
-        console.log(inputMobNo.value);
+      
+        let inputMobNo=document.getElementById("inputMobNo");       let inputState=document.getElementById("inputState");
+        let inputCity=document.getElementById("inputCity");         let inputZip=document.getElementById("inputZip");
+        let inputProf=document.getElementById("inputProf");         let inputEmail=document.getElementById("inputEmail");
+        let inputFName=document.getElementById("inputFName");       let inputLName=document.getElementById("inputLName");
+
         $.post(
             '/profile/updatePersonalDet',
             {   mobno:inputMobNo.value,    city:inputCity.value,   state:inputState.value, zip:inputZip.value,prof:inputProf.value,
@@ -207,5 +201,41 @@ $(function(){
             }
         )
     });
-
+    $("#updateHobDet").click(function(){
+      
+        let inputHobbies=document.getElementById("inputHobDet");   
+        $.post(
+            '/profile/updateHobDet',
+            {    hobbies:inputHobbies.value },
+            function(data)
+            {
+                fillData();
+            }
+        )
+    });
+    $("#updateSocialHDet").click(function(){
+      
+        let inputSocialH=document.getElementById("inputSocialH");   
+        $.post(
+            '/profile/updateSocialHDet',
+            {    socialH:inputSocialH.value },
+            function(data)
+            {
+                fillData();
+            }
+        )
+    });
+    $("#updateEduDet").click(function(){
+      
+        let inputEduDet=document.getElementById("inputEduDet");   
+        console.log(inputEduDet.value)
+        $.post(
+            '/profile/updateEduDet',
+            {    eduDet:inputEduDet.value },
+            function(data)
+            {
+                fillData();
+            }
+        )
+    });
 })

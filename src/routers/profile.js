@@ -38,7 +38,7 @@ route.post('/updatePersonalDet',async(req,res)=>{
         console.log("updation failed");
     }
 })
-route.post('/updatehobbies',async(req,res)=>{
+route.post('/updateHobDet',async(req,res)=>{
     try{
       
         const user=await findUserByParams({email:req.user.email});
@@ -50,9 +50,9 @@ route.post('/updatehobbies',async(req,res)=>{
         console.log("updation failed");
     }
 })
-route.post('/updateeducationDet',async(req,res)=>{
+route.post('/updateEduDet',async(req,res)=>{
     try{
-      
+        console.log("my edu:")
         const user=await findUserByParams({email:req.user.email});
         user.update({   eduDet:req.body.eduDet},{fields:['eduDet']}).then(()=>{});
         res.send({done:"sucess"});
@@ -62,7 +62,7 @@ route.post('/updateeducationDet',async(req,res)=>{
         console.log("updation failed");
     }
 })
-route.post('/updatesocialHandles',async(req,res)=>{
+route.post('/updateSocialHDet',async(req,res)=>{
     try{
       
         const user=await findUserByParams({email:req.user.email});
