@@ -22,8 +22,16 @@ body {
 #suggestion-cards {
 	margin-bottom: 5px;
 	border: 1px solid brown;
-	border-radius: 3px;
+  border-radius: 3px;
+}
 
+#suggestions {
+  width: 50%;
+  margin: 0 27.70% 0 23.3%;
+  text-align: left;
+  background-color: white;
+  border-radius: 0.5rem;
+  
 }
 
 /*

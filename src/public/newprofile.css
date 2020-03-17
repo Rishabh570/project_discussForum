@@ -514,6 +514,11 @@ ul.nacc li p {
  margin: 0;
 }
 
+.menu:hover{
+  background: linear-gradient(90deg, #cfecd0, #ffc5ca) ;  
+}
+
+
 
 /*-------------------------education accordian CSS---------------------------------------*/
 
@@ -597,9 +602,11 @@ ul.nacc li p {
     background-color: #e9ecef;
     border-radius: .3rem;
     background-color:#f4d6db;   
+    /*
     background-image: 
     radial-gradient(circle farthest-side at top right, transparent,#d587b3), radial-gradient(ellipse farthest-corner at 0% 100%, transparent,#fab397 );
     animation:bg-change 10s infinite;
+    */
 }
 
 @keyframes bg-change {
