@@ -19,7 +19,8 @@ router.get('/card/:cardId', verifyUser, async (req, res) => {
 		const authorObj = await findUserById(roomObj.uid);
 		const messages = await getMessagesByRoomId(roomID);
 		const authorName = authorObj.firstName + " " + authorObj.lastName;
-		res.render('chatroom', {room: roomObj, authorName: authorName, messages: messages});
+		console.log(req.user.email);
+		res.render('chatroom', {room: roomObj, authorName: authorName, messages: messages, user:req.user.email});
 	}
 	catch(err) {
 		console.log("error in opening chatroom");

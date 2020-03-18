@@ -11,9 +11,14 @@ const express = require('express')
 	, infoRoute = require('./src/routers/aboutus')
 	, passport = require('./src/passport/passporthandler')
 	, session = require('express-session')
-	, path = require('path');
+	, path = require('path')
+	, SocketIO=require('socket.io')
+	, http=require('http');
 
 const app = express()  //creates server
+const httpServer=http.createServer(app);
+const io=SocketIO(httpServer);
+
 app.set('view engine', 'ejs');	app.set('views','./src/views'); //code to handle ejs files
 app.use(express.static(path.join(__dirname, './src/public')));  // to set src/public folder to lookup for static files
 app.use(express.json());	app.use(express.urlencoded({extended: true}))  // code to read post request
@@ -31,6 +36,26 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
+let usersockets = {};	let activeUsers={};
+io.on('connection', (socket) => {
+    console.log("New socket formed from " + socket.id)
+    socket.emit('connected')
+    
+    socket.on('send_msg', (data) => {
+        // if we use io.emit, everyone gets it
+		// if we use socket.broadcast.emit, only others get it
+		usersockets[data.user] = socket.id
+        if (data.message.startsWith('@')) {
+            //data.message = "@a: hello"	// split at :, then remove @ from beginning
+            let recipient = data.message.split(':')[0].substr(1)
+            let rcptSocket = usersockets[recipient]
+            io.to(rcptSocket).emit('recv_msg', data)
+        } else {
+            io.emit('recv_msg', data)            
+        }
+    })
+
+})
 app.use('/signup', signupRoute);
 app.use('/login',loginRoute);
 app.use('/logout', logoutRoute);
@@ -46,6 +71,10 @@ const db = require('./src/db/database')
 db.authenticate()
 .then(() => {console.log("Database Connected.")})
 .catch(err => console.log("Error in DB connection: ", err));
+
+
+
+
 
 //activation of port
 const PORT = process.env.PORT || 2121;

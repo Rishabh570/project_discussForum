@@ -52,7 +52,7 @@ route.post('/updateHobDet',async(req,res)=>{
 })
 route.post('/updateEduDet',async(req,res)=>{
     try{
-        console.log("my edu:")
+       
         const user=await findUserByParams({email:req.user.email});
         user.update({   eduDet:req.body.eduDet},{fields:['eduDet']}).then(()=>{});
         res.send({done:"sucess"});
