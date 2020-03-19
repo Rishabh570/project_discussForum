@@ -23,22 +23,22 @@ $(document).ready(() => {
 			Description.textContent = "Description :"+data.cardDet.description;
 
 			let msgList = document.getElementById('msglist');
+			let loadedmsg="";
 			data.messages.forEach(msg => {
-				const content = `\
-					<div class="message">\
-						<p><strong>@${msg.author}: </strong></p>\
-						<p>${msg.message}</p>\
-						<br>\
-					</div>\
-				`;
+				const content = `
+					<div class="message">
+						<p><strong>@${msg.author}: </strong></p>
+						<p>${msg.message}</p>
+						<br>
+					</div>`;
 
-				msgList.innerHTML += content;
+				loadedmsg += content;
 			});
-
+			msgList.innerHTML=loadedmsg;
 		}
 	)
 
-	$('#form-input-submit').click(function () {
+	$('#sendbtn').click(function () {
 		let cardId=document.getElementById("cardDiv").textContent;
 		let user=document.getElementById("userDiv").textContent;
 		socket.emit('send_msg', {
@@ -49,9 +49,8 @@ $(document).ready(() => {
     })
 	socket.on('recv_msg', function (data) {
 
-        $('#msglist').append($(`<div class="message-heading">${data.user}:</div>
-		<div class="message-body">${data.message} </div>
-		<br>`))
+        $('#msglist').append($(`<div class="message-heading"><strong>@${data.user}:</strong></div>
+		<div class="message-body">${data.message} </div><br>`))
     })
 
 

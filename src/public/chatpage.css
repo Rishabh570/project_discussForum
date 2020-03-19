@@ -49,12 +49,13 @@
   #form-input {
 	flex-grow: 10;
   }
-  #form-input-submit {
+  #sendbtn {
 	flex-grow: 1;
   }
 
   .chat-box {
 	margin:15px;	border: 4px double #503d3d;
-	border-radius: 2px;	height:68vh;	width: 100%;
+  border-radius: 2px;	height:68vh;	width: 100%;
+  overflow:auto;
   }
 
