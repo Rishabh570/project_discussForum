@@ -12,15 +12,16 @@ const express = require('express')
 	, io = require('socket.io')(http);
 
 
+let cache={};
 router.get('/card/:cardId', verifyUser, async (req, res) => {
-	const roomID = req.params.cardId;
+	cache[req.user.email]=req.params.cardId;
+	console.log(cache[req.user.email]);
 	try {
-		const roomObj = await findCardByID(roomID);
+	/*	const roomObj = await findCardByID(roomID);
 		const authorObj = await findUserById(roomObj.uid);
 		const messages = await getMessagesByRoomId(roomID);
-		const authorName = authorObj.firstName + " " + authorObj.lastName;
-		console.log(req.user.email);
-		res.render('chatroom', {room: roomObj, authorName: authorName, messages: messages, user:req.user.email});
+		const authorName = authorObj.firstName + " " + authorObj.lastName;*/
+		res.redirect('/chatroom.html');
 	}
 	catch(err) {
 		console.log("error in opening chatroom");
@@ -28,27 +29,25 @@ router.get('/card/:cardId', verifyUser, async (req, res) => {
 	}
 })
 
-router.post('/card/:cardId', verifyUser, async (req, res) => {
-	const currentUserName = req.user.firstName + " " + req.user.lastName;
-	const roomID = req.params.cardId;
-	const msg = req.body.message;
-	const query = {
-		author: currentUserName,
-		roomID: roomID,
-		message: msg
-	}
-
+router.get('/card/data',async (req, res) => {
+	console.log("request came")
+	let roomId=cache[req.user.email];
 	try {
-		const resp = await createMessage(query);
-		res.status(200).redirect(`/chatroom/card/${roomID}`)
+		const roomObj = await findCardByID(roomID);
+		const authorObj = await findUserById(roomObj.uid);
+		const messages = await getMessagesByRoomId(roomID);
+		const authorName = authorObj.firstName + " " + authorObj.lastName;
+		let myobj={cardDet:roomObj,initiator:authorName,messages:messages,user:req.user.firstName+" "+req.user.lastName};
+		console.log("sent");
+		console.log(myobj);
+		res.send(myobj);
 	}
 	catch(err) {
-		console.log("Error in POST to this room!");
+		console.log("error in opening chatroom");
 		throw err;
 	}
-
-
 })
+
 
 
 module.exports=router

@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="/chatpage.css">
+	<link rel="stylesheet" type="text/css" href="./chatpage.css">
 	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 
@@ -25,8 +25,8 @@
 	<!-- CONTAINER -->
 	<div class="mybar">
 		<div class="row">
-			<div class="col2 ele">Initiator: <%= authorName %></div>
-			<div class="col8  ele">keywords: <%= room.keywords %> </div>
+			<div class="col2 ele" id="initiator"></div>
+			<div class="col8  ele" id="keywords"></div>
 			<div id="activeU" class="col1 ele"> Active users: 1	</div>
 			<div class="col1 ele">
 				<a href="#" id="likedbtn" class="btn btn-primary">most liked </a>
@@ -34,19 +34,19 @@
 		</div>
 
 		<div class="row">
-			<div class="col10 ele desc text-break"> Description: <%= room.description %> </div>
-			<div id="cardDiv" class="col2  ele">Card ID: <%= room.cid %> </div>
-			<div id="userDiv" class="col2  ele">USER ID: <%= user %> </div>
+			<div class="col10 ele desc text-break" id="Description"></div>
+			<div id="cardDiv" class="col2  ele"></div>
+			<div id="userDiv" class="col2  ele" >USER ID: </div>
 		</div>
 		
 		<div class="chat-box">
-			<% for (let i=0; i<messages.length; i++) { %>
+			
 				<div class="messages" id='msglist'>
-					<div class="message-heading"><%= messages[i].author %>:</div>
-					<div class="message-body"><%= messages[i].message %> </div>
+					<div class="message-heading"></div>
+					<div class="message-body"> </div>
 					<br>
 				</div>
-			<% } %>
+		
 		</div>
 	</div>
 	<!-- CONTAINER ENDS -->
@@ -66,6 +66,6 @@
 	</div>
 
 
-	<script src="/chatpage.js"></script>
+	<script src="./chatpage.js"></script>
 </body>
 </html>

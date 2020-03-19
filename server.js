@@ -13,7 +13,8 @@ const express = require('express')
 	, session = require('express-session')
 	, path = require('path')
 	, SocketIO=require('socket.io')
-	, http=require('http');
+	, http=require('http')
+	, {	getMessagesByRoomId,createMessage}=require('./src/controllers/message')
 
 const app = express()  //creates server
 const httpServer=http.createServer(app);
@@ -35,27 +36,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Routes
-let usersockets = {};	let activeUsers={};
-io.on('connection', (socket) => {
-    console.log("New socket formed from " + socket.id)
-    socket.emit('connected')
-    
-    socket.on('send_msg', (data) => {
-        // if we use io.emit, everyone gets it
-		// if we use socket.broadcast.emit, only others get it
-		usersockets[data.user] = socket.id
-        if (data.message.startsWith('@')) {
-            //data.message = "@a: hello"	// split at :, then remove @ from beginning
-            let recipient = data.message.split(':')[0].substr(1)
-            let rcptSocket = usersockets[recipient]
-            io.to(rcptSocket).emit('recv_msg', data)
-        } else {
-            io.emit('recv_msg', data)            
-        }
-    })
 
-})
 app.use('/signup', signupRoute);
 app.use('/login',loginRoute);
 app.use('/logout', logoutRoute);
@@ -72,11 +53,33 @@ db.authenticate()
 .then(() => {console.log("Database Connected.")})
 .catch(err => console.log("Error in DB connection: ", err));
 
+// Routes
+let usersockets = {};	let activeUsers={};
+io.on('connection', (socket) => {
+    console.log("New socket formed from " + socket.id)
+    socket.emit('connected')
+    
+    socket.on('send_msg', async (data) => {
+        // if we use io.emit, everyone gets it
+		// if we use socket.broadcast.emit, only others get it
+		usersockets[data.user] = socket.id
+		const done=await createMessage({message:data.message,author:data.user, roomID:data.cardId});
+		
+        if (data.message.startsWith('@')) {
+            //data.message = "@a: hello"	// split at :, then remove @ from beginning
+            let recipient = data.message.split(':')[0].substr(1)
+            let rcptSocket = usersockets[recipient]
+            io.to(rcptSocket).emit('recv_msg', data)
+        } else {
+            io.emit('recv_msg', data)            
+        }
+    })
 
+})
 
 
 
 //activation of port
 const PORT = process.env.PORT || 2121;
-app.listen(PORT, console.log(`Server started on port ${PORT}`))
+httpServer.listen(PORT, console.log(`Server started on port ${PORT}`))
 	

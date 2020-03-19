@@ -4,35 +4,37 @@ socket.on('connected', () => {
 })
 
 $(document).ready(() => {
+	console.log("chapage loaded...");
+	$.get(
+		'/chatroom/card/data',
+		function(data)
+		{
+			let cardId=document.getElementById("cardDiv");
+			cardId.textContent="Card ID: "+data.cardDet.cid;
+			let user=document.getElementById("userDiv");
+			user.textContent="USER ID: "+data.user;
+			let initiator=document.getElementById("initiator");
+			initiator.textContent="Initiator:"+data.initiator;
+			let keywords=document.getElementById("keywords");
+			keywords.textContent="keywords: "+data.cardDet.keywords;
+			let  Description=document.getElementById("Description");
+			Description.textContent="Description :"+data.cardDet.description;
 
-	/*$('#form-input-submit').click(e => {
-		e.preventDefault();
-		const msg = $('#exampleFormControlTextarea1').val();
-		let cardId=document.getElementById("cardDiv").textContent;
-		$.ajax({
-			url: `http://localhost:2121/chatroom/card/${cardId.substr(9)}`,
-			method: 'POST',
-			data: {message: msg},
-			dataType: 'json'
-		})
-		.done((data) => {
-			console.log("successfully saved message!");
-		})
-		.fail(err => {
-			console.log("error saving message :(");
-		})
 
-	})*/
+		}
+	)
 	
 	$('#form-input-submit').click(function () {
-		console.log('sending');
+		let cardId=document.getElementById("cardDiv").textContent;
+		let user=document.getElementById("userDiv").textContent;
 		socket.emit('send_msg', {
-            user: document.getElementById("userDiv").textContent,
+            user: user.substr(9),
 			message: $('#exampleFormControlTextarea1').val(),
-			cardId=document.getElementById("cardDiv").textContent
+			cardId:cardId.substr(9)
         })
     })
 	socket.on('recv_msg', function (data) {
+		
         $('#msglist').append($(`<div class="message-heading">${data.user}:</div>
 		<div class="message-body">${data.message} </div>
 		<br>`))
