@@ -13,9 +13,35 @@ const express = require('express')
 
 
 let cache={};
+
+router.get('/card/data', verifyUser, async (req, res) => {
+	console.log("request came...")
+	let roomID = cache[req.user.email];
+	console.log('roomId: ', roomID);
+	try {
+		const roomObj = await findCardByID(roomID);
+		const authorObj = await findUserById(roomObj.uid);
+		const messages = await getMessagesByRoomId(roomID);
+		const authorName = authorObj.firstName + " " + authorObj.lastName;
+		let myobj = {
+			cardDet: roomObj,
+			initiator: authorName,
+			messages: messages,
+			user: req.user.firstName+" "+req.user.lastName
+		};
+
+		console.log("myObj =>>> ", myobj);
+		res.send(myobj);
+	}
+	catch(err) {
+		console.log("error in opening chatroom");
+		throw err;
+	}
+})
+
 router.get('/card/:cardId', verifyUser, async (req, res) => {
 	cache[req.user.email]=req.params.cardId;
-	console.log(cache[req.user.email]);
+	console.log("cache ->>> ", cache[req.user.email]);
 	try {
 	/*	const roomObj = await findCardByID(roomID);
 		const authorObj = await findUserById(roomObj.uid);
@@ -29,24 +55,7 @@ router.get('/card/:cardId', verifyUser, async (req, res) => {
 	}
 })
 
-router.get('/card/data',async (req, res) => {
-	console.log("request came")
-	let roomId=cache[req.user.email];
-	try {
-		const roomObj = await findCardByID(roomID);
-		const authorObj = await findUserById(roomObj.uid);
-		const messages = await getMessagesByRoomId(roomID);
-		const authorName = authorObj.firstName + " " + authorObj.lastName;
-		let myobj={cardDet:roomObj,initiator:authorName,messages:messages,user:req.user.firstName+" "+req.user.lastName};
-		console.log("sent");
-		console.log(myobj);
-		res.send(myobj);
-	}
-	catch(err) {
-		console.log("error in opening chatroom");
-		throw err;
-	}
-})
+
 
 
 
