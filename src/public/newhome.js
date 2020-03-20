@@ -175,7 +175,8 @@ $(window).resize(function () {
         $('nav').removeClass('navbar-offcanvas');
         offCanvas.sidenav.sidenav_visible = 1;
         navbar_initialized = false;
-    }
+	}
+
 });
 
 
@@ -242,3 +243,36 @@ $(function()
 		})
 
 })
+
+
+
+// TRENDING
+$('#trending').click(e => {
+	console.log("trending clicked!")
+
+	$('#recentsec').html("");
+	$.get(
+		'/card/trending',
+		data => {
+			data.forEach(row => {
+				$('#recentsec').append(` <div class="card">
+					<div onclick="window.location.href='/chatroom/card/${row.cid}'" class="card-body">
+						<h5 class="card-title">
+							<strong>Keywords:</strong>
+							<hr class="hrline">
+							${row.keywords}
+						</h5>
+						<p class="card-text">
+							<strong>Description:</strong>
+							<hr class="hrline">
+							${row.description}
+						</p>
+					</div>
+				</div>`);
+			})
+	})
+
+})
+
+
+

@@ -1,6 +1,24 @@
 const route=require('express').Router()
     , {createUserLocal, findUserByParams} = require('../controllers/user')
-    ,{createCard, getAllCards, findCardByKeyWord} = require('../controllers/card')
+	,{createCard, getAllCards, findCardByKeyWord} = require('../controllers/card')
+	, {verifyUser} = require('../middlewares/isAuthenticated');
+
+
+// TRENDING LOGIC
+
+route.get('/trending', verifyUser, async (req, res) => {
+	console.log("In /card/trending route")
+
+	try{
+		const resp = await getAllCards();
+		console.log('resp: ', resp);
+		res.send(resp);
+    }
+    catch(err) {
+		console.log('Failed to get trending cards!')
+		throw err;
+    }
+})
 
 
 route.get('/',async(req,res)=>{
@@ -20,9 +38,9 @@ route.get('/',async(req,res)=>{
 })
 
 route.post('/new',async (req, res) => {
-	
+
     try {
-        
+
         const card= await findCardByKeyWord({keyvalues:req.body.keyvalues});
         if(card)
         {
@@ -31,7 +49,7 @@ route.post('/new',async (req, res) => {
         else{
             const newcard=await createCard({
                 uid:req.user.dataValues.uid,
-                description:req.body.description, 
+                description:req.body.description,
                 keyvalues:req.body.keyvalues
             })
             res.send({status:"sucess", data:newcard})
@@ -42,5 +60,7 @@ route.post('/new',async (req, res) => {
         console.log(err);
     }
 })
+
+
 
 module.exports=route
