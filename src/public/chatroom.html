@@ -71,7 +71,9 @@
 
 	<!-- CONTAINER -->
 <div class="jumbotron">
+    <!--
 	<div class="wrapper mt-4">
+    -->
 		<div class="container-fluid">
 			<div class="mybar">
 				<div class="row">
@@ -95,18 +97,45 @@
 			</div>
 			<!-- CONTAINER ENDS -->
 
+            <!-- Testing msg box ---->
+
+            <div class="chat-input-holder">
+                <textarea placeholder="Type your message here ..."class="chat-input"></textarea>
+                <input type="submit" value="Send" class="message-send"/>
+            </div>
+            <div class="attachment-panel">
+                <a href="#" class="fa fa-thumbs-up"></a>
+                <a href="#" class="fa fa-camera"></a>
+                <a href="#" class="fa fa-video-camera"></a>
+                <a href="#" class="fa fa-image"></a>
+                <a href="#" class="fa fa-paperclip"></a>
+                <a href="#" class="fa fa-link"></a>
+                <a href="#" class="fa fa-trash"></a>
+                <a href="#" class="fa fa-search"></a>
+            </div>
+
+            <!--- Testing msg box ends here ---->
+
 			<!-- MESSAGE BOX -->
 			<div class="message-box">
 				<div id="form-input" class="form-group mr-1">
-				<textarea placeholder="Type something..." class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
-				</div>
-				<button id="sendbtn"  class="btn btn-primary">
-					Send
-					<i class="fa fa-paper-plane" aria-hidden="true"></i>
-				</button>
+				    <textarea placeholder="Type something..." class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                </div>
+                <span>
+                    <button id="sendbtn"  class="btn btn-primary">
+                    Send
+                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                    </button>
+                </span>
 			</div>
+
+            <!-- message box ends here --->
+
+
 		</div>
+    <!--
 	</div>
+    -->
 </div>
 
 <script src="./chatpage.js"></script>
