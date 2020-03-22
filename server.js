@@ -55,25 +55,52 @@ db.authenticate()
 
 // Routes
 let usersockets = {};	let activeUsers={};
+let trendingCount={};	let soctochat={};
+
 io.on('connection', (socket) => {
-    console.log("New socket formed from " + socket.id)
-    socket.emit('connected')
     
+    socket.emit('connected')
     socket.on('send_msg', async (data) => {
         // if we use io.emit, everyone gets it
 		// if we use socket.broadcast.emit, only others get it
 		usersockets[data.user] = socket.id
-		const done=await createMessage({message:data.message,author:data.user, roomID:data.cardId});
-		
-        if (data.message.startsWith('@')) {
-            //data.message = "@a: hello"	// split at :, then remove @ from beginning
-            let recipient = data.message.split(':')[0].substr(1)
-            let rcptSocket = usersockets[recipient]
-            io.to(rcptSocket).emit('recv_msg', data)
-        } else {
-            io.emit('recv_msg', data)            
-        }
-    })
+		console.log(data.message);
+		if(data.message=="inc#U")
+		{
+			if(data.cardId in activeUsers)
+			activeUsers[data.cardId]+=1;
+			else
+			activeUsers[data.cardId]=1;
+
+			if(data.cardId in trendingCount)
+			trendingCount[data.cardId]+=1;
+			else
+			trendingCount[data.cardId]=1;
+
+			soctochat[socket.id]=data.cardId;
+			data["activeId"]=activeUsers[data.cardId]-1;
+            io.emit('recv_msg', data);   
+		}
+		else
+		{
+			const done=await createMessage({message:data.message,author:data.user, roomID:data.cardId});
+        	if (data.message.startsWith('@')) {
+            	//data.message = "@a: hello"	// split at :, then remove @ from beginning
+            	let recipient = data.message.split(':')[0].substr(1)
+            	let rcptSocket = usersockets[recipient]
+            	io.to(rcptSocket).emit('recv_msg', data)
+        	} else {
+	
+				data["activeId"]=activeUsers[data.cardId]-1;
+            io.emit('recv_msg',data);   
+            	        
+        	}
+		}	
+	})
+	socket.on('disconnecting', async(reason) => {
+		let cardID=soctochat[socket.id];
+		activeUsers[cardID]=activeUsers[cardID]-1;
+	  });
 
 })
 

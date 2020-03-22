@@ -144,12 +144,12 @@ socket.on('connected', () => {
 
 
 $(document).ready(() => {
-	console.log("chatpage loaded...");
+	
 	$.get(
 		'/chatroom/card/data',
 		function(data)
 		{
-			console.log("dataaaaaaa = ", data);
+			
 			let cardId=document.getElementById("cardDiv");
 			cardId.textContent = "Card ID: "+data.cardDet.cid;
 			let user = document.getElementById("userDiv");
@@ -160,7 +160,6 @@ $(document).ready(() => {
 			keywords.textContent="keywords: "+data.cardDet.keywords;
 			let  Description = document.getElementById("Description");
 			Description.textContent = "Description :"+data.cardDet.description;
-
 			let msgList = document.getElementById('msglist');
 			let loadedmsg="";
 			data.messages.forEach(msg => {
@@ -173,13 +172,22 @@ $(document).ready(() => {
 
 				loadedmsg += content;
 			});
-			msgList.innerHTML=loadedmsg;
+            msgList.innerHTML=loadedmsg;
+            socket.emit('send_msg', {
+                user: data.user,
+                message:"inc#U",
+                cardId:data.cardDet.cid
+            })
+            
 		}
-	)
+    )
+    
+    
+   
 
 	$('#sendbtn').click(function () {
-		let cardId=document.getElementById("cardDiv").textContent;
-		let user=document.getElementById("userDiv").textContent;
+        let cardId=document.getElementById("cardDiv").textContent;
+        let user=document.getElementById("userDiv").textContent;
 		socket.emit('send_msg', {
             user: user.substr(9),
 			message: $('#exampleFormControlTextarea1').val(),
@@ -188,8 +196,13 @@ $(document).ready(() => {
     })
 	socket.on('recv_msg', function (data) {
 
+        let acitveId=document.getElementById("activeId");
+        let usersactive=data.activeId;
+        acitveId.textContent="Active users: "+usersactive;
+        if(data.message!="inc#U"){
         $('#msglist').append($(`<div class="message-heading"><strong>@${data.user}:</strong></div>
-		<div class="message-body">${data.message} </div><br>`))
+        <div class="message-body">${data.message} </div><br>`))}
+        
     })
 
 

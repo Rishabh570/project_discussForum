@@ -1,15 +1,15 @@
 * {
   font-family: 'Lato', sans-serif;
-  
   }
 
 body {
     line-height: 1.28;  background-color: #e6ecff;
   }
 
-.row {
+.rows {
   display: flex;  flex-wrap: wrap;  color: wheat;
   justify-content:space-between;  background-color: #503d3d;
+  width:100vw; height:8vh ;
   }
 
 .ele
@@ -21,18 +21,11 @@ body {
   margin:5px ;
   }
 
-.messages-window {
-  display: flex;    
-  flex-direction: column;
-  padding: 0.5em;  
-  border-radius: 0.4em; 
-  width: 60em;
-  }
 
 .message-box {
-  position: bottom; 
-  bottom: 15px; 
+  height:5vh;
   width: 100%;
+  margin:5px ;
   }
 
 .message-form {
@@ -48,13 +41,14 @@ body {
   }
 
 .chat-box {
-  margin: 0px;  
+  margin: 0px;
+  margin-bottom:10px;  
   border: 4px double #503d3d;
   border-radius: 2px; 
-  height:68vh;  
+  height:60vh;  
   width: auto;
   overflow:auto;
-  }
+}
 
   
 

@@ -13,7 +13,6 @@ const express = require('express')
 
 
 let cache={};
-
 router.get('/card/data', verifyUser, async (req, res) => {
 	console.log("request came...")
 	let roomID = cache[req.user.email];
