@@ -9,14 +9,10 @@ async function createCard(query) {
 			uid:query.uid
 		})
     } catch (err) {
-		console.log("error while creating card");
         throw new Error('Unsuccessful creation. Please try again.')
 	}
-	console.log("card created!");
     return mycard;
 }
-
-
 
 async function findCardByKeyWord(params) {
 	try {

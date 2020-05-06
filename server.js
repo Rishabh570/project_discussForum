@@ -16,12 +16,12 @@ const express = require('express')
 	, http=require('http')
 	, {	getMessagesByRoomId,createMessage}=require('./src/controllers/message')
 
-const app = express()  //creates server
+const app = express()  			//creates server 
 const httpServer=http.createServer(app);
 const io=SocketIO(httpServer);
 
-app.set('view engine', 'ejs');	app.set('views','./src/views'); //code to handle ejs files
-app.use(express.static(path.join(__dirname, './src/public')));  // to set src/public folder to lookup for static files
+app.set('view engine', 'ejs'); 	app.set('views','./src/views'); //code to handle ejs files
+app.use(express.static(path.join(__dirname, './src/public')));   // to set src/public folder to lookup for static files
 app.use(express.json());	app.use(express.urlencoded({extended: true}))  // code to read post request
 
 app.use(session({
@@ -92,7 +92,7 @@ io.on('connection', (socket) => {
         	} else {
 	
 				data["activeId"]=activeUsers[data.cardId]-1;
-            io.emit('recv_msg',data);   
+            	io.emit('recv_msg',data);   
             	        
         	}
 		}	

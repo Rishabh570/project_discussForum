@@ -19,7 +19,6 @@ const User = db.define('User', {
 		primaryKey: true,
 		autoIncrement: true
 	},
-
 	password:  {
 		type: sequelize.DataTypes.STRING,
 		unique: true,
@@ -52,16 +51,28 @@ const User = db.define('User', {
 	zip: {
 		type: sequelize.DataTypes.STRING
 	},
-	socialH: {
-		type: sequelize.DataTypes.STRING
-	},
 	hobbies: {
 		type: sequelize.DataTypes.STRING
 	},
 	mobile_number: {
 		type: sequelize.DataTypes.STRING
 	},
-	eduDet:{
+	schDet:{
+		type: sequelize.DataTypes.STRING
+	},
+	colDet:{
+		type: sequelize.DataTypes.STRING
+	},
+	schDet:{
+		type: sequelize.DataTypes.STRING
+	},
+	faceDet:{
+		type: sequelize.DataTypes.STRING
+	},
+	linkDet:{
+		type: sequelize.DataTypes.STRING
+	},
+	instaDet:{
 		type: sequelize.DataTypes.STRING
 	},
 	empDet:{

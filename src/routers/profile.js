@@ -11,9 +11,12 @@ route.get('/data',async(req,res)=>{
         let mob=req.user.mobile_number;                     let prof=req.user.empDet;                           
         let state=req.user.state;                           let city=req.user.city;
         let hobbies=req.user.hobbies;                       let zip=req.user.zip;
-        let socialH=req.user.socialH;                       let edu=req.user.eduDet;
-        let mail=req.user.email;
-        let obj={lname:lname,fname:fname,mob:mob,prof:prof,mail:mail,state:state,zip:zip,city:city,hobbies:hobbies,socialH:socialH,edu:edu};
+        let schDet=req.user.schDet;                         let colDet=req.user.colDet;                         
+        let faceDet=req.user.faceDet;                       let instaDet=req.user.instaDet;                         
+        let linkDet=req.user.linkDet;                        let mail=req.user.email;
+        let bio=req.user.bio;
+        let obj={lname:lname,fname:fname,mob:mob,prof:prof,mail:mail,state:state,zip:zip,city:city,hobbies:hobbies,faceDet:faceDet,instaDet:instaDet,
+        linkDet:linkDet, colDet:colDet, schDet:schDet, bio:bio};
         res.send(obj);
     }
     catch (err) {
@@ -54,7 +57,8 @@ route.post('/updateEduDet',async(req,res)=>{
     try{
        
         const user=await findUserByParams({email:req.user.email});
-        user.update({   eduDet:req.body.eduDet},{fields:['eduDet']}).then(()=>{});
+        console.log(req.body.schDet);
+        user.update({   schDet:req.body.schDet, colDet:req.body.colDet },{fields:['schDet','colDet']}).then(()=>{});
         res.send({done:"sucess"});
     }
     catch(err)
@@ -66,7 +70,8 @@ route.post('/updateSocialHDet',async(req,res)=>{
     try{
       
         const user=await findUserByParams({email:req.user.email});
-        user.update({   socialH:req.body.socialH},{fields:['socialH']}).then(()=>{});
+        console.log(req.body.faceDet);
+        user.update({   instaDet:req.body.instaDet, linkDet:req.body.linkDet, faceDet:req.body.faceDet},{fields:['instaDet','linkDet','faceDet']}).then(()=>{});
         res.send({done:"sucess"});
     }
     catch(err)

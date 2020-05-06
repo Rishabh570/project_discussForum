@@ -155,28 +155,38 @@ function fillData()
     $.get(  '/profile/data',
         function(data)
         {
-            let nameHead=document.getElementById("nameHeading");    let maildet=document.getElementById("maildet");
-            let mobdet=document.getElementById("mobdet");           let locdet=document.getElementById("locdet");
-            let profdet=document.getElementById("profdet");         let edudet=document.getElementById("edudet");
-            let socialdet=document.getElementById("socialdet");     let hobdet=document.getElementById("hobdet");
-            let inputMobNo=document.getElementById("inputMobNo");   let inputState=document.getElementById("inputState");
-            let inputCity=document.getElementById("inputCity");     let inputZip=document.getElementById("inputZip");
-            let inputProf=document.getElementById("inputProf");     let inputEmail=document.getElementById("inputEmail");
-            let inputFName=document.getElementById("inputFName");     let inputEduDet=document.getElementById("inputEduDet");
-            let inputHobDet=document.getElementById("inputHobDet"); let inputSocialH=document.getElementById("inputSocialH");
-            let inputLName=document.getElementById("inputLName");
+            let nameHead=document.getElementById("nameHeading");      let maildet=document.getElementById("maildet");
+            let mobdet=document.getElementById("mobdet");             let locdet=document.getElementById("locdet");
+            let profdet=document.getElementById("profdet");           let faceDet=document.getElementById("faceDet");
+            let linkDet=document.getElementById("linkDet");           let instaDet=document.getElementById("instaDet");
+            let schDet=document.getElementById("schDet");             let hobdet=document.getElementById("hobdet");
+            let inputMobNo=document.getElementById("inputMobNo");     let inputState=document.getElementById("inputState");
+            let inputCity=document.getElementById("inputCity");       let inputZip=document.getElementById("inputZip");
+            let inputProf=document.getElementById("inputProf");       let inputEmail=document.getElementById("inputEmail");
+            let inputFName=document.getElementById("inputFName");     let inputColDet=document.getElementById("inputColDet");
+            let inputHobDet=document.getElementById("inputHobDet");   let inputSchDet=document.getElementById("inputSchDet");
+            let inputLName=document.getElementById("inputLName");     let inputLinkDet=document.getElementById("inputLinkDet");
+            let inputFaceDet=document.getElementById("inputFaceDet"); let inputInstaDet=document.getElementById("inputInstaDet");
+            let colDet=document.getElementById("colDet");
             maildet.innerHTML=`<strong> Email: </strong> ${data.mail}`
             mobdet.innerHTML=`<strong> Mobile No.: </strong> ${data.mob}`
             locdet.innerHTML=`<strong> Address: </strong> ${data.city} , ${data.state}`
             profdet.innerHTML=`<strong> Profession: </strong> ${data.prof}`
-            edudet.innerHTML=`${data.edu}`;         socialdet.innerHTML=`${data.socialH}`;
+            schDet.innerHTML=`<strong> High School: </strong> ${data.schDet}`
+            colDet.innerHTML=`<strong> College: </strong> ${data.colDet}`
+            linkDet.innerHTML=`<strong> LinkedIn: </strong> <a>${data.linkDet}</a>`
+            instaDet.innerHTML=`<strong> Instagram: </strong> <a>${data.instaDet}</a>`
+            faceDet.innerHTML=`<strong> Facebook: </strong> <a>${data.faceDet}</a>`
+            
             hobdet.innerHTML=`${data.hobbies}`;
             nameHead.innerText=data.fname+" "+data.lname;   inputMobNo.value=data.mob;
             inputFName.value=data.fname;                          inputLName.value=data.lname;
             inputCity.value=data.city;                      inputState.value=data.state;
             inputZip.value=data.zip;                        inputProf.value=data.prof;
             inputEmail.value=data.mail;                     inputHobDet.value=data.hobbies;
-            inputEduDet.value=data.edu;                     inputSocialH.value=data.socialH;  
+            inputFaceDet.value=data.faceDet;                inputLinkDet.value=data.linkDet;
+            inputInstaDet.value=data.instaDet;              inputSchDet=data.schDet; 
+            inputColDet=data.colDet;
         }
     )
 }
@@ -208,34 +218,32 @@ $(function(){
             '/profile/updateHobDet',
             {    hobbies:inputHobbies.value },
             function(data)
-            {
-                fillData();
-            }
+            {   fillData(); }
         )
     });
     $("#updateSocialHDet").click(function(){
       
-        let inputSocialH=document.getElementById("inputSocialH");   
+        let inputLinkDet=document.getElementById("inputLinkDet");  
+        let inputInstaDet=document.getElementById("inputInstaDet");  
+        let inputFaceDet=document.getElementById("inputFaceDet");  
+       
         $.post(
             '/profile/updateSocialHDet',
-            {    socialH:inputSocialH.value },
+            {    faceDet:inputFaceDet.value, linkDet:inputLinkDet.value, instaDet:inputInstaDet.value},
             function(data)
-            {
-                fillData();
-            }
+            {   fillData(); }
         )
     });
     $("#updateEduDet").click(function(){
       
-        let inputEduDet=document.getElementById("inputEduDet");   
-        console.log(inputEduDet.value)
+        let inputColDet=document.getElementById("inputColDet");   
+        let inputSchDet=document.getElementById("inputSchDet");   
+       
         $.post(
             '/profile/updateEduDet',
-            {    eduDet:inputEduDet.value },
+            {    colDet:inputColDet.value, schDet:inputSchDet.value },
             function(data)
-            {
-                fillData();
-            }
+            {   fillData(); }
         )
     });
 })
