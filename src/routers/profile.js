@@ -16,7 +16,7 @@ route.get('/data',async(req,res)=>{
         let linkDet=req.user.linkDet;                        let mail=req.user.email;
         let bio=req.user.bio;
         let obj={lname:lname,fname:fname,mob:mob,prof:prof,mail:mail,state:state,zip:zip,city:city,hobbies:hobbies,faceDet:faceDet,instaDet:instaDet,
-        linkDet:linkDet, colDet:colDet, schDet:schDet, bio:bio};
+        linkDet:linkDet, colDet:colDet, schDet:schDet, bioDet:bio};
         res.send(obj);
     }
     catch (err) {
@@ -57,7 +57,6 @@ route.post('/updateEduDet',async(req,res)=>{
     try{
        
         const user=await findUserByParams({email:req.user.email});
-        console.log(req.body.schDet);
         user.update({   schDet:req.body.schDet, colDet:req.body.colDet },{fields:['schDet','colDet']}).then(()=>{});
         res.send({done:"sucess"});
     }
@@ -70,8 +69,19 @@ route.post('/updateSocialHDet',async(req,res)=>{
     try{
       
         const user=await findUserByParams({email:req.user.email});
-        console.log(req.body.faceDet);
         user.update({   instaDet:req.body.instaDet, linkDet:req.body.linkDet, faceDet:req.body.faceDet},{fields:['instaDet','linkDet','faceDet']}).then(()=>{});
+        res.send({done:"sucess"});
+    }
+    catch(err)
+    {
+        console.log("updation failed");
+    }
+})
+route.post('/updateBioDet',async(req,res)=>{
+    try{
+      
+        const user=await findUserByParams({email:req.user.email});
+        user.update({   bio:req.body.bioDet},{fields:['bio']}).then(()=>{});
         res.send({done:"sucess"});
     }
     catch(err)

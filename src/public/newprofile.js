@@ -167,7 +167,8 @@ function fillData()
             let inputHobDet=document.getElementById("inputHobDet");   let inputSchDet=document.getElementById("inputSchDet");
             let inputLName=document.getElementById("inputLName");     let inputLinkDet=document.getElementById("inputLinkDet");
             let inputFaceDet=document.getElementById("inputFaceDet"); let inputInstaDet=document.getElementById("inputInstaDet");
-            let colDet=document.getElementById("colDet");
+            let colDet=document.getElementById("colDet");              let inputBioDet=document.getElementById("inputBio");
+            let bioDet=document.getElementById("bio");
             maildet.innerHTML=`<strong> Email: </strong> ${data.mail}`
             mobdet.innerHTML=`<strong> Mobile No.: </strong> ${data.mob}`
             locdet.innerHTML=`<strong> Address: </strong> ${data.city} , ${data.state}`
@@ -177,16 +178,17 @@ function fillData()
             linkDet.innerHTML=`<strong> LinkedIn: </strong> <a>${data.linkDet}</a>`
             instaDet.innerHTML=`<strong> Instagram: </strong> <a>${data.instaDet}</a>`
             faceDet.innerHTML=`<strong> Facebook: </strong> <a>${data.faceDet}</a>`
-            
+            bioDet.innerHTML=`${data.bioDet}`;
             hobdet.innerHTML=`${data.hobbies}`;
+            inputBioDet.value=data.bioDet;
             nameHead.innerText=data.fname+" "+data.lname;   inputMobNo.value=data.mob;
             inputFName.value=data.fname;                          inputLName.value=data.lname;
             inputCity.value=data.city;                      inputState.value=data.state;
             inputZip.value=data.zip;                        inputProf.value=data.prof;
             inputEmail.value=data.mail;                     inputHobDet.value=data.hobbies;
             inputFaceDet.value=data.faceDet;                inputLinkDet.value=data.linkDet;
-            inputInstaDet.value=data.instaDet;              inputSchDet=data.schDet; 
-            inputColDet=data.colDet;
+            inputInstaDet.value=data.instaDet;              inputSchDet.value=data.schDet; 
+            inputColDet.value=data.colDet;
         }
     )
 }
@@ -246,4 +248,14 @@ $(function(){
             {   fillData(); }
         )
     });
+
+    $('#updateBio').click(function(){
+        let inputBioDet=document.getElementById("inputBio");
+        $.post(
+            '/profile/updateBioDet',
+            {    bioDet:inputBioDet.value },
+            function(data)
+            {   fillData(); }
+        )
+    })
 })
