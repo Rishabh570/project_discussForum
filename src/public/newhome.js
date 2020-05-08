@@ -275,4 +275,32 @@ $('#trending').click(e => {
 })
 
 
+// RECENTLY CREATED
+$('#recently-created').click(e => {
+	console.log("recently created clicked!");
+
+	$('#recentsec').html("");
+	$.get(
+		'/card/recentlycreated',
+		data => {
+			data.forEach(row => {
+				$('#recentsec').append(` <div class="card">
+					<div onclick="window.location.href='/chatroom/card/${row.cid}'" class="card-body">
+						<h5 class="card-title">
+							<strong>Keywords:</strong>
+							<hr class="hrline">
+							${row.keywords}
+						</h5>
+						<p class="card-text">
+							<strong>Description:</strong>
+							<hr class="hrline">
+							${row.description}
+						</p>
+					</div>
+				</div>`);
+			})
+		}
+	)
+})
+
 

@@ -48,10 +48,23 @@ async function findCardByID(ID) {
 	}
 }
 
+async function getRecentlyCreatedCards() {
+	try {
+		return await db.cards.findAll({
+			order: [
+				['cid', 'DESC'],
+			]
+		});
+	}
+	catch(err) {
+		throw err;
+	}
+}
 
 module.exports = {
 	createCard,
 	getAllCards,
 	findCardByKeyWord,
-	findCardByID
+	findCardByID,
+	getRecentlyCreatedCards
 }
