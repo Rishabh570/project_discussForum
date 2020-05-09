@@ -1,23 +1,45 @@
 const route=require('express').Router()
     , {createUserLocal, findUserByParams} = require('../controllers/user')
-	,{createCard, getAllCards, findCardByKeyWord} = require('../controllers/card')
+	,{createCard, getAllCards, findCardByKeyWord, findCardByID, getRecentlyCreatedCards} = require('../controllers/card')
 	, {verifyUser} = require('../middlewares/isAuthenticated');
 
 
 // TRENDING LOGIC
 
 route.get('/trending', verifyUser, async (req, res) => {
-	console.log("In /card/trending route")
+	// console.log("session = ", req.session.trendingCount);
 
 	try{
-		const resp = await getAllCards();
-		console.log('resp: ', resp);
-		res.send(resp);
+		let trendingCardsArr = req.session.trendingCount;
+		trendingCardsArr.sort(function(a, b){return b.freq - a.freq});
+		trendingCardsArr = trendingCardsArr.splice(0, 22);
+
+		let resp = [];
+		(async () => {
+			for(let i=0; i<trendingCardsArr.length; i++) {
+				const cardObj = await findCardByID(trendingCardsArr[i].id);
+				resp.push(cardObj);
+			}
+
+			res.send(resp);
+		})()
+
     }
     catch(err) {
 		console.log('Failed to get trending cards!')
 		throw err;
     }
+})
+
+route.get('/recentlycreated', verifyUser, async (req, res) => {
+	try {
+		const resp = await getRecentlyCreatedCards();
+		res.send(resp);
+	}
+	catch(err) {
+		console.log("Failed to get recently created cards!");
+		throw err;
+	}
 })
 
 

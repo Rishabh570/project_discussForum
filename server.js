@@ -16,7 +16,7 @@ const express = require('express')
 	, http=require('http')
 	, {	getMessagesByRoomId,createMessage}=require('./src/controllers/message')
 
-const app = express()  			//creates server 
+const app = express()  			//creates server
 const httpServer=http.createServer(app);
 const io=SocketIO(httpServer);
 
@@ -33,12 +33,35 @@ app.use(session({
 		domain: 'localhost'
 	}
 }))
+let trendingCount = null;
+
 app.use(passport.initialize());
 app.use(passport.session());
-
-
 app.use('/signup', signupRoute);
 app.use('/login',loginRoute);
+
+
+// MIDDLEWARES ------------------------------------------------------
+function trendingCounter(req, res, next) {
+	if(trendingCount != null)
+		next();
+	else {
+		trendingCount = req.session.trendingCount;
+		next();
+	}
+}
+
+function saveTrendingCounter(req, res, next) {
+	req.session.trendingCount = trendingCount;
+	req.session.save(() => {
+		console.log("session saved.");
+	})
+	next();
+}
+app.use(trendingCounter);
+
+
+// ROUTES ------------------------------------------------------------
 app.use('/logout', logoutRoute);
 app.use('/', homeRoute);
 app.use('/profile', profileRoute);
@@ -55,10 +78,10 @@ db.authenticate()
 
 // Routes
 let usersockets = {};	let activeUsers={};
-let trendingCount={};	let soctochat={};
+let soctochat={};
 
 io.on('connection', (socket) => {
-    
+
     socket.emit('connected')
     socket.on('send_msg', async (data) => {
         // if we use io.emit, everyone gets it
@@ -72,14 +95,23 @@ io.on('connection', (socket) => {
 			else
 			activeUsers[data.cardId]=1;
 
-			if(data.cardId in trendingCount)
-			trendingCount[data.cardId]+=1;
+			// Logic for handling trending cards
+			let item = null;
+			trendingCount.forEach(card => {
+				if(card.id == data.cardId)
+					item = card;
+			})
+			if(item == null)
+				trendingCount.push({"id": data.cardId, "freq": 1});
 			else
-			trendingCount[data.cardId]=1;
+				item.freq++;
+			app.use(saveTrendingCounter);		// Updates session with latest data
+
+			// console.log('trendingCount: ', trendingCount);
 
 			soctochat[socket.id]=data.cardId;
 			data["activeId"]=activeUsers[data.cardId]-1;
-            io.emit('recv_msg', data);   
+            io.emit('recv_msg', data);
 		}
 		else
 		{
@@ -90,12 +122,12 @@ io.on('connection', (socket) => {
             	let rcptSocket = usersockets[recipient]
             	io.to(rcptSocket).emit('recv_msg', data)
         	} else {
-	
+
 				data["activeId"]=activeUsers[data.cardId]-1;
-            	io.emit('recv_msg',data);   
-            	        
+            	io.emit('recv_msg',data);
+
         	}
-		}	
+		}
 	})
 	socket.on('disconnecting', async(reason) => {
 		let cardID=soctochat[socket.id];
@@ -109,4 +141,3 @@ io.on('connection', (socket) => {
 //activation of port
 const PORT = process.env.PORT || 2121;
 httpServer.listen(PORT, console.log(`Server started on port ${PORT}`))
-	
