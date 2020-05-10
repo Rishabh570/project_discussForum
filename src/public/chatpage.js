@@ -119,7 +119,7 @@ $(document).ready(function () {
 
 $(window).resize(function () {
     window_width = $(window).width();
-    
+
     // More responsive checks if the user resize the browser
     if (window_width < 992) {
         offCanvas.initSideNav();
@@ -144,12 +144,11 @@ socket.on('connected', () => {
 
 
 $(document).ready(() => {
-	
+
 	$.get(
 		'/chatroom/card/data',
 		function(data)
 		{
-			
 			let cardId=document.getElementById("cardDiv");
 			cardId.textContent = "Card ID: "+data.cardDet.cid;
 			let user = document.getElementById("userDiv");
@@ -161,33 +160,37 @@ $(document).ready(() => {
 			let  Description = document.getElementById("Description");
 			Description.textContent = "Description :"+data.cardDet.description;
 			let msgList = document.getElementById('msglist');
-			let loadedmsg="";
-			data.messages.forEach(msg => {
-				const content = `
-					<div class="message">
-						<p><strong>@${msg.author}: </strong></p>
-						<p>${msg.message}</p>
-						<br>
-					</div>`;
 
-				loadedmsg += content;
-			});
-            msgList.innerHTML=loadedmsg;
+			if(data != undefined && data.messages != undefined) {
+				let loadedmsg="";
+				data.messages.forEach(msg => {
+					const content = `
+						<div class="message">
+							<p><strong>@${msg.author}: </strong></p>
+							<p>${msg.message}</p>
+							<br>
+						</div>`;
+
+					loadedmsg += content;
+				});
+				msgList.innerHTML=loadedmsg;
+
+			}
             socket.emit('send_msg', {
                 user: data.user,
                 message:"inc#U",
                 cardId:data.cardDet.cid
             })
-            
+
 		}
     )
-    
-    
-   
+
+
+
 
 	$('#sendbtn').click(function () {
-        let cardId=document.getElementById("cardDiv").textContent;
-        let user=document.getElementById("userDiv").textContent;
+		let cardId=document.getElementById("cardDiv").textContent;
+		let user=document.getElementById("userDiv").textContent;
 		socket.emit('send_msg', {
             user: user.substr(9),
 			message: $('#exampleFormControlTextarea1').val(),
@@ -195,14 +198,13 @@ $(document).ready(() => {
         })
     })
 	socket.on('recv_msg', function (data) {
-
-        let acitveId=document.getElementById("activeId");
-        let usersactive=data.activeId;
-        acitveId.textContent="Active users: "+usersactive;
-        if(data.message!="inc#U"){
-        $('#msglist').append($(`<div class="message-heading"><strong>@${data.user}:</strong></div>
-        <div class="message-body">${data.message} </div><br>`))}
-        
+        let acitveId = document.getElementById("activeId");
+        let usersactive = data.activeId;
+        acitveId.textContent = "Active users: " + usersactive;
+        if(data.message != "inc#U") {
+        	$('#msglist').append($(`<div class="message-heading"><strong>@${data.user}:</strong></div>
+			<div class="message-body">${data.message} </div><br>`))
+		}
     })
 
 

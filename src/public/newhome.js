@@ -303,4 +303,30 @@ $('#recently-created').click(e => {
 	)
 })
 
+// PARTICIPATED
+$('#participated').click(e => {
+	console.log("participated clicked!");
 
+	$('#recentsec').html("");
+	$.get(
+		'/users/participated',
+		data => {
+			data.forEach(row => {
+				$('#recentsec').append(` <div class="card">
+					<div onclick="window.location.href='/chatroom/card/${row.cid}'" class="card-body">
+						<h5 class="card-title">
+							<strong>Keywords:</strong>
+							<hr class="hrline">
+							${row.keywords}
+						</h5>
+						<p class="card-text">
+							<strong>Description:</strong>
+							<hr class="hrline">
+							${row.description}
+						</p>
+					</div>
+				</div>`);
+			})
+		}
+	)
+})
