@@ -14,9 +14,7 @@ const express = require('express')
 
 let cache={};
 router.get('/card/data', verifyUser, async (req, res) => {
-	console.log("request came...")
 	let roomID = cache[req.user.email];
-	console.log('roomId: ', roomID);
 	try {
 		const roomObj = await findCardByID(roomID);
 		const authorObj = await findUserById(roomObj.uid);
@@ -29,7 +27,6 @@ router.get('/card/data', verifyUser, async (req, res) => {
 			user: req.user.firstName+" "+req.user.lastName
 		};
 
-		console.log("myObj =>>> ", myobj);
 		res.send(myobj);
 	}
 	catch(err) {

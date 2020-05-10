@@ -82,7 +82,7 @@ const User = db.define('User', {
 		type: sequelize.DataTypes.STRING
 	},
 	cid:{
-		type: sequelize.DataTypes.STRING
+		type: sequelize.DataTypes.JSON
 	}
 });
 

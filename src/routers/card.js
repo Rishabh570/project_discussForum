@@ -5,14 +5,11 @@ const route=require('express').Router()
 
 
 // TRENDING LOGIC
-
 route.get('/trending', verifyUser, async (req, res) => {
-	// console.log("session = ", req.session.trendingCount);
-
 	try{
 		let trendingCardsArr = req.session.trendingCount;
 		trendingCardsArr.sort(function(a, b){return b.freq - a.freq});
-		trendingCardsArr = trendingCardsArr.splice(0, 22);
+		trendingCardsArr = trendingCardsArr.splice(0, 21);
 
 		let resp = [];
 		(async () => {

@@ -7,7 +7,7 @@ async function createUserLocal(query) {
 			email: query.email,
 			password: query.password,
 			firstName:query.firstName,
-			lastName: query.lastName, dob: query.dob, 
+			lastName: query.lastName, dob: query.dob,
 			gender: query.gender
 		})
     } catch (err) {
@@ -26,22 +26,49 @@ async function findUserById(uid) {
 
 async function findUserByParams(params) {
 	try {
-		
+
 		const resp = await db.User.findOne({
 			where:  {email: params.email}
 		})
-		
+
 		return resp;
 	}
 	catch(err) {
 		console.log(err);
 	}
-	
+
+}
+
+async function updateUserParticipationData(user, cardId) {
+	try {
+		let userString = JSON.stringify(user);
+		user = JSON.parse(userString);
+		const userID = user.uid;
+		let userObj = await findUserById(userID);
+
+		let userParticipatedCards = JSON.parse(userObj.cid);
+		if(userParticipatedCards == null) {
+			userParticipatedCards = {};
+		}
+		if(userParticipatedCards[`${cardId}`] == undefined || userParticipatedCards[`${cardId}`] == null) {
+			userParticipatedCards[`${cardId}`] = true;
+		}
+
+		userParticipatedCards = JSON.stringify(userParticipatedCards);
+		userObj.cid = userParticipatedCards;
+		await userObj.save();
+		return true;
+	}
+	catch(err) {
+		console.log("Error in controller of user in updateUserParticipationData");
+		throw err;
+	}
 }
 
 
 module.exports = {
 	createUserLocal,
 	findUserById,
-	findUserByParams
+	findUserByParams,
+	updateUserParticipationData
 }

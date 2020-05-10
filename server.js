@@ -15,6 +15,7 @@ const express = require('express')
 	, SocketIO=require('socket.io')
 	, http=require('http')
 	, {	getMessagesByRoomId,createMessage}=require('./src/controllers/message')
+	, { updateUserParticipationData } = require('./src/controllers/user');
 
 const app = express()  			//creates server
 const httpServer=http.createServer(app);
@@ -37,11 +38,17 @@ let trendingCount = null;
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+// ROUTES THAT SHOULD NOT CALL THE MIDDLEWARES WRITTEN BELOW ==============================================================
 app.use('/signup', signupRoute);
 app.use('/login',loginRoute);
 
+let usersockets = {};
+let activeUsers = {};
+let soctochat = {};
+let loggedInUser;
 
-// MIDDLEWARES ------------------------------------------------------
+// MIDDLEWARES ==============================================================
 function trendingCounter(req, res, next) {
 	if(trendingCount != null)
 		next();
@@ -58,27 +65,38 @@ function saveTrendingCounter(req, res, next) {
 	})
 	next();
 }
+
+function getLoggedInUser(req, res, next) {
+	loggedInUser = req.user;
+	next();
+}
+
+app.use(getLoggedInUser);
 app.use(trendingCounter);
 
 
-// ROUTES ------------------------------------------------------------
+// ROUTES ==============================================================
 app.use('/logout', logoutRoute);
-app.use('/', homeRoute);
 app.use('/profile', profileRoute);
 app.use('/users', userRoutes);
 app.use('/card',cardRoute);
 app.use('/search', searchRoute);
 app.use('/chatroom', chatroomRoute);
 app.use('/about',infoRoute);
-// TEST DB
+app.use('/', homeRoute);
+
+
+// TEST DB ==============================================================
 const db = require('./src/db/database')
 db.authenticate()
 .then(() => {console.log("Database Connected.")})
 .catch(err => console.log("Error in DB connection: ", err));
 
-// Routes
-let usersockets = {};	let activeUsers={};
-let soctochat={};
+
+
+
+// WEBSOCKETS ==============================================================
+
 
 io.on('connection', (socket) => {
 
@@ -87,7 +105,6 @@ io.on('connection', (socket) => {
         // if we use io.emit, everyone gets it
 		// if we use socket.broadcast.emit, only others get it
 		usersockets[data.user] = socket.id
-		console.log(data.message);
 		if(data.message=="inc#U")
 		{
 			if(data.cardId in activeUsers)
@@ -107,26 +124,26 @@ io.on('connection', (socket) => {
 				item.freq++;
 			app.use(saveTrendingCounter);		// Updates session with latest data
 
-			// console.log('trendingCount: ', trendingCount);
-
 			soctochat[socket.id]=data.cardId;
 			data["activeId"]=activeUsers[data.cardId]-1;
             io.emit('recv_msg', data);
 		}
 		else
 		{
-			const done=await createMessage({message:data.message,author:data.user, roomID:data.cardId});
+			const done = await createMessage({message:data.message,author:data.user, roomID:data.cardId});
         	if (data.message.startsWith('@')) {
-            	//data.message = "@a: hello"	// split at :, then remove @ from beginning
+				//data.message = "@a: hello"	// split at :, then remove @ from beginning
             	let recipient = data.message.split(':')[0].substr(1)
             	let rcptSocket = usersockets[recipient]
             	io.to(rcptSocket).emit('recv_msg', data)
-        	} else {
-
+			}
+			else {
 				data["activeId"]=activeUsers[data.cardId]-1;
             	io.emit('recv_msg',data);
+			}
 
-        	}
+			// Updates current user's participated cards info in the DB
+			await updateUserParticipationData(loggedInUser, data.cardId);
 		}
 	})
 	socket.on('disconnecting', async(reason) => {
