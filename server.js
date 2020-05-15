@@ -44,6 +44,7 @@ app.use('/signup', signupRoute);
 app.use('/login',loginRoute);
 
 let usersockets = {};
+let cardLastMessage={};
 let activeUsers = {};
 let soctochat = {};
 let loggedInUser;
@@ -138,6 +139,8 @@ io.on('connection', (socket) => {
             	io.to(rcptSocket).emit('recv_msg', data)
 			}
 			else {
+				
+				cardLastMessage[data.cardId]=done.mid;
 				data["activeId"]=activeUsers[data.cardId]-1;
             	io.emit('recv_msg',data);
 			}
@@ -148,6 +151,10 @@ io.on('connection', (socket) => {
 	})
 	socket.on('disconnecting', async(reason) => {
 		let cardID=soctochat[socket.id];
+
+		//update state table for user
+		chatid=soctochat[socket.id];
+	//	await updateStateDetails(loggedInUser,chatid,cardLastMessage[chatid]);
 		activeUsers[cardID]=activeUsers[cardID]-1;
 	  });
 

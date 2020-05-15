@@ -130,6 +130,19 @@ const messages = db.define('messages', {
 	}
 })
 
+const notifiState=db.define('notifiState',{
+	cid:{
+		type:sequelize.DataTypes.BIGINT,
+		primaryKey:true
+	},
+	lastMId:{
+		type:sequelize.DataTypes.BIGINT
+	},
+	particiState:{
+		type:sequelize.DataTypes.JSON
+	}
+})
+
 
 
 db.sync().then(() => console.log("Database has been synced")).catch((err) => console.error("Error creating database"));
