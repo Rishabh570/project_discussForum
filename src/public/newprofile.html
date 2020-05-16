@@ -14,6 +14,69 @@
 
 <!------------------------ COLLECTION OF MODALS ----------------------------------------------------------------->
 
+<!-----modal to edit cover pic----------->
+
+<div class="modal fade" id="exampleModalCenter4" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><strong> Change cover picture.</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <!--
+        <form>
+          <div class="form-row">
+              <label for="bioinput">Bio:</label>
+              <input type="text"  class="form-control" id="inputBio" >
+          </div>
+        </form>
+      -->
+      <button type="button" class="btn btn-primary">Select picture from device.</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-dark" id="updateBio">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-----modal to edit profile pic----------->
+
+<div class="modal fade" id="exampleModalCenter5" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><strong> Change profile picture.</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <!--
+        <form>
+          <div class="form-row">
+              <label for="bioinput">Bio:</label>
+              <input type="text"  class="form-control" id="inputBio" >
+          </div>
+        </form>
+      -->
+      <button type="button" class="btn btn-primary">Select picture from device.</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-dark" id="updateBio">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <!-----modal for text below profile pic----------->
 
 <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -483,14 +546,24 @@
   
       <div class="user-profile">
         <div class="profile-header-background">
-          <img src="http://demo.thedevelovers.com/dashboard/queenadmin-1.2/assets/img/city.jpg" alt="Profile Header Background">
+          <div class="cover-pic-edit">
+            <img src="http://demo.thedevelovers.com/dashboard/queenadmin-1.2/assets/img/city.jpg" alt="Profile Header Background">
+            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter4">
+              <i class="fas fa-pen"></i> Change Cover
+            </button>
+          </div>
         </div>
        
         <div class="container">
           <div class="col-xs-2">
             <div class="profile-info-left">
               <div class="text-center">
-                <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Avatar" class="avatar img-circle">
+                <div class="profile-pic-edit">
+                  <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Avatar" class="avatar img-circle">
+                  <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter5">
+                    <i class="fas fa-pen"></i>
+                  </button>
+                </div>
                   <hr>
                   <h2 id='nameHeading'><strong></strong></h2>
                   <hr>
@@ -505,7 +578,12 @@
                         </label>
                         <div class="tab-content">
                           <p  id='bio'>
-                            
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                           </p>
                           <div>
                             <p>
@@ -580,10 +658,13 @@
             <div>
               <div class="tabs">
                 <div class="tab">
-                  <input type="radio" id="rd1" checked name="rd" class="edu">
+                  <input type="checkbox"  checked id="chck3" class="edu">
+                  <label class="tab-label" for="chck3"> 
+                    <p> Education Details </p>    
+                  </label>
                   <div class="tab-content">
-                      <div class="details"><p id='schDet'><strong>  High School: </strong> xyz </p></div>
-                      <div class="details"><p id='colDet'><strong>College: </strong> abc </p></div>
+                      <div class="details"><p id='schDet'><strong><i class="fas fa-school"></i>  High School: </strong> xyz </p></div>
+                      <div class="details"><p id='colDet'><strong><i class="fas fa-graduation-cap"></i>  College: </strong> abc </p></div>
                       <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter3">
                         <i class="fas fa-pen"></i>
                       </button>
@@ -598,12 +679,18 @@
             <div>
               <div class="tabs">
                 <div class="tab">
-                  <input type="checkbox"  checked id="chck2" class="edu">
-                  <label class="tab-label" for="chck2"> 
+                  <input type="checkbox"  checked id="chck4" class="edu">
+                  <label class="tab-label" for="chck4"> 
                     The fun side of me ;)
                   </label>
                   <div class="tab-content">
                     <p id='hobdet'>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                      
                     </p>
                     <div>
@@ -628,14 +715,14 @@
       <div>
         <div class="tabs">
           <div class="tab">
-            <input type="checkbox"  checked id="chck3" class="edu">
-            <label class="tab-label" for="chck3"> 
+            <input type="checkbox"  checked id="chck5" class="edu">
+            <label class="tab-label" for="chck5"> 
               Connect with me on !!!
             </label>
             <div class="tab-content">
-              <div class="details"><p id='linkDet'><strong> LinkedIn: </strong>  </p></div>
-              <div class="details"><p id='faceDet'><strong> Facebook: </strong></p></div>
-              <div class="details"><p id='instaDet'><strong> Instagram: </strong></p></div>
+              <div class="details"><p id='linkDet'><strong><img src="https://img.icons8.com/material-sharp/28/000000/linkedin.png"/> LinkedIn: </strong>  </p></div>
+              <div class="details"><p id='faceDet'><strong><img src="https://img.icons8.com/material-sharp/28/000000/facebook.png"/> Facebook: </strong></p></div>
+              <div class="details"><p id='instaDet'><strong><img src="https://img.icons8.com/windows/28/000000/instagram-new.png"/> Instagram: </strong></p></div>
               <div>
                 <p>
                   <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter7">
