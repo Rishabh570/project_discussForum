@@ -11,7 +11,12 @@ router.get('/participated', verifyUser, async (req, res) => {
 		currentUser = JSON.stringify(currentUser);
 		currentUser = JSON.parse(currentUser);
 		let cards = JSON.parse(currentUser.cid);
-		cardsIDs = Object.keys(cards);
+
+		// Filter cards that user participated in
+		cardsIDs = [];
+		for(let key in cards) {
+			if(cards[key] >= 0) cardsIDs.push(key);
+		}
 
 		let resp = [];
 		(async () => {

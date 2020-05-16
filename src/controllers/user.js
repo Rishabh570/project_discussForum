@@ -39,7 +39,7 @@ async function findUserByParams(params) {
 
 }
 
-async function updateUserParticipationData(user, cardId) {
+async function updateUserParticipationData(user, cardId, msgId) {
 	try {
 		let userString = JSON.stringify(user);
 		user = JSON.parse(userString);
@@ -51,7 +51,10 @@ async function updateUserParticipationData(user, cardId) {
 			userParticipatedCards = {};
 		}
 		if(userParticipatedCards[`${cardId}`] == undefined || userParticipatedCards[`${cardId}`] == null) {
-			userParticipatedCards[`${cardId}`] = true;
+			userParticipatedCards[`${cardId}`] = 0;
+		}
+		else if(userParticipatedCards[`${cardId}`] < 0) {
+			userParticipatedCards[`${cardId}`] = -msgId;
 		}
 
 		userParticipatedCards = JSON.stringify(userParticipatedCards);
@@ -65,10 +68,44 @@ async function updateUserParticipationData(user, cardId) {
 	}
 }
 
+async function updateUserLastMsgForCard(user, cardId, msgId) {
+	user = JSON.stringify(user);
+	user = JSON.parse(user);
+	const userID = user.uid;
+
+	try {
+		let userObj = await findUserById(userID);
+		let userParticipatedCards = JSON.parse(userObj.cid);
+		if(userParticipatedCards == null) {
+			userParticipatedCards = {};
+		}
+		if(userParticipatedCards[`${cardId}`] == undefined || userParticipatedCards[`${cardId}`] == null) {
+			userParticipatedCards[`${cardId}`] = -msgId;
+		}
+		else if(userParticipatedCards[`${cardId}`] >= 0) {
+			userParticipatedCards[`${cardId}`] = msgId;
+		}
+		else if(userParticipatedCards[`${cardId}`] < 0) {
+			userParticipatedCards[`${cardId}`] = -msgId;
+		}
+		userParticipatedCards = JSON.stringify(userParticipatedCards);
+		userObj.cid = userParticipatedCards;
+		await userObj.save();
+		return true;
+	}
+	catch(err) {
+		console.log("Error in updateUserLastMsgForCard");
+		throw err;
+	}
+
+}
+
+
 
 module.exports = {
 	createUserLocal,
 	findUserById,
 	findUserByParams,
-	updateUserParticipationData
+	updateUserParticipationData,
+	updateUserLastMsgForCard
 }

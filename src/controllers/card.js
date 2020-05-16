@@ -61,10 +61,23 @@ async function getRecentlyCreatedCards() {
 	}
 }
 
+async function updateCardLastMsg(cardId, lastMsgId) {
+	try {
+		let cardObj = await findCardByID(cardId);
+		cardObj.lastMsg = lastMsgId;
+		await cardObj.save();
+	}
+	catch(err) {
+		console.log("Error in updateCardLastMsg");
+		throw err;
+	}
+}
+
 module.exports = {
 	createCard,
 	getAllCards,
 	findCardByKeyWord,
 	findCardByID,
-	getRecentlyCreatedCards
+	getRecentlyCreatedCards,
+	updateCardLastMsg
 }
