@@ -1,5 +1,5 @@
 const route=require('express').Router()
-    , {createUserLocal, findUserByParams} = require('../controllers/user')
+    , {createUserLocal,findUserById,findUserByParams,updateUserParticipationData,updateUserLastMsgForCard} = require('../controllers/user')
 	,{createCard, getAllCards, findCardByKeyWord, findCardByID, getRecentlyCreatedCards} = require('../controllers/card')
 	, {verifyUser} = require('../middlewares/isAuthenticated');
 
@@ -17,7 +17,6 @@ route.get('/trending', verifyUser, async (req, res) => {
 				const cardObj = await findCardByID(trendingCardsArr[i].id);
 				resp.push(cardObj);
 			}
-
 			res.send(resp);
 		})()
 
@@ -54,6 +53,30 @@ route.get('/',async(req,res)=>{
         console.log('unable to fetch')
     }
 
+})
+
+route.get('/notifications',async(req,res)=>{
+    try{
+        notiData=[];
+        let user = JSON.stringify(req.user);
+        user = JSON.parse(user);
+        let userParticipatedCards =JSON.parse(user.cid);
+        console.log(userParticipatedCards);
+        for(let cardid in userParticipatedCards){
+            const cardObj = await findCardByID(cardid);
+            console.log("myseen",userParticipatedCards[cardid]);
+            console.log("cards last msg",cardObj.lastMsg);
+            if(cardObj.lastMsg*-1==userParticipatedCards[cardid] || cardObj.lastMsg==userParticipatedCards[cardid]){
+                continue;
+            }else{
+                notiData.push(cardid);
+            }
+        }
+        res.send(notiData);
+    }
+    catch(err){
+        console.log("got error");
+    }
 })
 
 route.post('/new',async (req, res) => {

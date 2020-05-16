@@ -54,7 +54,7 @@ async function updateUserParticipationData(user, cardId, msgId) {
 			userParticipatedCards[`${cardId}`] = 0;
 		}
 		else if(userParticipatedCards[`${cardId}`] < 0) {
-			userParticipatedCards[`${cardId}`] = -msgId;
+			userParticipatedCards[`${cardId}`] = msgId;
 		}
 
 		userParticipatedCards = JSON.stringify(userParticipatedCards);

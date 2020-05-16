@@ -184,6 +184,24 @@ $(document).ready(() => {
 
 		}
     )
+    let notiSection=$('#notiSection');
+    $.get(
+        '/card/notifications',
+        function(data){
+            notiSection.empty();
+            for(let row of data){
+                notiSection.append(` <li onclick="window.location.href='/chatroom/card/${row}'"> 
+                <div class="notify_data">
+                  <div class="title"> chat id: ${row}  </div>
+                  <div class="sub_title"> has unseen messages </div>
+                </div>
+              </li>  `);
+            }
+            notiSection.append(`<li class="show_all">
+            <p class="link">Show All Activities</p>
+          </li> `);
+        }
+    )
 
 
 
