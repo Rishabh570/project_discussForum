@@ -14,9 +14,9 @@ const express = require('express')
 	, path = require('path')
 	, SocketIO=require('socket.io')
 	, http=require('http')
-	, {	getMessagesByRoomId,createMessage}=require('./src/controllers/message')
-	, {updateStateDetails}=require('./src/controllers/notification')
-	, { updateUserParticipationData } = require('./src/controllers/user');
+	, {	getMessagesByRoomId,createMessage} = require('./src/controllers/message')
+	, { updateUserParticipationData, updateUserLastMsgForCard } = require('./src/controllers/user')
+	, { updateCardLastMsg } = require('./src/controllers/card');
 
 const app = express()  			//creates server
 const httpServer=http.createServer(app);
@@ -139,23 +139,26 @@ io.on('connection', (socket) => {
             	let rcptSocket = usersockets[recipient]
             	io.to(rcptSocket).emit('recv_msg', data)
 			}
-			else {	
+			else {
 				cardLastMessage[data.cardId]=done.mid;
 				data["activeId"]=activeUsers[data.cardId]-1;
             	io.emit('recv_msg',data);
 			}
 			// Updates current user's participated cards info in the DB
-			await updateUserParticipationData(loggedInUser, data.cardId);
+			await updateUserParticipationData(loggedInUser, data.cardId, done.mid);
 		}
 	})
 	socket.on('disconnecting', async(reason) => {
-		let cardID=soctochat[socket.id];
-		//update state table for user
-		chatid=soctochat[socket.id];
-		if(cardLastMessage[chatid]){
-			await updateStateDetails(loggedInUser,chatid,cardLastMessage[chatid]);
+		let cardID = soctochat[socket.id];
+
+		// update state table for user
+		if(cardLastMessage[cardID]){
+			await updateCardLastMsg(cardID, cardLastMessage[cardID]);
+			await updateUserLastMsgForCard(loggedInUser, cardID, cardLastMessage[cardID]);
 		}
-		activeUsers[cardID]=activeUsers[cardID]-1;
+
+		// Update active users count
+		activeUsers[cardID] = activeUsers[cardID]-1;
 	  });
 
 })

@@ -107,6 +107,10 @@ const cards = db.define('carddets',
 	likes:{
 		type:sequelize.DataTypes.JSON,
 		allowNull:true
+	},
+	lastMsg: {
+		type: sequelize.DataTypes.BIGINT,
+		allowNull: true
 	}
 });
 
@@ -150,7 +154,8 @@ db.sync().then(() => console.log("Database has been synced")).catch((err) => con
 module.exports = {
 	User,
 	cards,
-	messages
+	messages,
+	notifiState
 }
 
 
