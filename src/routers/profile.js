@@ -1,5 +1,46 @@
 const route=require('express').Router()
 , {createUserLocal,findUserById, findUserByParams} = require('../controllers/user')
+, { verifyUser } = require("../middlewares/isAuthenticated")
+, upload = require("../middlewares/upload");
+
+
+route.post('/picture-upload', upload.single("avatar"), async (req, res) => {
+	console.log("In picutre router...");
+	console.log(req.file);
+
+	if (req.file == undefined) {
+		return res.send(`You must select a file.`);
+	}
+
+	let loggedInUser = JSON.stringify(req.user);
+	loggedInUser = JSON.parse(loggedInUser);
+
+	let userObj = await findUserById(loggedInUser.uid);
+	userObj.avatar = req.file.filename;
+	await userObj.save();
+
+	res.send(`File has been uploaded.`);
+});
+
+
+route.post('/cover-upload', upload.single("cover"), async (req, res) => {
+	console.log("In cover router...");
+	console.log(req.file);
+
+	if (req.file == undefined) {
+		return res.send(`You must select a file.`);
+	}
+
+	let loggedInUser = JSON.stringify(req.user);
+	loggedInUser = JSON.parse(loggedInUser);
+
+	let userObj = await findUserById(loggedInUser.uid);
+	userObj.coverpic = req.file.filename;
+	await userObj.save();
+
+	res.send(`File has been uploaded.`);
+});
+
 
 route.get('/',(req,res)=>{
     res.redirect('newprofile.html');
@@ -8,11 +49,11 @@ route.get('/',(req,res)=>{
 route.get('/data',async(req,res)=>{
     try {
         let fname=req.user.firstName;                       let lname=req.user.lastName;
-        let mob=req.user.mobile_number;                     let prof=req.user.empDet;                           
+        let mob=req.user.mobile_number;                     let prof=req.user.empDet;
         let state=req.user.state;                           let city=req.user.city;
         let hobbies=req.user.hobbies;                       let zip=req.user.zip;
-        let schDet=req.user.schDet;                         let colDet=req.user.colDet;                         
-        let faceDet=req.user.faceDet;                       let instaDet=req.user.instaDet;                         
+        let schDet=req.user.schDet;                         let colDet=req.user.colDet;
+        let faceDet=req.user.faceDet;                       let instaDet=req.user.instaDet;
         let linkDet=req.user.linkDet;                        let mail=req.user.email;
         let bio=req.user.bio;
         let obj={lname:lname,fname:fname,mob:mob,prof:prof,mail:mail,state:state,zip:zip,city:city,hobbies:hobbies,faceDet:faceDet,instaDet:instaDet,
@@ -22,12 +63,12 @@ route.get('/data',async(req,res)=>{
     catch (err) {
         console.log("not able to fetch data");
     }
-    
+
 })
 
 route.post('/updatePersonalDet',async(req,res)=>{
     try{
-      
+
         const user=await findUserByParams({email:req.user.email});
         user.update({   state:req.body.state, city:req.body.city, zip:req.body.zip, email:req.body.email,mobile_number:req.body.mobno,
                         firstName:req.body.firstName,lastName:req.body.lastName ,empDet:req.body.prof},
@@ -43,7 +84,7 @@ route.post('/updatePersonalDet',async(req,res)=>{
 })
 route.post('/updateHobDet',async(req,res)=>{
     try{
-      
+
         const user=await findUserByParams({email:req.user.email});
         user.update({   hobbies:req.body.hobbies},{fields:['hobbies']}).then(()=>{});
         res.send({done:"sucess"});
@@ -55,7 +96,7 @@ route.post('/updateHobDet',async(req,res)=>{
 })
 route.post('/updateEduDet',async(req,res)=>{
     try{
-       
+
         const user=await findUserByParams({email:req.user.email});
         user.update({   schDet:req.body.schDet, colDet:req.body.colDet },{fields:['schDet','colDet']}).then(()=>{});
         res.send({done:"sucess"});
@@ -67,7 +108,7 @@ route.post('/updateEduDet',async(req,res)=>{
 })
 route.post('/updateSocialHDet',async(req,res)=>{
     try{
-      
+
         const user=await findUserByParams({email:req.user.email});
         user.update({   instaDet:req.body.instaDet, linkDet:req.body.linkDet, faceDet:req.body.faceDet},{fields:['instaDet','linkDet','faceDet']}).then(()=>{});
         res.send({done:"sucess"});
@@ -79,7 +120,7 @@ route.post('/updateSocialHDet',async(req,res)=>{
 })
 route.post('/updateBioDet',async(req,res)=>{
     try{
-      
+
         const user=await findUserByParams({email:req.user.email});
         user.update({   bio:req.body.bioDet},{fields:['bio']}).then(()=>{});
         res.send({done:"sucess"});

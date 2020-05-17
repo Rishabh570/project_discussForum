@@ -24,6 +24,14 @@ const User = db.define('User', {
 		unique: true,
 		allowNull: false
 	},
+	avatar: {
+		type: sequelize.DataTypes.STRING,
+		allowNull: true
+	},
+	coverpic: {
+		type: sequelize.DataTypes.STRING,
+		allowNull: true
+	},
 	firstName: {
 		type: sequelize.DataTypes.STRING
 	},
@@ -147,6 +155,17 @@ const notifiState=db.define('notifiState',{
 	}
 })
 
+const Image = db.define("Image", {
+    type: {
+      type: sequelize.DataTypes.STRING,
+    },
+    name: {
+      type: sequelize.DataTypes.STRING,
+    },
+    data: {
+      type: sequelize.DataTypes.BLOB("long"),
+    },
+})
 
 
 db.sync().then(() => console.log("Database has been synced")).catch((err) => console.error("Error creating database"));
@@ -155,7 +174,8 @@ module.exports = {
 	User,
 	cards,
 	messages,
-	notifiState
+	notifiState,
+	Image
 }
 
 
