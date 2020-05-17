@@ -6,7 +6,7 @@
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
   <title>Profile</title>
-  <link rel="stylesheet" type="text/css" href="newprofile.css">  
+  <link rel="stylesheet" type="text/css" href="newprofile.css">
   <script src='jquery.js'></script>
 
 </head>
@@ -26,15 +26,22 @@
         </button>
       </div>
       <div class="modal-body">
-      <!--
-        <form>
-          <div class="form-row">
-              <label for="bioinput">Bio:</label>
-              <input type="text"  class="form-control" id="inputBio" >
-          </div>
-        </form>
-      -->
-      <button type="button" class="btn btn-primary">Select picture from device.</button>
+				<form
+            class="mt-4"
+            action="profile/cover-upload"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <div class="form-group">
+              <input
+                type="file"
+                name="cover"
+                id="input-cover"
+                class="form-control-file border"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
@@ -57,15 +64,22 @@
         </button>
       </div>
       <div class="modal-body">
-      <!--
-        <form>
-          <div class="form-row">
-              <label for="bioinput">Bio:</label>
-              <input type="text"  class="form-control" id="inputBio" >
-          </div>
-        </form>
-      -->
-      <button type="button" class="btn btn-primary">Select picture from device.</button>
+			<form
+            class="mt-4"
+            action="profile/picture-upload"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <div class="form-group">
+              <input
+                type="file"
+                name="avatar"
+                id="input-files"
+                class="form-control-file border"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
@@ -203,7 +217,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle"><strong>Write about the fun stuff you do.</strong></h5>
       </div>
       <div class="modal-body">
-          <div> 
+          <div>
             <textarea class="form-control" id="inputHobDet" rows="3"></textarea>
           </div>
       </div>
@@ -260,17 +274,17 @@
           <li class="nav-item">
               <a class="nav-link" href="/profile"><img src="..." alt="..." class="rounded-circle"> Profile</a>
           </li>
-       
+
       </ul>
       <div class="notify">
-        <div class="notifications"> 
+        <div class="notifications">
 
         <div class="icon_wrap">
           <i class="fas fa-bell"></i> Notifications <span class="badge badge-light">4</span>
         </div>
           <div class="notification_dd">
             <ul class="notification_ul" id="notiSection">
-             
+
             </ul>
           </div>
       </div>
@@ -283,85 +297,85 @@
                 <li class="title">
                     <p>All Notifications</p>
                     <p class="close"><i class="fas fa-times" aria-hidden="true"></i></p>
-                </li> 
+                </li>
                 <li class="starbucks success">
                     <div class="notify_icon">
-                        <span class="icon"></span>  
+                        <span class="icon"></span>
                     </div>
                     <div class="notify_data">
                         <div class="title">
-                            Lorem, ipsum dolor.  
+                            Lorem, ipsum dolor.
                         </div>
                         <div class="sub_title">
                           Lorem ipsum dolor sit amet consectetur.
                       </div>
                     </div>
                     <div class="notify_status">
-                        <p>Success</p>  
+                        <p>Success</p>
                     </div>
-                </li>  
+                </li>
                 <li class="baskin_robbins failed">
                     <div class="notify_icon">
-                        <span class="icon"></span>  
+                        <span class="icon"></span>
                     </div>
                     <div class="notify_data">
                         <div class="title">
-                            Lorem, ipsum dolor.  
+                            Lorem, ipsum dolor.
                         </div>
                         <div class="sub_title">
                           Lorem ipsum dolor sit amet consectetur.
                       </div>
                     </div>
                     <div class="notify_status">
-                        <p>Failed</p>  
+                        <p>Failed</p>
                     </div>
-                </li> 
+                </li>
                 <li class="mcd success">
                     <div class="notify_icon">
-                        <span class="icon"></span>  
+                        <span class="icon"></span>
                     </div>
                     <div class="notify_data">
                         <div class="title">
-                            Lorem, ipsum dolor.  
+                            Lorem, ipsum dolor.
                         </div>
                         <div class="sub_title">
                           Lorem ipsum dolor sit amet consectetur.
                       </div>
                     </div>
                     <div class="notify_status">
-                        <p>Success</p>  
+                        <p>Success</p>
                     </div>
-                </li>  
+                </li>
                 <li class="pizzahut failed">
                     <div class="notify_icon">
-                        <span class="icon"></span>  
+                        <span class="icon"></span>
                     </div>
                     <div class="notify_data">
                         <div class="title">
-                            Lorem, ipsum dolor.  
+                            Lorem, ipsum dolor.
                         </div>
                         <div class="sub_title">
                           Lorem ipsum dolor sit amet consectetur.
                       </div>
                     </div>
                     <div class="notify_status">
-                        <p>Failed</p>  
+                        <p>Failed</p>
                     </div>
-                </li> 
+                </li>
                 <li class="kfc success">
                     <div class="notify_icon">
-                        <span class="icon"></span>  
+                        <span class="icon"></span>
                     </div>
                     <div class="notify_data">
                         <div class="title">
-                            Lorem, ipsum dolor.  
+                            Lorem, ipsum dolor.
                         </div>
                         <div class="sub_title">
                           Lorem ipsum dolor sit amet consectetur.
                       </div>
                     </div>
                     <div class="notify_status">
-                        <p>Success</p>  
+                        <p>Success</p>
                     </div>
                 </li>
             </ul>
@@ -423,10 +437,10 @@
           <a>Piyush Jain</a>
           <a href="mailto:snnjain05@gmail.com ">mail</a>
           <a href="tel:9953971820">call</a>
-          
+
         </form>
       </div>
-      
+
     </div>
   </div>
 </div>
@@ -440,14 +454,14 @@
         </button>
       </div>
       <div class="modal-body">
-       
+
           <h5 class="modal-title" id="exampleModalLongTitle"><strong>Moto</strong></h5>
           <br>
-          <p>this website is initiative of four students of msit to help mankind by sehgal which translates to seh means saath and gal 
+          <p>this website is initiative of four students of msit to help mankind by sehgal which translates to seh means saath and gal
               means baat cheet and this is what our website do, it allows people to discuss their problem with each other </p>
-       
+
       </div>
-      
+
     </div>
   </div>
 </div>
@@ -457,7 +471,7 @@
   <div class="wrapper mt-4">
 
     <div class="container-fluid">
-  
+
       <div class="user-profile">
         <div class="profile-header-background">
           <div class="cover-pic-edit">
@@ -467,7 +481,7 @@
             </button>
           </div>
         </div>
-       
+
         <div class="container">
           <div class="col-xs-2">
             <div class="profile-info-left">
@@ -485,10 +499,10 @@
                     <div class="tabs">
                       <div class="tab">
                         <input type="checkbox"  checked id="chck1" class="edu">
-                        <label class="tab-label" for="chck1"> 
-                        
-                          A few words About Me. 
-                        
+                        <label class="tab-label" for="chck1">
+
+                          A few words About Me.
+
                         </label>
                         <div class="tab-content">
                           <p  id='bio'>
@@ -544,8 +558,8 @@
               <div class="tabs">
                 <div class="tab">
                   <input type="checkbox"  checked id="chck2" class="edu">
-                  <label class="tab-label" for="chck2"> 
-                    <p> Personal Information </p>    
+                  <label class="tab-label" for="chck2">
+                    <p> Personal Information </p>
                   </label>
                   <div class="tab-content">
                     <div class="details"><p id='maildet'><strong> Email: </strong> John.doe@gmail.com </p></div>
@@ -573,8 +587,8 @@
               <div class="tabs">
                 <div class="tab">
                   <input type="checkbox"  checked id="chck3" class="edu">
-                  <label class="tab-label" for="chck3"> 
-                    <p> Education Details </p>    
+                  <label class="tab-label" for="chck3">
+                    <p> Education Details </p>
                   </label>
                   <div class="tab-content">
                       <div class="details"><p id='schDet'><strong><i class="fas fa-school"></i>  High School: </strong> xyz </p></div>
@@ -594,7 +608,7 @@
               <div class="tabs">
                 <div class="tab">
                   <input type="checkbox"  checked id="chck4" class="edu">
-                  <label class="tab-label" for="chck4"> 
+                  <label class="tab-label" for="chck4">
                     The fun side of me ;)
                   </label>
                   <div class="tab-content">
@@ -605,7 +619,7 @@
                       consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
                       cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                       proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                     
+
                     </p>
                     <div>
                       <p>
@@ -620,7 +634,7 @@
 
             </div>
           </li>
-     
+
 
 <!---------------------------------------- new accordian ends here ------------------------------------------->
 
@@ -630,7 +644,7 @@
         <div class="tabs">
           <div class="tab">
             <input type="checkbox"  checked id="chck5" class="edu">
-            <label class="tab-label" for="chck5"> 
+            <label class="tab-label" for="chck5">
               Connect with me on !!!
             </label>
             <div class="tab-content">
