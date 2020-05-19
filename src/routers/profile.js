@@ -3,11 +3,7 @@ const route=require('express').Router()
 , { verifyUser } = require("../middlewares/isAuthenticated")
 , upload = require("../middlewares/upload");
 
-
 route.post('/picture-upload', upload.single("avatar"), async (req, res) => {
-	console.log("In picutre router...");
-	console.log(req.file);
-
 	if (req.file == undefined) {
 		return res.send(`You must select a file.`);
 	}
@@ -19,14 +15,25 @@ route.post('/picture-upload', upload.single("avatar"), async (req, res) => {
 	userObj.avatar = req.file.filename;
 	await userObj.save();
 
-	res.send(`File has been uploaded.`);
+	res.redirect('/profile');
 });
+
+route.get('/get-profile-pic', (req, res) => {
+	let curUser = JSON.stringify(req.user);
+	curUser = JSON.parse(curUser);
+	let picName = curUser.avatar;
+	res.send(`/${picName}`);
+})
+
+// route.get('/get-cover-picture', (req, res) => {
+// 	let curUser = JSON.stringify(req.user);
+// 	curUser = JSON.parse(curUser);
+// 	let picName = curUser.coverpic;
+// 	res.send(`/${picName}`);
+// })
 
 
 route.post('/cover-upload', upload.single("cover"), async (req, res) => {
-	console.log("In cover router...");
-	console.log(req.file);
-
 	if (req.file == undefined) {
 		return res.send(`You must select a file.`);
 	}
@@ -38,13 +45,9 @@ route.post('/cover-upload', upload.single("cover"), async (req, res) => {
 	userObj.coverpic = req.file.filename;
 	await userObj.save();
 
-	res.send(`File has been uploaded.`);
+	res.redirect('/profile');
 });
 
-
-route.get('/',(req,res)=>{
-    res.redirect('newprofile.html');
-})
 
 route.get('/data',async(req,res)=>{
     try {
@@ -129,6 +132,11 @@ route.post('/updateBioDet',async(req,res)=>{
     {
         console.log("updation failed");
     }
+})
+
+
+route.get('/', (req,res) => {
+    res.redirect('newprofile.html');
 })
 
 module.exports=route
