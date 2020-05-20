@@ -7,50 +7,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
   <title>Profile</title>
   <link rel="stylesheet" type="text/css" href="newprofile.css">
-  <script src='jquery.js'></script>
+
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js'></script>
+	<script src="./profile-picture.js"></script>
 
 </head>
 <body>
 
 <!------------------------ COLLECTION OF MODALS ----------------------------------------------------------------->
-
-<!-----modal to edit cover pic----------->
-
-<div class="modal fade" id="exampleModalCenter4" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle"><strong> Change cover picture.</strong></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-				<form
-            class="mt-4"
-            action="profile/cover-upload"
-            method="POST"
-            enctype="multipart/form-data"
-          >
-            <div class="form-group">
-              <input
-                type="file"
-                name="cover"
-                id="input-cover"
-                class="form-control-file border"
-              />
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-dark" id="updateBio">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 <!-----modal to edit profile pic----------->
 
@@ -80,10 +45,6 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
       </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-dark" id="updateBio">Save changes</button>
       </div>
     </div>
   </div>
@@ -475,10 +436,7 @@
       <div class="user-profile">
         <div class="profile-header-background">
           <div class="cover-pic-edit">
-            <img src="http://demo.thedevelovers.com/dashboard/queenadmin-1.2/assets/img/city.jpg" alt="Profile Header Background">
-            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter4">
-              <i class="fas fa-pen"></i> Change Cover
-            </button>
+            <img id="cover-picture" src="http://demo.thedevelovers.com/dashboard/queenadmin-1.2/assets/img/city.jpg" alt="Profile Header Background">
           </div>
         </div>
 
@@ -487,7 +445,7 @@
             <div class="profile-info-left">
               <div class="text-center">
                 <div class="profile-pic-edit">
-                  <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Avatar" class="avatar img-circle">
+                  <img id="profile-picture" width="256" height="256" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Avatar" class="avatar img-circle">
                   <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter5">
                     <i class="fas fa-pen"></i>
                   </button>
@@ -670,8 +628,6 @@
  </div>
 
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js'></script>
 <script  src="./notification.js"></script>
 <script  src="./newprofile.js"></script>
 
