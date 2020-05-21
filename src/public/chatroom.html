@@ -9,15 +9,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">n
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
-
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
-
 	<link rel="stylesheet" type="text/css" href="./chatpage.css">
-
 	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-
 	<script src="/socket.io/socket.io.js"></script>
-
 </head>
 <body>
 	<!-- NAVBAR -->
@@ -40,7 +35,7 @@
         <div class="notifications"> 
 
         <div class="icon_wrap">
-          <i class="fas fa-bell"></i> Notifications <span class="badge badge-light">4</span>
+          <i class="fas fa-bell"></i> Notifications <span class="badge badge-light"></span>
         </div>
           <div class="notification_dd">
             <ul class="notification_ul" id="notiSection">
@@ -57,86 +52,6 @@
                     <p>All Notifications</p>
                     <p class="close"><i class="fas fa-times" aria-hidden="true"></i></p>
                 </li> 
-                <li class="starbucks success">
-                    <div class="notify_icon">
-                        <span class="icon"></span>  
-                    </div>
-                    <div class="notify_data">
-                        <div class="title">
-                            Lorem, ipsum dolor.  
-                        </div>
-                        <div class="sub_title">
-                          Lorem ipsum dolor sit amet consectetur.
-                      </div>
-                    </div>
-                    <div class="notify_status">
-                        <p>Success</p>  
-                    </div>
-                </li>  
-                <li class="baskin_robbins failed">
-                    <div class="notify_icon">
-                        <span class="icon"></span>  
-                    </div>
-                    <div class="notify_data">
-                        <div class="title">
-                            Lorem, ipsum dolor.  
-                        </div>
-                        <div class="sub_title">
-                          Lorem ipsum dolor sit amet consectetur.
-                      </div>
-                    </div>
-                    <div class="notify_status">
-                        <p>Failed</p>  
-                    </div>
-                </li> 
-                <li class="mcd success">
-                    <div class="notify_icon">
-                        <span class="icon"></span>  
-                    </div>
-                    <div class="notify_data">
-                        <div class="title">
-                            Lorem, ipsum dolor.  
-                        </div>
-                        <div class="sub_title">
-                          Lorem ipsum dolor sit amet consectetur.
-                      </div>
-                    </div>
-                    <div class="notify_status">
-                        <p>Success</p>  
-                    </div>
-                </li>  
-                <li class="pizzahut failed">
-                    <div class="notify_icon">
-                        <span class="icon"></span>  
-                    </div>
-                    <div class="notify_data">
-                        <div class="title">
-                            Lorem, ipsum dolor.  
-                        </div>
-                        <div class="sub_title">
-                          Lorem ipsum dolor sit amet consectetur.
-                      </div>
-                    </div>
-                    <div class="notify_status">
-                        <p>Failed</p>  
-                    </div>
-                </li> 
-                <li class="kfc success">
-                    <div class="notify_icon">
-                        <span class="icon"></span>  
-                    </div>
-                    <div class="notify_data">
-                        <div class="title">
-                            Lorem, ipsum dolor.  
-                        </div>
-                        <div class="sub_title">
-                          Lorem ipsum dolor sit amet consectetur.
-                      </div>
-                    </div>
-                    <div class="notify_status">
-                        <p>Success</p>  
-                    </div>
-                </li>
             </ul>
         </div>
     </div>
@@ -167,14 +82,8 @@
     </div>
 </nav>
 
-<!-- navbar ends here --->
-
-
-	<!-- CONTAINER -->
 <div class="jumbotron">
-    <!--
-	<div class="wrapper mt-4">
-    -->
+   
 		<div class="container-fluid">
 			<div class="mybar">
 				<div class="row">
@@ -200,28 +109,7 @@
 			<div class="chat-box">
 				<div class="messages" id='msglist'></div>
 			</div>
-			<!-- CONTAINER ENDS -->
-
-            <!-- Testing msg box ----
-
-            <div class="chat-input-holder">
-                <textarea placeholder="Type your message here ..."class="chat-input"></textarea>
-                <input type="submit" value="Send" class="message-send"/>
-            </div>
-            <div class="attachment-panel">
-                <a href="#" class="fa fa-thumbs-up"></a>
-                <a href="#" class="fa fa-camera"></a>
-                <a href="#" class="fa fa-video-camera"></a>
-                <a href="#" class="fa fa-image"></a>
-                <a href="#" class="fa fa-paperclip"></a>
-                <a href="#" class="fa fa-link"></a>
-                <a href="#" class="fa fa-trash"></a>
-                <a href="#" class="fa fa-search"></a>
-            </div>
-
-            ---->
-
-			<!-- MESSAGE BOX -->
+		
 			<div class="row message-box">
 				<div id="form-input" class="form-group mr-1">
 				    <textarea placeholder="Type something..." class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
