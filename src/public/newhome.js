@@ -218,7 +218,7 @@ $(function()
         function(data){
             notiSection.empty();
             for(let row of data){
-                notiSection.append(` <li onclick="window.location.href='/chatroom/card/${row}'"> 
+                notiSection.append(` <li onclick="window.location.href='/chatroom/card/${row}'">
                 <div class="notify_data">
                   <div class="title"> chat id: ${row}  </div>
                   <div class="sub_title"> has unseen messages </div>
@@ -273,25 +273,35 @@ $('#trending').click(e => {
 	$.get(
 		'/card/trending',
 		data => {
-			data.forEach(row => {
-				$('#recentsec').append(` <div class="card">
-					<div onclick="window.location.href='/chatroom/card/${row.cid}'" class="card-body">
-						<h5 class="card-title">
-							<strong>Keywords:</strong>
-							<hr class="hrline">
-							${row.keywords}
-						</h5>
-						<p class="card-text">
-							<strong>Description:</strong>
-							<hr class="hrline">
-							${row.description}
-						</p>
-					</div>
-				</div>`);
-			})
+			if(data === undefined || data === null || data.length === 0 || data === "") {
+				data = JSON.parse(localStorage.getItem('trending'));
+			}
+			else {
+				localStorage.setItem('trending', JSON.stringify(data));
+			}
+			show(data);
 	})
 
 })
+
+function show(data) {
+	data.forEach(row => {
+		$('#recentsec').append(` <div class="card">
+			<div onclick="window.location.href='/chatroom/card/${row.cid}'" class="card-body">
+				<h5 class="card-title">
+					<strong>Keywords:</strong>
+					<hr class="hrline">
+					${row.keywords}
+				</h5>
+				<p class="card-text">
+					<strong>Description:</strong>
+					<hr class="hrline">
+					${row.description}
+				</p>
+			</div>
+		</div>`);
+	})
+}
 
 
 // RECENTLY CREATED
