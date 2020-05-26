@@ -27,16 +27,19 @@ app.use(express.static(path.join(__dirname, './src/public')));   // to set src/p
 app.use(express.static(path.join(__dirname, './assets/images')));
 app.use(express.json());	app.use(express.urlencoded({extended: true}))  // code to read post request
 
+
 app.use(session({
-	secret: 'keyboard cat',		resave: false,
+	secret: 'keyboard cat',
+	resave: false,
 	saveUninitialized: true,
+	proxy: true,
 	cookie: {
-		httpOnly: false,
+		maxAge: 10*60*60*1000,
+		httpOnly: true,
 		secure: false,
 		domain: 'localhost'
 	}
 }))
-let trendingCount = null;
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -52,12 +55,18 @@ let usersockets = {};
 let cardLastMessage={};
 let activeUsers = {};
 let soctochat = {};
+let trendingCount = null;
 let loggedInUser;
 
 // MIDDLEWARES ==============================================================
+
 function trendingCounter(req, res, next) {
-	if(trendingCount != null)
-		next();
+	if(trendingCount != null) {
+		req.session.trendingCount = trendingCount;
+		req.session.save(() => {
+			next();
+		});
+	}
 	else {
 		trendingCount = req.session.trendingCount;
 		next();
@@ -66,9 +75,8 @@ function trendingCounter(req, res, next) {
 
 function saveTrendingCounter(req, res, next) {
 	req.session.trendingCount = trendingCount;
-	req.session.save(() => {
-		console.log("session saved.");
-	})
+	console.log('req.session.trendingCount: ', req.session.trendingCount);
+	req.session.save();
 	next();
 }
 
@@ -111,8 +119,9 @@ io.on('connection', (socket) => {
         // if we use io.emit, everyone gets it
 		// if we use socket.broadcast.emit, only others get it
 		usersockets[data.user] = socket.id
-		if(data.message=="inc#U")
-		{
+ 		if(data.message=="inc#U")
+ 		{
+ 			console.log("Inc#U");
 			if(data.cardId in activeUsers)
 			activeUsers[data.cardId]+=1;
 			else
@@ -128,6 +137,7 @@ io.on('connection', (socket) => {
 				trendingCount.push({"id": data.cardId, "freq": 1});
 			else
 				item.freq++;
+
 			app.use(saveTrendingCounter);		// Updates session with latest data
 
 			soctochat[socket.id]=data.cardId;
