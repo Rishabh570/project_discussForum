@@ -21,12 +21,10 @@ router.get('/card/data', verifyUser, async (req, res) => {
 		const messages = await getMessagesByRoomId(roomID);
 		const authorName = authorObj.firstName + " " + authorObj.lastName;
 		let myobj = {
-			cardDet: roomObj,
-			initiator: authorName,
-			messages: messages,
-			user: req.user.firstName+" "+req.user.lastName
+			cardDet: roomObj,		initiator: authorName,
+			messages: messages,		user: req.user.firstName+" "+req.user.lastName,
+			uid:req.user.email
 		};
-
 		res.send(myobj);
 	}
 	catch(err) {
@@ -37,12 +35,7 @@ router.get('/card/data', verifyUser, async (req, res) => {
 
 router.get('/card/:cardId', verifyUser, async (req, res) => {
 	cache[req.user.email]=req.params.cardId;
-	console.log("cache ->>> ", cache[req.user.email]);
 	try {
-	/*	const roomObj = await findCardByID(roomID);
-		const authorObj = await findUserById(roomObj.uid);
-		const messages = await getMessagesByRoomId(roomID);
-		const authorName = authorObj.firstName + " " + authorObj.lastName;*/
 		res.redirect('/chatroom.html');
 	}
 	catch(err) {

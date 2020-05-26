@@ -25,13 +25,6 @@ route.get('/get-profile-pic', (req, res) => {
 	res.send(`/${picName}`);
 })
 
-// route.get('/get-cover-picture', (req, res) => {
-// 	let curUser = JSON.stringify(req.user);
-// 	curUser = JSON.parse(curUser);
-// 	let picName = curUser.coverpic;
-// 	res.send(`/${picName}`);
-// })
-
 
 route.post('/cover-upload', upload.single("cover"), async (req, res) => {
 	if (req.file == undefined) {

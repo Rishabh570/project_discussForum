@@ -139,6 +139,10 @@ const messages = db.define('messages', {
 	author: {
 		type: sequelize.DataTypes.STRING,
  		allowNull:false
+	},
+	uid:{
+		type:sequelize.DataTypes.STRING,
+		allowNull:false
 	}
 })
 

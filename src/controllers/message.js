@@ -19,9 +19,9 @@ async function createMessage(query) {
 		const resp = await db.messages.create({
 			message: query.message,
 			author: query.author,
-			cid: query.roomID
+			cid: query.roomID,
+			uid:query.uid
 		});
-		console.log("MESSAGE CREATED!");
 		return resp;
 	}
 	catch(err) {

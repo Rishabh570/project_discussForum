@@ -121,7 +121,7 @@ io.on('connection', (socket) => {
 		usersockets[data.user] = socket.id
  		if(data.message=="inc#U")
  		{
- 			console.log("Inc#U");
+ 		
 			if(data.cardId in activeUsers)
 			activeUsers[data.cardId]+=1;
 			else
@@ -139,14 +139,14 @@ io.on('connection', (socket) => {
 				item.freq++;
 
 			app.use(saveTrendingCounter);		// Updates session with latest data
-
 			soctochat[socket.id]=data.cardId;
 			data["activeId"]=activeUsers[data.cardId]-1;
             io.emit('recv_msg', data);
 		}
 		else
 		{
-			const done = await createMessage({message:data.message,author:data.user, roomID:data.cardId});
+			
+			const done = await createMessage({message:data.message,author:data.user, roomID:data.cardId, uid:data.uid});
         	if (data.message.startsWith('@')) {
 				//data.message = "@a: hello"	// split at :, then remove @ from beginning
             	let recipient = data.message.split(':')[0].substr(1)

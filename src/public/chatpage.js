@@ -145,6 +145,7 @@ socket.on('connected', () => {
 
 $(document).ready(() => {
 
+    let uid;
 	$.get(
 		'/chatroom/card/data',
 		function(data)
@@ -160,12 +161,12 @@ $(document).ready(() => {
 			let  Description = document.getElementById("Description");
 			Description.textContent = "Description :"+data.cardDet.description;
 			let msgList = document.getElementById('msglist');
-
+            uid=data.uid;
 			if(data != undefined && data.messages != undefined) {
 				let loadedmsg="";
 				data.messages.forEach(msg => {
 					const content = `
-						<div class="message">
+						<div class="message" onclick="window.location.href='/profile/others/${msg.uid}'">
 							<p><strong>@${msg.author}: </strong></p>
 							<p>${msg.message}</p>
 							<br>
@@ -179,7 +180,8 @@ $(document).ready(() => {
             socket.emit('send_msg', {
                 user: data.user,
                 message:"inc#U",
-                cardId:data.cardDet.cid
+                cardId:data.cardDet.cid,
+                uid:uid
             })
 
 		}
@@ -212,7 +214,8 @@ $(document).ready(() => {
 		socket.emit('send_msg', {
             user: user.substr(9),
 			message: $('#exampleFormControlTextarea1').val(),
-			cardId:cardId.substr(9)
+            cardId:cardId.substr(9),
+            uid:uid
         })
     })
 	socket.on('recv_msg', function (data) {
@@ -220,7 +223,7 @@ $(document).ready(() => {
         let usersactive = data.activeId;
         acitveId.textContent = "Active users: " + usersactive;
         if(data.message != "inc#U") {
-        	$('#msglist').append($(`<div class="message-heading"><strong>@${data.user}:</strong></div>
+        	$('#msglist').append($(`<div class="message-heading"  onclick="window.location.href='/profile/others/${data.uid}'" ><strong>@${data.user}:</strong></div>
 			<div class="message-body">${data.message} </div><br>`))
 		}
     })
