@@ -1,20 +1,4 @@
 
-/*
-body {
-    
-    background-repeat: repeat;
-    min-height: 1585px;
-}
-*/
-
-/* reset margins and paddings on all elements */
-/*
-* { 
-  margin:0;
-  padding:0;
-}
-*/
-
 * {
   font-family: 'Lato', sans-serif;
   margin: 0;
@@ -117,23 +101,6 @@ body::before {
     background: #0000;
     color: black;
 }
-/*
-
-* {
-  font-family: 'Lato', sans-serif;
-  margin: 0;
-  
-}
-
-body {
-  background-color:whitesmoke;
-}
-
-*/
-
-/* navbar CSS */
-
-/*----------------------------------new one----------------------------------------------------*/
 
 .wrapper {
   transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
@@ -428,23 +395,10 @@ body > #overlay {
 
 @import url('https://fonts.googleapis.com/css?family=Oswald');
 
-/*
-
-$base-color: #303F9F;
-$second-color: #3F51B5;
-$third-color: #FBC02D;
-$site: #303F9F;
-$light: #fff;
-
-*/
 
 body {
  position: relative;
  font-family: 'Oswald', sans-serif;
-
- /* background-color:   $site;*/
- 
- /*color: $light;*/
  font-size: 20px;
 }
 
@@ -557,11 +511,6 @@ ul.nacc li p {
  margin: 0;
 }
 
-/*
-.menu:hover{
-  background: linear-gradient(90deg, #cfecd0, #ffc5ca) ;  
-}
-*/
 
 
 /*-------------------------education accordian CSS---------------------------------------*/
@@ -667,37 +616,6 @@ ul.nacc li p {
     margin-top: 0rem !important;
 }
 
-/*----------------icon above pic CSS-------------------------------
-
-.iconabovepic {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 29%;
-  width: auto;
-  opacity: 0;
-  transition: .3s ease;
-  background-color: transparent;
-}
-
-#icon {
-  color: white;
-  font-size: 20px;
-  position:fixed;
-  top: 25.5%;
-  left: 78.5%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.container-fluid:hover .iconabovepic {
-  opacity: 1;
-}
-
-*/
 
 /*------------------------------------------------------ Notification CSS ------------------------------------*/
 
