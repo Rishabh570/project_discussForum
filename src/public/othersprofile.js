@@ -152,7 +152,7 @@ $(document).on("click", ".naccs .menu div", function() {
 
 function fillData()
 {
-    $.get(  '/profile/data',
+    $.get(  '/profile/others/data',
         function(data)
         {
             let nameHead=document.getElementById("nameHeading");      let maildet=document.getElementById("maildet");

@@ -164,7 +164,6 @@ io.on('connection', (socket) => {
 	})
 	socket.on('disconnecting', async(reason) => {
 		let cardID = soctochat[socket.id];
-		console.log("last mid:",cardLastMessage[cardID]);
 		// update state table for user
 		if(cardLastMessage[cardID]){
 			await updateCardLastMsg(cardID, cardLastMessage[cardID]);

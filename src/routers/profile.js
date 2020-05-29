@@ -63,13 +63,16 @@ route.get('/data',async(req,res)=>{
 })
 
 let lastProfileViewed={};
-route.get('/others/:uid',async(req,res)=>{
-    lastProfileViewed[req.user.email]=req.params.uid;
-    res.redirect('/othersprofile.html');
+
+route.get('/others/pic',async(req,res)=>{
+    const user=await findUserByParams({email:lastProfileViewed[req.user.email]});
+    let picName = user.avatar;
+	res.send(`/${picName}`);
 })
+
 route.get('/others/data',async(req,res)=>{
     try {
-        const user=await findUserByParams({email:lastPofileViewed[req.user.email]});
+        const user=await findUserByParams({email:lastProfileViewed[req.user.email]});
         let fname=user.firstName;                       let lname=user.lastName;
         let mob=user.mobile_number;                     let prof=user.empDet;
         let state=user.state;                           let city=user.city;
@@ -78,6 +81,7 @@ route.get('/others/data',async(req,res)=>{
         let faceDet=user.faceDet;                       let instaDet=user.instaDet;
         let linkDet=user.linkDet;                       let mail=user.email;
         let bio=user.bio;
+       
         let obj={lname:lname,fname:fname,mob:mob,prof:prof,mail:mail,state:state,zip:zip,city:city,hobbies:hobbies,faceDet:faceDet,instaDet:instaDet,
         linkDet:linkDet, colDet:colDet, schDet:schDet, bioDet:bio};
         res.send(obj);
@@ -87,6 +91,11 @@ route.get('/others/data',async(req,res)=>{
     }
 
 })
+route.use('/others/:uid',async(req,res)=>{
+    lastProfileViewed[req.user.email]=req.params.uid;
+    res.redirect('/othersprofile.html');
+})
+
 
 route.post('/updatePersonalDet',async(req,res)=>{
     try{

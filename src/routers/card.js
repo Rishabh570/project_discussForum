@@ -49,9 +49,7 @@ route.get('/',async(req,res)=>{
     try{
         const cards=await getAllCards();
         if(cards)
-        {
-            res.send(cards)
-        }
+        { res.send(cards)}
     }
     catch(err)
     {
@@ -69,8 +67,6 @@ route.get('/notifications',async(req,res)=>{
         console.log(userParticipatedCards);
         for(let cardid in userParticipatedCards){
             const cardObj = await findCardByID(cardid);
-            console.log("myseen",userParticipatedCards[cardid]);
-            console.log("cards last msg",cardObj.lastMsg);
             if(cardObj.lastMsg*-1==userParticipatedCards[cardid] || cardObj.lastMsg==userParticipatedCards[cardid]){
                 continue;
             }else{
