@@ -115,7 +115,6 @@ $(document).ready(function () {
         }, 300);
     });
 });
-
 $(window).resize(function () {
     window_width = $(window).width();
 
@@ -153,7 +152,7 @@ $(document).on("click", ".naccs .menu div", function() {
 function fillData()
 {
     $.get(  '/profile/others/data',
-        function(data)
+		function(data)
         {
             let nameHead=document.getElementById("nameHeading");      let maildet=document.getElementById("maildet");
             let mobdet=document.getElementById("mobdet");             let locdet=document.getElementById("locdet");
@@ -168,8 +167,9 @@ function fillData()
             let inputLName=document.getElementById("inputLName");     let inputLinkDet=document.getElementById("inputLinkDet");
             let inputFaceDet=document.getElementById("inputFaceDet"); let inputInstaDet=document.getElementById("inputInstaDet");
             let colDet=document.getElementById("colDet");              let inputBioDet=document.getElementById("inputBio");
-            let bioDet=document.getElementById("bio");
-            maildet.innerHTML=`<strong> Email: </strong> ${data.mail}`
+            let bioDet=document.getElementById("bio");					let otherProfilePic = document.getElementById('others-profile-picture');
+			otherProfilePic.src = data.avatar;
+			maildet.innerHTML=`<strong> Email: </strong> ${data.mail}`
             mobdet.innerHTML=`<strong> Mobile No.: </strong> ${data.mob}`
             locdet.innerHTML=`<strong> Address: </strong> ${data.city} , ${data.state}`
             profdet.innerHTML=`<strong> Profession: </strong> ${data.prof}`
@@ -187,8 +187,8 @@ function fillData()
             inputZip.value=data.zip;                        inputProf.value=data.prof;
             inputEmail.value=data.mail;                     inputHobDet.value=data.hobbies;
             inputFaceDet.value=data.faceDet;                inputLinkDet.value=data.linkDet;
-            inputInstaDet.value=data.instaDet;              inputSchDet.value=data.schDet; 
-            inputColDet.value=data.colDet;
+            inputInstaDet.value=data.instaDet;              inputSchDet.value=data.schDet;
+			inputColDet.value=data.colDet;
         }
     )
     let notiSection=$('#notiSection');
@@ -197,7 +197,7 @@ function fillData()
         function(data){
             notiSection.empty();
             for(let row of data){
-                notiSection.append(` <li onclick="window.location.href='/chatroom/card/${row}'"> 
+                notiSection.append(` <li onclick="window.location.href='/chatroom/card/${row}'">
                 <div class="notify_data">
                   <div class="title"> chat id: ${row}  </div>
                   <div class="sub_title"> has unseen messages </div>
@@ -214,3 +214,5 @@ function fillData()
 $(function(){
     fillData();
 })
+
+
