@@ -65,14 +65,14 @@ route.get('/data',async(req,res)=>{
 let lastProfileViewed={};
 
 route.get('/others/pic',async(req,res)=>{
-    const user=await findUserByParams({email:lastProfileViewed[req.user.email]});
+	const user=await findUserByParams({email:lastProfileViewed[req.user.email]});
     let picName = user.avatar;
 	res.send(`/${picName}`);
 })
 
 route.get('/others/data',async(req,res)=>{
     try {
-        const user=await findUserByParams({email:lastProfileViewed[req.user.email]});
+		const user=await findUserByParams({email:lastProfileViewed[req.user.email]});
         let fname=user.firstName;                       let lname=user.lastName;
         let mob=user.mobile_number;                     let prof=user.empDet;
         let state=user.state;                           let city=user.city;
@@ -80,10 +80,10 @@ route.get('/others/data',async(req,res)=>{
         let schDet=user.schDet;                         let colDet=user.colDet;
         let faceDet=user.faceDet;                       let instaDet=user.instaDet;
         let linkDet=user.linkDet;                       let mail=user.email;
-        let bio=user.bio;
-       
+        let bio=user.bio;								let avatar = user.avatar;
+
         let obj={lname:lname,fname:fname,mob:mob,prof:prof,mail:mail,state:state,zip:zip,city:city,hobbies:hobbies,faceDet:faceDet,instaDet:instaDet,
-        linkDet:linkDet, colDet:colDet, schDet:schDet, bioDet:bio};
+        linkDet:linkDet, colDet:colDet, schDet:schDet, bioDet:bio, avatar: avatar};
         res.send(obj);
     }
     catch (err) {
