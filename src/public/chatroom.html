@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ChatPage</title>
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">n
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
@@ -15,35 +15,36 @@
 	<script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-	<!-- NAVBAR -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-offcanvas">
+
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-offcanvas">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"><strong>Live Discussions</strong></a>
+        
         <ul class="navbar-nav navbar-top">
-            <li class="nav-item">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item active">
+                <a class="nav-link" href="/"><i class="fas fa-home"></i> Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/profile"> Profile</a>
+                <a class="nav-link" href="/profile"><i class="fas fa-user-circle"></i> Profile</a>
             </li>
-      
         </ul>
 
-        <!-------------------------------- notification code starts here ------------------------------------->
+<!------------------- notification code starts here ------------------------------------------->
 
-         <div class="notify">
+    <div class="notify">
         <div class="notifications"> 
-
         <div class="icon_wrap">
-          <i class="fas fa-bell"></i> Notifications <span class="badge badge-light"></span>
+          <i class="fas fa-bell"></i> Notifications<span class="badge badge-light"></span>
         </div>
-          <div class="notification_dd">
+          <div class="notification_dd" >
             <ul class="notification_ul" id="notiSection">
+             
             </ul>
           </div>
       </div>
     </div>
-        <div class="popup">
+  <div class="popup">
     <div class="shadow"></div>
     <div class="inner_popup">
         <div class="notification_dd">
@@ -57,7 +58,7 @@
     </div>
   </div>
 
-<!--------------------------------------------- notification code ends ----------------------------->
+<!-----------------------notification code ends here ------------------------------------->
 
         <button class="navbar-toggler navbar-toggler-right navbar-icon" type="button" data-toggle="collapse" data-target="#navbar-mobile" aria-controls="navbar-mobile" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar bar1"></span>
@@ -67,7 +68,10 @@
 
         <div class="navbar-collapse collapse ml-auto" id="navbar-mobile">
             <ul class="navbar-nav ml-auto">
-               
+              
+                <li class="nav-image">
+                    <img src="profileicon.jpeg" alt="">
+                </li>
                 <li class="nav-item">
                     <a href="/logout" class="nav-link"><i class="fas fa-sign-out-alt"></i> SIGN OUT</a>
                 </li>
@@ -81,6 +85,7 @@
         </div>
     </div>
 </nav>
+
 
 <div class="jumbotron">
    
