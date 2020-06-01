@@ -5,7 +5,7 @@ const route=require('express').Router()
 
 
 // TRENDING LOGIC
-route.get('/trending', verifyUser, async (req, res) => {
+route.get('/trending', verifyUser(), async (req, res) => {
 	console.log("In trending route...");
 	try{
 		let trendingCardsArr = req.session.trendingCount;
@@ -32,7 +32,7 @@ route.get('/trending', verifyUser, async (req, res) => {
     }
 })
 
-route.get('/recentlycreated', verifyUser, async (req, res) => {
+route.get('/recentlycreated', verifyUser(), async (req, res) => {
 	try {
 		const resp = await getRecentlyCreatedCards();
 		res.send(resp);
@@ -44,7 +44,7 @@ route.get('/recentlycreated', verifyUser, async (req, res) => {
 })
 
 
-route.get('/',async(req,res)=>{
+route.get('/', verifyUser(), async(req,res)=>{
 
     try{
         const cards=await getAllCards();
@@ -58,7 +58,7 @@ route.get('/',async(req,res)=>{
 
 })
 
-route.get('/notifications',async(req,res)=>{
+route.get('/notifications', verifyUser(), async(req,res)=>{
     try{
         notiData=[];
         let user = JSON.stringify(req.user);
@@ -80,7 +80,7 @@ route.get('/notifications',async(req,res)=>{
     }
 })
 
-route.post('/new',async (req, res) => {
+route.post('/new', verifyUser(), async (req, res) => {
 
     try {
 

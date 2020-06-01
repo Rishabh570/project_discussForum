@@ -1,8 +1,9 @@
 const express = require('express')
 	, router = express.Router()
-	, {findKeywords} = require('../controllers/search');
+	, {findKeywords} = require('../controllers/search')
+	, {verifyUser } = require('../middlewares/isAuthenticated');
 
-router.post('/', async (req, res) => {
+router.post('/', verifyUser(), async (req, res) => {
 	try {
 		const resp = await findKeywords(req.body.query);
 		res.send(resp);

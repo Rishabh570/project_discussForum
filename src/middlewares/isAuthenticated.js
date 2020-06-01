@@ -1,13 +1,14 @@
-function verifyUser(req, res, next) {
-    if (req.isAuthenticated()) {
+const verifyUser = () => (req, res, next) => {
+	if(req.user) {
 		console.log("User is logged in");
-        return next();
-    } else {
+		next();
+	}
+	else {
 		console.log("User is NOT logged in!");
-        res.redirect('/homebeforelogin.html');
-    }
+		res.redirect('/homebeforelogin.html');
+	}
 }
 
 module.exports = {
-	verifyUser: verifyUser
+	verifyUser
 }

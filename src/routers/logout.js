@@ -1,11 +1,9 @@
 const express = require('express')
 	, router = express.Router()
-	, {createUserLocal, findUserByParams} = require('../controllers/user')
-	, {pass2hash} = require('../utils/passwordUtils')
-    , passport = require('../passport/passporthandler');
+	, {verifyUser} = require('../middlewares/isAuthenticated.js');
 
 
-router.get('/', function(req, res){
+router.get('/', verifyUser(), function(req, res){
 	console.log("logging out...");
 	req.logout();
 	res.redirect('/');

@@ -13,7 +13,7 @@ const express = require('express')
 
 
 let cache={};
-router.get('/card/data', verifyUser, async (req, res) => {
+router.get('/card/data', verifyUser(), async (req, res) => {
 	let roomID = cache[req.user.email];
 	try {
 		const roomObj = await findCardByID(roomID);
@@ -33,7 +33,7 @@ router.get('/card/data', verifyUser, async (req, res) => {
 	}
 })
 
-router.get('/card/:cardId', verifyUser, async (req, res) => {
+router.get('/card/:cardId', verifyUser(), async (req, res) => {
 	cache[req.user.email]=req.params.cardId;
 	try {
 		res.redirect('/chatroom.html');
