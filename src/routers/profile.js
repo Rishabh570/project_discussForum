@@ -3,7 +3,7 @@ const route=require('express').Router()
 , { verifyUser } = require("../middlewares/isAuthenticated")
 , upload = require("../middlewares/upload");
 
-route.post('/picture-upload', upload.single("avatar"), async (req, res) => {
+route.post('/picture-upload', verifyUser(), upload.single("avatar"), async (req, res) => {
 	if (req.file == undefined) {
 		return res.send(`You must select a file.`);
 	}
@@ -18,7 +18,7 @@ route.post('/picture-upload', upload.single("avatar"), async (req, res) => {
 	res.redirect('/profile');
 });
 
-route.get('/get-profile-pic', (req, res) => {
+route.get('/get-profile-pic', verifyUser(), (req, res) => {
 	let curUser = JSON.stringify(req.user);
 	curUser = JSON.parse(curUser);
 	let picName = curUser.avatar;
@@ -26,23 +26,7 @@ route.get('/get-profile-pic', (req, res) => {
 })
 
 
-route.post('/cover-upload', upload.single("cover"), async (req, res) => {
-	if (req.file == undefined) {
-		return res.send(`You must select a file.`);
-	}
-
-	let loggedInUser = JSON.stringify(req.user);
-	loggedInUser = JSON.parse(loggedInUser);
-
-	let userObj = await findUserById(loggedInUser.uid);
-	userObj.coverpic = req.file.filename;
-	await userObj.save();
-
-	res.redirect('/profile');
-});
-
-
-route.get('/data',async(req,res)=>{
+route.get('/data', verifyUser(), async(req,res)=>{
     try {
         let fname=req.user.firstName;                       let lname=req.user.lastName;
         let mob=req.user.mobile_number;                     let prof=req.user.empDet;
@@ -64,13 +48,13 @@ route.get('/data',async(req,res)=>{
 
 let lastProfileViewed={};
 
-route.get('/others/pic',async(req,res)=>{
+route.get('/others/pic', verifyUser(), async(req,res)=>{
 	const user=await findUserByParams({email:lastProfileViewed[req.user.email]});
     let picName = user.avatar;
 	res.send(`/${picName}`);
 })
 
-route.get('/others/data',async(req,res)=>{
+route.get('/others/data', verifyUser(), async(req,res)=>{
     try {
 		const user=await findUserByParams({email:lastProfileViewed[req.user.email]});
         let fname=user.firstName;                       let lname=user.lastName;
@@ -91,13 +75,13 @@ route.get('/others/data',async(req,res)=>{
     }
 
 })
-route.use('/others/:uid',async(req,res)=>{
+route.use('/others/:uid', verifyUser(), async(req,res)=>{
     lastProfileViewed[req.user.email]=req.params.uid;
     res.redirect('/othersprofile.html');
 })
 
 
-route.post('/updatePersonalDet',async(req,res)=>{
+route.post('/updatePersonalDet', verifyUser(), async(req,res)=>{
     try{
 
         const user=await findUserByParams({email:req.user.email});
@@ -113,7 +97,7 @@ route.post('/updatePersonalDet',async(req,res)=>{
         console.log("updation failed");
     }
 })
-route.post('/updateHobDet',async(req,res)=>{
+route.post('/updateHobDet', verifyUser(), async(req,res)=>{
     try{
 
         const user=await findUserByParams({email:req.user.email});
@@ -125,7 +109,7 @@ route.post('/updateHobDet',async(req,res)=>{
         console.log("updation failed");
     }
 })
-route.post('/updateEduDet',async(req,res)=>{
+route.post('/updateEduDet', verifyUser(), async(req,res)=>{
     try{
 
         const user=await findUserByParams({email:req.user.email});
@@ -137,7 +121,7 @@ route.post('/updateEduDet',async(req,res)=>{
         console.log("updation failed");
     }
 })
-route.post('/updateSocialHDet',async(req,res)=>{
+route.post('/updateSocialHDet', verifyUser(), async(req,res)=>{
     try{
 
         const user=await findUserByParams({email:req.user.email});
@@ -149,7 +133,7 @@ route.post('/updateSocialHDet',async(req,res)=>{
         console.log("updation failed");
     }
 })
-route.post('/updateBioDet',async(req,res)=>{
+route.post('/updateBioDet', verifyUser(), async(req,res)=>{
     try{
 
         const user=await findUserByParams({email:req.user.email});
@@ -163,7 +147,7 @@ route.post('/updateBioDet',async(req,res)=>{
 })
 
 
-route.get('/', (req,res) => {
+route.get('/', verifyUser(), (req,res) => {
     res.redirect('newprofile.html');
 })
 

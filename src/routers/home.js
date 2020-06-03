@@ -1,11 +1,11 @@
 const express = require('express')
 	, router = express.Router()
-	, authMiddleware = require('../middlewares/isAuthenticated');
+	, passport = require('passport')
+	, {verifyUser} = require('../middlewares/isAuthenticated');
 
 
 
-
-	router.get('/', authMiddleware.verifyUser, (req, res) => {
+	router.get('/', verifyUser(), (req, res) => {
 		res.redirect('/homeafterlogin.html');
 	})
 

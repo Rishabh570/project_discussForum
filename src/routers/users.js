@@ -5,7 +5,7 @@ const express = require('express')
 	, {findCardByID} = require('../controllers/card');
 
 
-router.get('/participated', verifyUser, async (req, res) => {
+router.get('/participated', verifyUser(), async (req, res) => {
 	try {
 		let currentUser = req.user;
 		currentUser = JSON.stringify(currentUser);
