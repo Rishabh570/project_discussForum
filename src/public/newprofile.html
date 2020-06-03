@@ -8,9 +8,9 @@
   <title>Profile</title>
   <link rel="stylesheet" type="text/css" href="newprofile.css">
 
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js'></script>
-	<script src="./profile-picture.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js'></script>
+    <script src="./profile-picture.js"></script>
 
 </head>
 <body>
@@ -29,7 +29,7 @@
         </button>
       </div>
       <div class="modal-body">
-			<form
+            <form
             class="mt-4"
             action="profile/picture-upload"
             method="POST"
@@ -224,33 +224,34 @@
 
 <!------------------------- COLLECTION ENDS HERE ---------------------------------------------------------------->
 
-
 <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-offcanvas">
-  <div class="container-fluid">
-      <a class="navbar-brand" href="#"><strong>Live Discussions</strong></a>
-      <ul class="navbar-nav navbar-top">
-          <li class="nav-item active">
-              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="/profile"> Profile</a>
-          </li>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><strong>Live Discussions</strong></a>
+        
+        <ul class="navbar-nav navbar-top">
+            <li class="nav-item active">
+                <a class="nav-link" href="/"><i class="fas fa-home"></i> Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/profile"><i class="fas fa-user-circle"></i> Profile</a>
+            </li>
+        </ul>
 
-      </ul>
-      <div class="notify">
-        <div class="notifications">
+<!------------------- notification code starts here ------------------------------------------->
 
+    <div class="notify">
+        <div class="notifications"> 
         <div class="icon_wrap">
-          <i class="fas fa-bell"></i> Notifications <span class="badge badge-light"></span>
+          <i class="fas fa-bell"></i> Notifications<span class="badge badge-light"></span>
         </div>
-          <div class="notification_dd">
+          <div class="notification_dd" >
             <ul class="notification_ul" id="notiSection">
-
+             
             </ul>
           </div>
       </div>
     </div>
-        <div class="popup">
+  <div class="popup">
     <div class="shadow"></div>
     <div class="inner_popup">
         <div class="notification_dd">
@@ -258,34 +259,38 @@
                 <li class="title">
                     <p>All Notifications</p>
                     <p class="close"><i class="fas fa-times" aria-hidden="true"></i></p>
-                </li>
-               
+                </li> 
             </ul>
         </div>
     </div>
   </div>
 
-      <button class="navbar-toggler navbar-toggler-right navbar-icon" type="button" data-toggle="collapse" data-target="#navbar-mobile" aria-controls="navbar-mobile" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="icon-bar bar1"></span>
-          <span class="icon-bar bar2"></span>
-          <span class="icon-bar bar3"></span>
-      </button>
+<!-----------------------notification code ends here ------------------------------------->
 
-      <div class="navbar-collapse collapse ml-auto" id="navbar-mobile">
-          <ul class="navbar-nav ml-auto">
+        <button class="navbar-toggler navbar-toggler-right navbar-icon" type="button" data-toggle="collapse" data-target="#navbar-mobile" aria-controls="navbar-mobile" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar bar1"></span>
+            <span class="icon-bar bar2"></span>
+            <span class="icon-bar bar3"></span>
+        </button>
+
+        <div class="navbar-collapse collapse ml-auto" id="navbar-mobile">
+            <ul class="navbar-nav ml-auto">
               
-              <li class="nav-item">
-                  <a href="/logout" class="nav-link"><i class="fas fa-sign-out-alt"></i> SIGN OUT</a>
-              </li>
-              <li class="nav-item">
-                  <a href="#" class="nav-link" data-toggle="modal" data-target="#exampleInfo" action="/action_page.php"><i class="fa fa-phone" aria-hidden="true"></i>  Contact</a>
-              </li>
-              <li class="nav-item">
-                  <a href="/about" class="nav-link" data-toggle="modal" data-target="#exampleAbout" action="/action_page.php"><i class="fa fa-info-circle" aria-hidden="true"></i> ABOUT</a>
-              </li>
-          </ul>
-      </div>
-  </div>
+                <li class="nav-image">
+                    <img src="profileicon.jpeg" alt="">
+                </li>
+                <li class="nav-item">
+                    <a href="/logout" class="nav-link"><i class="fas fa-sign-out-alt"></i> SIGN OUT</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-toggle="modal" data-target="#exampleInfo" action="/action_page.php"><i class="fa fa-phone" aria-hidden="true"></i>  Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/about" class="nav-link" data-toggle="modal" data-target="#exampleAbout" action="/action_page.php"><i class="fa fa-info-circle" aria-hidden="true"></i> ABOUT</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>
 
 <!-- Modal -->
