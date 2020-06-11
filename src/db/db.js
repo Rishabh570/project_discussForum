@@ -13,6 +13,19 @@
 const sequelize = require('sequelize')
 const db = require('./database')
 
+const notifiState=db.define('notifiState',{
+	cid:{
+		type:sequelize.DataTypes.BIGINT,
+		primaryKey:true
+	},
+	lastMId:{
+		type:sequelize.DataTypes.BIGINT
+	},
+	particiState:{
+		type:sequelize.DataTypes.JSON
+	}
+})
+
 const User = db.define('User', {
 	uid: {
 		type: sequelize.DataTypes.BIGINT,
@@ -146,18 +159,7 @@ const messages = db.define('messages', {
 	}
 })
 
-const notifiState=db.define('notifiState',{
-	cid:{
-		type:sequelize.DataTypes.BIGINT,
-		primaryKey:true
-	},
-	lastMId:{
-		type:sequelize.DataTypes.BIGINT
-	},
-	particiState:{
-		type:sequelize.DataTypes.JSON
-	}
-})
+
 
 const Image = db.define("Image", {
     type: {
@@ -175,10 +177,10 @@ const Image = db.define("Image", {
 db.sync().then(() => console.log("Database has been synced")).catch((err) => console.error("Error creating database"));
 
 module.exports = {
+	notifiState,
 	User,
 	cards,
 	messages,
-	notifiState,
 	Image
 }
 
