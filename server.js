@@ -9,8 +9,10 @@ const express = require('express')
 	, chatroomRoute = require('./src/routers/chatroom')
 	, profileRoute = require('./src/routers/profile')
 	, infoRoute = require('./src/routers/aboutus')
-	, passport = require('./src/passport/passporthandler')
-	, session = require('express-session')
+	, passport = require('passport')
+	, {localLogin} = require('./src/passport/passporthandler')
+	, session = require('cookie-session')
+	, parser=require('cookie-parser')
 	, path = require('path')
 	, SocketIO=require('socket.io')
 	, http=require('http')
@@ -19,6 +21,7 @@ const express = require('express')
 	, { updateCardLastMsg } = require('./src/controllers/card');
 
 const app = express()  			//creates server
+app.use(parser('78500013de3ad7e727718102f8137ffd31ec2490adf9a739'))
 const httpServer=http.createServer(app);
 const io=SocketIO(httpServer);
 
@@ -29,20 +32,15 @@ app.use(express.json());	app.use(express.urlencoded({extended: true}))  // code 
 
 
 app.use(session({
-	secret: 'keyboard cat',
-	resave: false,
-	saveUninitialized: true,
-	proxy: true,
-	cookie: {
-		maxAge: 10*60*60*1000,
-		httpOnly: true,
-		secure: false,
-		domain: 'localhost'
-	}
+	secret: '78500013de3ad7e727718102f8137ffd31ec2490adf9a739',
+	name: 'session',
+	maxAge: 30*24*60*60*1000,	// cookies will be removed after 30 days
+	secure: false
 }))
 
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use('local', localLogin);
 
 // Setting base directory
 global.__basedir = __dirname;

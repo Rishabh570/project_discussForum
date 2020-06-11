@@ -23,27 +23,28 @@ passport.deserializeUser(async function (email, done) {
 	}
 })
 
-passport.use(new LocalStrategy(async function (username, password, done) {
-
+const localLogin = async function (username, password, done) {
+	console.log("In locallogin start,,,");
 	try {
 		const user = await findUserByParams({email:username});
         if (!user) {
-            return done(null, false, {message: "No such user"})
+            done(null, false, {message: "No such user"})
 		}
 
 		bcrypt.compare(password, user.password, (err, matches) => {
 			if(matches) {
-				return done(null, user)
+				console.log("user found, returning...");
+				done(null, user)
 			}
-			console.log("not machted");
-			return done(null, false, {message: "Wrong password"})
+			else {
+				console.log("not machted");
+				done(null, false, {message: "Wrong password"})
+			}
 		})
 	}
 	catch(err){
-        return done(err)
+        done(err)
     }
-}))
+}
 
-exports= module.exports = passport
-
-
+exports.localLogin = new LocalStrategy(localLogin);
