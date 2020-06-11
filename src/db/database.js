@@ -13,8 +13,8 @@ const sequelize = require('sequelize')
 /**
  * THIS IS THE PRODUCTION DATABASE
  */
-module.exports = new sequelize('sql12344495', 'sql12344495', 'SrgL75SWgi', {
-	host: '85.10.205.173',
+module.exports = new sequelize('heroku_42d990be20d6c89', 'b6419cb2460fc8', '85937b9d', {
+	host: 'us-cdbr-east-05.cleardb.net',
 	port: 3306,
 	dialect: 'mysql',
 });
