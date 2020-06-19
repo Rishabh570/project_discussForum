@@ -11,7 +11,7 @@
 //show grants for 'founder';
 //revoke all on *.* from 'founder';
 const sequelize = require('sequelize')
-const db = require('./database')
+const {db} = require('./database')
 
 const notifiState=db.define('notifiState',{
 	cid:{
@@ -107,8 +107,7 @@ const User = db.define('User', {
 	}
 });
 
-const cards = db.define('carddets',
-{
+const cards = db.define('carddets',{
 	cid:{
 		type:sequelize.DataTypes.BIGINT,
 		primaryKey: true,
@@ -135,7 +134,6 @@ const cards = db.define('carddets',
 	}
 });
 
-
 const messages = db.define('messages', {
 	mid: {
 		type:sequelize.DataTypes.BIGINT,
@@ -159,8 +157,6 @@ const messages = db.define('messages', {
 	}
 })
 
-
-
 const Image = db.define("Image", {
     type: {
       type: sequelize.DataTypes.STRING,
@@ -175,16 +171,12 @@ const Image = db.define("Image", {
 
 
 db.sync().then(() => console.log("Database has been synced")).catch((err) => console.error("Error creating database"));
+db.authenticate().then(() => {console.log("Database Connected.")}).catch(err => console.log("Error in DB connection: ", err));
 
 module.exports = {
-	notifiState,
-	User,
-	cards,
-	messages,
-	Image
+	notifiState,User,
+	cards,messages,Image
 }
-
-
 
 
 

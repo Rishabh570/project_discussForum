@@ -99,10 +99,8 @@ app.use('/', homeRoute);
 
 
 // TEST DB ==============================================================
-const db = require('./src/db/database')
-db.authenticate()
-.then(() => {console.log("Database Connected.")})
-.catch(err => console.log("Error in DB connection: ", err));
+const {db} = require('./src/db/database')
+
 
 
 
