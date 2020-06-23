@@ -13,18 +13,6 @@
 const sequelize = require('sequelize')
 const {db} = require('./database')
 
-const notifiState=db.define('notifiState',{
-	cid:{
-		type:sequelize.DataTypes.BIGINT,
-		primaryKey:true
-	},
-	lastMId:{
-		type:sequelize.DataTypes.BIGINT
-	},
-	particiState:{
-		type:sequelize.DataTypes.JSON
-	}
-})
 
 const User = db.define('User', {
 	uid: {
@@ -38,10 +26,6 @@ const User = db.define('User', {
 		allowNull: false
 	},
 	avatar: {
-		type: sequelize.DataTypes.STRING,
-		allowNull: true
-	},
-	coverpic: {
 		type: sequelize.DataTypes.STRING,
 		allowNull: true
 	},
@@ -84,9 +68,6 @@ const User = db.define('User', {
 	colDet:{
 		type: sequelize.DataTypes.STRING
 	},
-	schDet:{
-		type: sequelize.DataTypes.STRING
-	},
 	faceDet:{
 		type: sequelize.DataTypes.STRING
 	},
@@ -103,7 +84,7 @@ const User = db.define('User', {
 		type: sequelize.DataTypes.STRING
 	},
 	cid:{
-		type: sequelize.DataTypes.JSON
+		type: sequelize.DataTypes.STRING	// CHANGED FROM JSON
 	}
 });
 
@@ -125,7 +106,7 @@ const cards = db.define('carddets',{
 		allowNull:false
 	},
 	likes:{
-		type:sequelize.DataTypes.JSON,
+		type:sequelize.DataTypes.STRING,	// CHANGED FROM JSON
 		allowNull:true
 	},
 	lastMsg: {
@@ -157,25 +138,12 @@ const messages = db.define('messages', {
 	}
 })
 
-const Image = db.define("Image", {
-    type: {
-      type: sequelize.DataTypes.STRING,
-    },
-    name: {
-      type: sequelize.DataTypes.STRING,
-    },
-    data: {
-      type: sequelize.DataTypes.BLOB("long"),
-    },
-})
-
 
 db.sync().then(() => console.log("Database has been synced")).catch((err) => console.error("Error creating database"));
 db.authenticate().then(() => {console.log("Database Connected.")}).catch(err => console.log("Error in DB connection: ", err));
 
 module.exports = {
-	notifiState,User,
-	cards,messages,Image
+	User, cards,messages
 }
 
 
