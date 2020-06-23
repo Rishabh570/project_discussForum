@@ -1,6 +1,7 @@
 const db = require('../db/db');
 
 async function getMessagesByRoomId(roomID) {
+	console.log("============================================IN GETMESSAGES  BY ROOM ID, ", roomID);
 	try {
 		const resp = await db.messages.findAll({
 			where: {cid: roomID}
