@@ -136,6 +136,8 @@ const messages = db.define('messages', {
 		type:sequelize.DataTypes.STRING,
 		allowNull:false
 	}
+}, {
+	timestamps: false
 })
 
 
