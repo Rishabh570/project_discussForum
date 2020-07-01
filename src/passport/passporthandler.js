@@ -27,11 +27,17 @@ const localLogin = async function (username, password, done) {
 	console.log("In locallogin start,,,");
 	try {
 		const user = await findUserByParams({email:username});
+		console.log('user: ', user);
+		
         if (!user) {
             done(null, false, {message: "No such user"})
 		}
 
 		bcrypt.compare(password, user.password, (err, matches) => {
+			if(err) {
+				console.log('err: ', err);
+				throw err;
+			}
 			if(matches) {
 				console.log("user found, returning...");
 				done(null, user)

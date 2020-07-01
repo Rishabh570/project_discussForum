@@ -11,10 +11,7 @@ router.get('/', (req, res) => {
 router.post('/', passport.authenticate('local', {
 	failureRedirect: '/signup'
 }), (req, res) => {
-	req.session.trendingCount = [];
-	req.session.save(() => {
-		res.redirect('/');
-	})
+	res.redirect('/');
 })
 
 module.exports = router;
