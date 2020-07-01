@@ -53,28 +53,23 @@ let usersockets = {};
 let cardLastMessage={};
 let activeUsers = {};
 let soctochat = {};
-let trendingCount = null;
+let trendingCount = [];
 let loggedInUser;
 
 // MIDDLEWARES ==============================================================
 
 function trendingCounter(req, res, next) {
 	if(trendingCount != null) {
-		req.session.trendingCount = trendingCount;
-		req.session.save(() => {
-			next();
-		});
+		res.cookie('trendingCount', trendingCount);
 	}
 	else {
-		trendingCount = req.session.trendingCount;
-		next();
+		trendingCount = req.cookies.trendingCount;
 	}
+	next();
 }
 
 function saveTrendingCounter(req, res, next) {
-	req.session.trendingCount = trendingCount;
-	console.log('req.session.trendingCount: ', req.session.trendingCount);
-	req.session.save();
+	res.cookie('trendingCount', trendingCount);
 	next();
 }
 

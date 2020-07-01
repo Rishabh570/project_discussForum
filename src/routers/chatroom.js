@@ -14,16 +14,12 @@ const express = require('express')
 
 let cache={};
 router.get('/card/data', verifyUser(), async (req, res) => {
-	console.log("IN CARD DATA +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 	let roomID = cache[req.user.email];
-	console.log("room ID = ", roomID);
+
 	try {
 		const roomObj = await findCardByID(roomID);
-		console.log("roj ======= ", roomObj);
 		const authorObj = await findUserById(roomObj.uid);
-		console.log("aoj ======= ", authorObj);
 		const messages = await getMessagesByRoomId(roomID);
-		console.log("msgs ======= ", messages);
 		const authorName = authorObj.firstName + " " + authorObj.lastName;
 		let myobj = {
 			cardDet: roomObj,		initiator: authorName,

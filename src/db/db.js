@@ -86,6 +86,8 @@ const User = db.define('User', {
 	cid:{
 		type: sequelize.DataTypes.STRING	// CHANGED FROM JSON
 	}
+}, {
+	timestamps: false
 });
 
 const cards = db.define('carddets',{
@@ -113,6 +115,8 @@ const cards = db.define('carddets',{
 		type: sequelize.DataTypes.BIGINT,
 		allowNull: true
 	}
+}, {
+	timestamps: false
 });
 
 const messages = db.define('messages', {

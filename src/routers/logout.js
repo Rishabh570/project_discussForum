@@ -5,7 +5,7 @@ const express = require('express')
 
 router.get('/', verifyUser(), function(req, res){
 	console.log("logging out...");
-	req.session=null;
+	// req.session=null;
 	req.logout();
 	res.redirect('/');
 });

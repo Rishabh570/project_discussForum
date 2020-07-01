@@ -8,8 +8,8 @@ const route=require('express').Router()
 route.get('/trending', verifyUser(), async (req, res) => {
 	console.log("In trending route...");
 	try{
-		let trendingCardsArr = req.session.trendingCount;
-		if(trendingCardsArr.length == 0) {
+		let trendingCardsArr = req.cookies.trendingCount;
+		if(trendingCardsArr && trendingCardsArr !== null && trendingCardsArr.length == 0) {
 			res.send("");
 		}
 
