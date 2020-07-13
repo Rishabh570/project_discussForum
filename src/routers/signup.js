@@ -32,7 +32,7 @@ const express = require('express')
 	},
 	passport.authenticate('local', {
 		failureRedirect: '/signup',
-		successReturnToOrRedirect: '/home'
+		successReturnToOrRedirect: '/'
 	}))
 	
 	module.exports = router;

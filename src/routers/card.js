@@ -64,7 +64,6 @@ route.get('/notifications', verifyUser(), async(req,res)=>{
         let user = JSON.stringify(req.user);
         user = JSON.parse(user);
         let userParticipatedCards =JSON.parse(user.cid);
-        console.log(userParticipatedCards);
         for(let cardid in userParticipatedCards){
             const cardObj = await findCardByID(cardid);
             if(cardObj.lastMsg*-1==userParticipatedCards[cardid] || cardObj.lastMsg==userParticipatedCards[cardid]){
@@ -73,6 +72,7 @@ route.get('/notifications', verifyUser(), async(req,res)=>{
                 notiData.push(cardid);
             }
         }
+        console.log(notiData);
         res.send(notiData);
     }
     catch(err){
