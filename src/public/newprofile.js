@@ -169,9 +169,29 @@ function fillData()
             let inputFaceDet=document.getElementById("inputFaceDet"); let inputInstaDet=document.getElementById("inputInstaDet");
             let colDet=document.getElementById("colDet");              let inputBioDet=document.getElementById("inputBio");
             let bioDet=document.getElementById("bio");
+
+            if(data.prof==null) data.prof="";
+            let address="";
+            if(data.city!=null && data.state!=null){
+            address=data.city+","+data.state;
+            }else if(data.city!=null){
+                address=data.city;
+            }else if(data.state!=null){
+                address=data.state;
+            }
+
+            if(data.mob==null) data.mob="";
+            if(data.schDet==null) data.schDet="";
+            if(data.colDet==null) data.colDet="";
+            if(data.linkDet==null) data.linkDet="";
+            if(data.instaDet==null) data.instaDet="";
+            if(data.faceDet==null) data.faceDet="";
+            if(data.bioDet==null) data.bioDet="";
+            if(data.hobbies==null) data.hobbies="";
+            
             maildet.innerHTML=`<strong> Email: </strong> ${data.mail}`
             mobdet.innerHTML=`<strong> Mobile No.: </strong> ${data.mob}`
-            locdet.innerHTML=`<strong> Address: </strong> ${data.city} , ${data.state}`
+            locdet.innerHTML=`<strong> Address: </strong> ${address}`
             profdet.innerHTML=`<strong> Profession: </strong> ${data.prof}`
             schDet.innerHTML=`<strong> High School: </strong> ${data.schDet}`
             colDet.innerHTML=`<strong> College: </strong> ${data.colDet}`

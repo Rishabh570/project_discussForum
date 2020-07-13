@@ -5,7 +5,7 @@ const verifyUser = () => (req, res, next) => {
 	}
 	else {
 		console.log("User is NOT logged in!");
-		res.redirect('/homebeforelogin.html');
+		res.render('newlogin');
 	}
 }
 
