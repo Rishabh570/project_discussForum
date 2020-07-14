@@ -220,9 +220,10 @@ $(document).ready(() => {
     })
 	socket.on('recv_msg', function (data) {
         let acitveId = document.getElementById("activeId");
+        let cardId=document.getElementById("cardDiv").textContent;
         let usersactive = data.activeId;
         acitveId.textContent = "Active users: " + usersactive;
-        if(data.message != "inc#U") {
+        if(data.message != "inc#U" && data.cardId==cardId) {
         	$('#msglist').append($(`<div class="message-heading"  onclick="window.location.href='/profile/others/${data.uid}'" ><strong>@${data.user}:</strong></div>
 			<div class="message-body">${data.message} </div><br>`))
 		}
