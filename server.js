@@ -161,7 +161,6 @@ io.on('connection', (socket) => {
 			await updateCardLastMsg(cardID, cardLastMessage[cardID]);
 			await updateUserLastMsgForCard(loggedInUser, cardID, cardLastMessage[cardID]);
 		}
-
 		// Update active users count
 		activeUsers[cardID] = activeUsers[cardID]-1;
 	  });

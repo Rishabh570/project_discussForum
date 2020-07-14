@@ -223,6 +223,8 @@ $(document).ready(() => {
         let cardId=document.getElementById("cardDiv").textContent;
         let usersactive = data.activeId;
         acitveId.textContent = "Active users: " + usersactive;
+        cardId=cardId.substr(9);
+        cardId=parseInt(cardId)  
         if(data.message != "inc#U" && data.cardId==cardId) {
         	$('#msglist').append($(`<div class="message-heading"  onclick="window.location.href='/profile/others/${data.uid}'" ><strong>@${data.user}:</strong></div>
 			<div class="message-body">${data.message} </div><br>`))
