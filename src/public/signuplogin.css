@@ -154,6 +154,5 @@ input:not([type="checkbox"]) {
 .modal-footer {   border-top: 0px; }
 
 .modal-header { 
-    display: inline; !important
-}
+    display: inline !important ; }
 /*-------------------------------------------*/
