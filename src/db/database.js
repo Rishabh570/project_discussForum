@@ -21,6 +21,7 @@ const db = new Sequelize('heroku_42d990be20d6c89', 'b6419cb2460fc8', '85937b9d',
 });
 
 
+
 module.exports = {
 	db
 };
