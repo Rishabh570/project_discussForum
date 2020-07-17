@@ -38,53 +38,61 @@ const User = db.define('User', {
 	email: {
 		type: sequelize.DataTypes.STRING
 	},
-	dob: {
-		type: sequelize.DataTypes.STRING
-	},
-	gender: {
-		type: sequelize.DataTypes.STRING(1)
-	},
 	state: {
-		type: sequelize.DataTypes.STRING
+		type: sequelize.DataTypes.STRING,
+		allowNull: true
 	},
 	city: {
-		type: sequelize.DataTypes.STRING
+		type: sequelize.DataTypes.STRING,
+		allowNull: true
 	},
 	bio: {
-		type: sequelize.DataTypes.STRING
+		type: sequelize.DataTypes.STRING,
+		allowNull: true
 	},
 	zip: {
-		type: sequelize.DataTypes.STRING
+		type: sequelize.DataTypes.STRING,
+		allowNull: true
 	},
 	hobbies: {
-		type: sequelize.DataTypes.STRING
+		type: sequelize.DataTypes.STRING,
+		allowNull: true
 	},
 	mobile_number: {
-		type: sequelize.DataTypes.STRING
+		type: sequelize.DataTypes.STRING,
+		allowNull: true
 	},
 	schDet:{
-		type: sequelize.DataTypes.STRING
+		type: sequelize.DataTypes.STRING,
+		allowNull: true
 	},
 	colDet:{
-		type: sequelize.DataTypes.STRING
+		type: sequelize.DataTypes.STRING,
+		allowNull: true
 	},
 	faceDet:{
-		type: sequelize.DataTypes.STRING
+		type: sequelize.DataTypes.STRING,
+		allowNull: true
 	},
 	linkDet:{
-		type: sequelize.DataTypes.STRING
+		type: sequelize.DataTypes.STRING,
+		allowNull: true
 	},
 	instaDet:{
-		type: sequelize.DataTypes.STRING
+		type: sequelize.DataTypes.STRING,
+		allowNull: true
 	},
 	empDet:{
-		type: sequelize.DataTypes.STRING
+		type: sequelize.DataTypes.STRING,
+		allowNull: true
 	},
 	ilink:{
-		type: sequelize.DataTypes.STRING
+		type: sequelize.DataTypes.STRING,
+		allowNull: true
 	},
 	cid:{
-		type: sequelize.DataTypes.STRING	// CHANGED FROM JSON
+		type: sequelize.DataTypes.STRING,	// CHANGED FROM JSON
+		allowNull: true
 	}
 }, {
 	timestamps: false

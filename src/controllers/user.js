@@ -7,12 +7,10 @@ async function createUserLocal(query) {
 			email: query.email,
 			password: query.password,
 			firstName:query.firstName,
-			lastName: query.lastName, dob: query.dob,
-			gender: query.gender
+			lastName: query.lastName,
 		})
     } catch (err) {
-		console.log("error while creating user");
-        throw new Error('Unsuccessful registration. Please try again.')
+        throw new Error('Unsuccessful registration. Please try again., err = ',err);
 	}
 	console.log("user created!");
     return userLocal;

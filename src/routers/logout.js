@@ -4,10 +4,10 @@ const express = require('express')
 
 
 router.get('/', verifyUser(), function(req, res){
-	console.log("logging out...");
-	// req.session=null;
+	res.cookie('session', req.cookies.session, {maxAge: 0});
+	req.session = null;
 	req.logout();
-	res.redirect('/');
+	res.redirect('/login');
 });
 
 
